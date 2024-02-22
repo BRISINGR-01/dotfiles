@@ -9,6 +9,9 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias gs='git status'
+alias gc='git add --all;git commit -m'
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=normal "Command has finished"'

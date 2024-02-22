@@ -1,0 +1,18 @@
+#!/bin/sh
+
+sudo tar -vczf /backup.tar.gz \
+  --exclude='**/node_modules' \
+  --exclude='**/*cache*' \
+  --exclude='**/build' \
+  --exclude='**/target' \
+  --exclude='**/databases' \
+  --exclude='**/.git' \
+  --exclude='**/*ndroid*'  \
+  --exclude='**/snap' \
+  --exclude='**/cltk_data' \
+  --exclude='**/alex-Vostro-3500' \
+  --exclude='**/programs' \
+  --exclude='**/Music' \
+  --exclude='**/Downloads' \
+  --exclude='**/.*' \
+  /home /var/spool/mail /etc /root

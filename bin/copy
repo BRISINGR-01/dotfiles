@@ -1,0 +1,25 @@
+#! /bin/bash
+
+function copy_util () {
+  echo $@ | tr -d '\n' | xsel -b
+}
+
+getopts "f" flag
+
+if [[ -z $@ ]]; then
+  copy_util $(cat)
+elif [[ $flag == "f" ]]; then
+  if [[ -d $2 ]]; then
+    echo "copy: $2: Is a directory"
+    exit 1
+  elif [[ ! -f $2 ]]; then
+    echo "copy: $2: No such file"
+    exit 1
+  fi
+  copy_util $(cat $2)
+  # copy_util $a
+else
+  copy_util $@
+fi
+
+exit 0
