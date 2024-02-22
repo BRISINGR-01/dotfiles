@@ -14,7 +14,7 @@ bind("n", "<C-Up>", ":resize -1 <CR>", { silent = true })
 bind("n", "<C-Down>", ":resize +1 <CR>", { silent = true })
 
 ----------------------Plugins--------------------------------------------------------
-bind('n', "<C-t>", ":TransparentToggle <CR>", { silent = true, desc = "Make backgrounid transparent" })
+bind('n', "<C-t>", ":TransparentToggle <CR>", { silent = true, desc = "Make background transparent" })
 
 bind("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { silent = true, desc = "Toggle nvimtree" })
 bind("n", "<leader>e", "<cmd> NvimTreeFocus <CR>", { silent = true, desc = "Focus nvimtree" })

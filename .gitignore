@@ -3,3 +3,4 @@
 .git
 Session.vim
 .ssh
+**/lazy-lock.json
