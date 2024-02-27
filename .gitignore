@@ -1,8 +1,7 @@
 .minecraft
 .tlauncher
 .git
+.gitconfig
 Session.vim
 .ssh
 **/lazy-lock.json
-fsff
-fdw23

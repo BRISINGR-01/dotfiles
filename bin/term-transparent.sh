@@ -1,5 +1,5 @@
 #! /bin/bash
-path="/org/gnome/terminal/legacy/profiles:/:a41e7b60-3225-4f8f-8125-428c23ebcb61/background-transparency-percent"
+path="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-transparency-percent"
 t="$(dconf read $path)"
 
 if [[ $1 == "+" ]]; then

@@ -27,7 +27,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
@@ -35,7 +34,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -64,10 +63,6 @@ xterm*|rxvt*)
     ;;
 esac
 
-if [ -f ~/bash/.bash_aliases ]; then
-    . ~/bash/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -89,6 +84,10 @@ export NVM_DIR="$HOME/.nvm"
 export EDITOR="nvim"
 
 PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/home/alex/.fly/bin"
+
+. "$HOME/.cargo/env"
+. ~/bash/aliases.sh
+source /etc/profile.d/bash_completion.sh
 
 fish
 
