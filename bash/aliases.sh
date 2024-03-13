@@ -19,4 +19,6 @@ alias alert='notify-send --urgency=normal "Command has finished"'
 alias macos="cd ~/programs/macOS-Simple-KVM/ && ./basic.sh"
 alias cls="clear"
 
+alias yt="yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/"
+
 alias opent="gnome-terminal"

@@ -5,3 +5,5 @@
 Session.vim
 .ssh
 **/lazy-lock.json
+.gnupg
+git-credentials

@@ -1,4 +1,5 @@
 return {
+  {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = {
@@ -76,6 +77,30 @@ return {
         },
       },
     }
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    opts = {
+      strict = true,
+      override = {
+        ["env"] = {
+	  name = "env",
+	  icon = "",
+	  color = "#faf743"
+	}
+      },
+      override_by_filename = {
+        ["package.json"] = {
+          icon = "",
+          color = "#89e051",
+	  name = "PackageJson"
+        },
+	["package-lock.json"] = {
+          icon = "",
+          color = "#89e051",
+	  name = "PackageLockJson"
+        }
+      }
+     }
   }
-
-
+}

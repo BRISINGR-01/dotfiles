@@ -6,6 +6,7 @@
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 vim.cmd.colorscheme  "tokyonight"
+vim.api.nvim_set_option("clipboard","unnamedplus")
 
 require 'config/mappings'
 
