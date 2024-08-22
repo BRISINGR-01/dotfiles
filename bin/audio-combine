@@ -1,0 +1,14 @@
+#!/bin/bash
+
+touch list.txt
+
+for f in $(pwd)/**
+do
+  if [[ ! $f =~ .*list\.txt ]]; then
+    echo "file $f" >> list.txt
+  fi
+done
+
+ffmpeg -f concat -safe 0 -i ./list.txt -c copy ../output2.mp3
+
+rm list.txt

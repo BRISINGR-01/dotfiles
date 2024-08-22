@@ -25,7 +25,7 @@ local plugins = {
     'ThePrimeagen/harpoon',
     requires = {
     }
-  }
+  },
 }
 
 return plugins

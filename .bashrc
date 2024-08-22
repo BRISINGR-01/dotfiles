@@ -83,10 +83,15 @@ export NVM_DIR="$HOME/.nvm"
 
 export EDITOR="nvim"
 
-PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/home/alex/.fly/bin"
+PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/usr/local/go/bin"
 
 . "$HOME/.cargo/env"
 . ~/bash/aliases.sh
+# . ~/bash/quitcd.bash
+export NNN_PLUG="p:preview-tui;"
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_BMS="d:$HOME/Documents;D:$HOME/Downloads/"
+export CLASSPATH=".:/home/alex/Desktop/VSC/Maths/Automata/lib/antlr-4.13.1-complete.jar:$CLASSPATH"
 source /etc/profile.d/bash_completion.sh
 
 fish

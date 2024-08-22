@@ -1,25 +1,81 @@
 #! /bin/bash
 
-function copy_util () {
-  echo $@ | tr -d '\n' | xsel -b
+function copy_util() {
+  echo -e $@ | xsel -b
 }
 
-getopts "f" flag
+function copy_from_cmd() {
+  res=$(eval $@)
+  copy_util $res
+  echo $res
+}
+
+function show_help() {
+  echo "Copy utility
+It copies text to the clipboard
+
+If no flags are provided it copies the output of the provided command
+ex: \`copy pwd\` -> puts the current directory in the clipnoard 
+
+-f [FILE]
+Copies the contents of a file
+
+-r
+\"(raw)\" - copies as string
+ex: \`copy -r some-text\` -> puts \"some-text\" in the clipboard
+
+<empty>
+If no arguments are provided it defaults to \`copy pwd\`
+"
+
+  exit 0
+}
 
 if [[ -z $@ ]]; then
-  copy_util $(cat)
-elif [[ $flag == "f" ]]; then
-  if [[ -d $2 ]]; then
-    echo "copy: $2: Is a directory"
-    exit 1
-  elif [[ ! -f $2 ]]; then
-    echo "copy: $2: No such file"
-    exit 1
+  pipeOutput="";
+  while read out;
+  do
+    pipeOutput=$pipeOutput'\n'$out 
+  done
+  
+  pipeOutput=${pipeOutput:2};
+
+  if [[ -z $pipeOutput ]]; then
+    copy_from_cmd pwd
+    exit 0
   fi
-  copy_util $(cat $2)
-  # copy_util $a
-else
-  copy_util $@
+
+  echo -e $pipeOutput
+  copy_util $pipeOutput
+  exit 0;
 fi
+
+while getopts "f:r:h" arg; do
+  case $arg in
+    f)
+      if [[ -d $2 ]]; then
+        echo "copy: $2: Is a directory"
+        exit 1
+      elif [[ ! -f $2 ]]; then
+        echo "copy: $2: No such file"
+        exit 1
+      fi
+       
+      copy_util $(cat $2)
+
+      readlink -f $2
+      exit 0
+      ;;
+    r)
+      copy_util "${@:2}"
+      exit 0
+      ;;
+    h)
+      show_help
+      ;;
+  esac
+done
+
+copy_from_cmd $@
 
 exit 0
