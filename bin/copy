@@ -1,7 +1,8 @@
 #! /bin/bash
 
 function copy_util() {
-  echo -e $@ | xsel -b
+  # remove the last character, which is a newline
+  echo -e $@ | head -c -1 | xsel -b
 }
 
 function copy_from_cmd() {
@@ -50,7 +51,7 @@ if [[ -z $@ ]]; then
   exit 0;
 fi
 
-while getopts "f:r:h" arg; do
+while getopts "f:r:h:l" arg; do
   case $arg in
     f)
       if [[ -d $2 ]]; then
@@ -68,6 +69,12 @@ while getopts "f:r:h" arg; do
       ;;
     r)
       copy_util "${@:2}"
+      exit 0
+      ;;
+    l)
+      lastCmd=$(tail ~/.local/share/fish/fish_history | grep cmd | tail -2 | head -1 | cut -c '8-')
+      echo $lastCmd
+      copy_util $lastCmd
       exit 0
       ;;
     h)

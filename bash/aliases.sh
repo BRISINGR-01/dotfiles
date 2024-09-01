@@ -26,6 +26,8 @@ alias yt="yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/"
 alias opent="gnome-terminal"
 
 alias n='n -e'
+alias f='fuck'
+
 alias antlr4='java -jar /home/alex/Documents/antlr-4.13.1-complete.jar'
 alias grun='java org.antlr.v4.gui.TestRig'
 

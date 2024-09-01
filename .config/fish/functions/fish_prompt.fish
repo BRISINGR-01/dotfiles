@@ -35,7 +35,7 @@ function fish_prompt
 
     if not string match --quiet '/*' $cwd; and not string match --quiet '~*' $cwd  
       set cwd 󰇘/$cwd
-    end 
+    end
 
     set -l cwd "$green$cwd"
     echo -n -s ' ' $cwd ' ' $arrow $normal

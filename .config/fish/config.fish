@@ -4,3 +4,4 @@ end
 
 source ~/bash/quitcd.fish
 
+thefuck --alias | source
