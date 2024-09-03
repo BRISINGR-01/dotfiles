@@ -4,6 +4,9 @@ xsel
 awk
 xargs
 curl
+grep
+jq
+fzf
 
 git
 docker
@@ -11,13 +14,13 @@ docker
 tmux
 fish
 nvim
+nnn
 
 node
 python
 go
 
-jq
-fzf
-
 chrome
+firefox
 code
+obsidian
