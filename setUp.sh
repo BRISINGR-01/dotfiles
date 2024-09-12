@@ -1,15 +1,15 @@
 #!/bin/bash
 
 min () {
-	sudo apt install xsel awk xargs curl grep jq fzf git tmux fish nvim nnn ssh
+	sudo apt install xsel awk xargs curl grep jq fzf git tmux fish nvim nnn ssh stow
+	dotfiles
 	transient_fish
 }
 
 all () {
 	min
-	sudo apt install chrome firefox code obsidian cava gcc make python node go docker tmuxinator mocp stow fuck
+	sudo apt install chrome firefox code obsidian cava gcc make python node go docker tmuxinator mocp fuck
 	gpaste
-	dotfiles
 	font
 }
 
@@ -22,6 +22,8 @@ gpaste () {
 	ninja
 	sudo ninja install
 	sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+	cd ..
+	rm -rf GPaste
 }
 
 transient_fish () {
@@ -31,11 +33,14 @@ transient_fish () {
 
 dotfiles () {
 	cd ~
-	mv .bashrc .bashrc.bak 
+	if [ -f .bashrc ]; then
+		mv .bashrc .bashrc.bak 
+	fi
 	git clone https://github.com/BRISINGR-01/dotfiles
 	cd dotfiles
 	stow .
-	source ~/.bashrc
+	cd ~
+	source .bashrc
 }
 
 font () {
@@ -46,8 +51,6 @@ font () {
 
 if [ "$1" == "min" ]; then
 	min
-elif [ "$1" == "test" ]; then
-	echo "test"
 else
  all
 fi
