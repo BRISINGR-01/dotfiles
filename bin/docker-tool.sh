@@ -1,5 +1,3 @@
-
-
 list() {
   docker image ls -a
   docker container ls -a

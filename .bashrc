@@ -77,22 +77,20 @@ fi
 
 #--------- End of Default -----------------------------------------------
 
+export EDITOR="nvim"
+export NNN_PLUG="p:preview-tui;"
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_BMS="d:$HOME/Documents;D:$HOME/Downloads/"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export EDITOR="nvim"
-
 PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/usr/local/go/bin"
 
-. "$HOME/.cargo/env"
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
 . ~/bash/aliases.sh
-# . ~/bash/quitcd.bash
-export NNN_PLUG="p:preview-tui;"
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_BMS="d:$HOME/Documents;D:$HOME/Downloads/"
-export CLASSPATH=".:/home/alex/Desktop/VSC/Maths/Automata/lib/antlr-4.13.1-complete.jar:$CLASSPATH"
-source /etc/profile.d/bash_completion.sh
 
 fish
-

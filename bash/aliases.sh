@@ -17,7 +17,6 @@ alias gs='git status'
 #   sleep 10; alert
 alias alert='notify-send --urgency=normal "Command has finished"'
 
-alias macos="cd ~/programs/macOS-Simple-KVM/ && ./basic.sh"
 alias cls="clear"
 alias coder="code -r"
 
@@ -28,6 +27,5 @@ alias opent="gnome-terminal"
 alias n='n -e'
 alias f='fuck'
 
-alias antlr4='java -jar /home/alex/Documents/antlr-4.13.1-complete.jar'
-alias grun='java org.antlr.v4.gui.TestRig'
+alias mocp="mocp -T ~/dotfiles/.config/mocp/mostly_green.txt"
 
