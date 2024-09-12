@@ -1,0 +1,208 @@
+{
+  "main": {
+    "id": "62197a0fc569a0c4",
+    "type": "split",
+    "children": [
+      {
+        "id": "40cfe9394c1afd68",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "914dd62a8e00d66d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Português/Pronunciation and spelling/Sounds.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d6798867ba79932b",
+    "type": "split",
+    "children": [
+      {
+        "id": "fdf97aac24b176e6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9c13bb9cc1d0407d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4c2ededa66df6b69",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "04cba1a31311d90e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 289.5026054382324
+  },
+  "right": {
+    "id": "7c5d319eacdcd1e6",
+    "type": "split",
+    "children": [
+      {
+        "id": "adc39bd7646e4ccf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ac36cea35ee53186",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Português/Pronunciation and spelling/Sounds.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c6e2a21d487c74ed",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "22853063f1c13446",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Português/Pronunciation and spelling/Sounds.md"
+              }
+            }
+          },
+          {
+            "id": "2b3d18a704004b98",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Português/Pronunciation and spelling/Sounds.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 243.5,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "mermaid-tools:Open Mermaid Toolbar": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "914dd62a8e00d66d",
+  "lastOpenFiles": [
+    "Português/Pronouns/ADVERBS.md",
+    "Untitled.canvas",
+    "Projectplan.md",
+    "ASML.md",
+    "Voor begin.md",
+    "Others/Others.md",
+    "Programming Tips.md",
+    "Roadmap.svg",
+    "Pasted image 20240812112955.png",
+    "Pasted image 20240812112943.png",
+    "Pasted image 20240812112825.png",
+    "Pasted image 20240812112746.png",
+    "Roadmap 1.svg",
+    "Português/Pronunciation and spelling/Sounds.md",
+    "Português/Pronunciation and spelling",
+    "Fontys/Others/ICC/ICC Project Suggestions.md",
+    "Fontys/Maths/Reverse sorter.md",
+    "Fontys/Maths/Maths.md",
+    "Fontys/3D Website/Projectplan (NL).md",
+    "Fontys/3D Website/Projectplan (EN).md",
+    "Fontys/3D Website/Demo pic.png",
+    "Fontys/3D Website/3D Portfolio.md",
+    "Verbs-Simple tenses- first conjugation.md",
+    "Verbs-Simple tenses- third conjugation.md",
+    "Português/Verbs/Use of tenses.md",
+    "Português/Verbs/The subjunctive- when to use it.md",
+    "Português/Verbs/The passive.md",
+    "Português/Verbs/The infinitive.md",
+    "Português/Verbs/The imperative and alternatives.md",
+    "Português/Verbs/Simple tenses- third conjugation.md",
+    "Português/Verbs/Simple tenses- second conjugation.md",
+    "Português/Verbs/Simple tenses- formation.md",
+    "Português/Verbs/Simple tenses- first conjugation.md",
+    "Português/Verbs/Ser and estar.md",
+    "Português/Verbs/Reflexive verbs.md",
+    "Português/Verbs",
+    "Português/Use of numbers",
+    "Português/Sentence structure",
+    "Português/Pronouns",
+    "Português/Nouns",
+    "Português/Articles",
+    "Português/Adjectives",
+    "Português",
+    "Portuguese/Verbs",
+    "android-chrome-192x192.png",
+    "2АЕГ 12А Невски (17) (copy).jpg",
+    "png.png",
+    "Canvas.canvas",
+    "Untitled 1.canvas",
+    "Untitled 2.canvas",
+    "repo/Untitled.canvas",
+    "Untitled (copy).canvas"
+  ]
+}

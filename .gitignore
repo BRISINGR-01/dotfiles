@@ -8,3 +8,4 @@ Session.vim
 .gnupg
 git-credentials
 .password-store
+.obsidian/plugins
