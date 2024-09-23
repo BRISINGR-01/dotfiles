@@ -14,5 +14,6 @@ sudo tar -vczf /backup.tar.gz \
   --exclude='**/programs' \
   --exclude='**/Music' \
   --exclude='**/Downloads' \
+  --exclude='**/apps' \
   --exclude='**/.*' \
   /home /var/spool/mail /etc /root

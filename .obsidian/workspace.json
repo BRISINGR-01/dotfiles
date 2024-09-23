@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Português/Pronunciation and spelling/Sounds.md",
+                "file": "Minecraft coord.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "f6db63715263e553",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "a.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -86,7 +99,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Português/Pronunciation and spelling/Sounds.md",
+                "file": "a.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -109,7 +122,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Português/Pronunciation and spelling/Sounds.md"
+                "file": "a.md"
               }
             }
           },
@@ -119,7 +132,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Português/Pronunciation and spelling/Sounds.md",
+                "file": "a.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -129,14 +142,21 @@
                 "unlinkedCollapsed": true
               }
             }
+          },
+          {
+            "id": "9c7cc2ee3e81caef",
+            "type": "leaf",
+            "state": {
+              "type": "mermaid-toolbar-view",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 243.5,
-    "collapsed": true
+    "width": 243.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -150,8 +170,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "914dd62a8e00d66d",
+  "active": "f6db63715263e553",
   "lastOpenFiles": [
+    "a.md",
+    "Minecraft coord.md",
     "Português/Pronouns/ADVERBS.md",
     "Untitled.canvas",
     "Projectplan.md",
@@ -185,8 +207,6 @@
     "Português/Verbs/Simple tenses- second conjugation.md",
     "Português/Verbs/Simple tenses- formation.md",
     "Português/Verbs/Simple tenses- first conjugation.md",
-    "Português/Verbs/Ser and estar.md",
-    "Português/Verbs/Reflexive verbs.md",
     "Português/Verbs",
     "Português/Use of numbers",
     "Português/Sentence structure",

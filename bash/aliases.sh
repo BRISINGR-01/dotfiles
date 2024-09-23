@@ -21,6 +21,7 @@ alias cls="clear"
 alias coder="code -r"
 
 alias yt="yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/"
+alias bat="batcat"
 
 alias opent="gnome-terminal"
 

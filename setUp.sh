@@ -14,16 +14,17 @@ all () {
 }
 
 gpaste () {
-	git clone https://github.com/Keruspe/GPaste.git
+	git clone https://github.com/Keruspe/GPaste.git &&
 	cd GPaste
 	mkdir builddir
 	cd builddir
-	meson ..
-	ninja
-	sudo ninja install
-	sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+	sudo apt install ninja meson &&
+	meson .. &&
+	ninja &&
+	sudo ninja install &&
+	sudo glib-compile-schemas /usr/share/glib-2.0/schemas/ &&
 	cd ..
-	rm -rf GPaste
+	rm -rf  GPaste
 }
 
 transient_fish () {
