@@ -21,11 +21,11 @@ alias cls="clear"
 alias coder="code -r"
 
 alias yt="yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/"
-alias bat="batcat"
+alias cat="bat"
 
 alias opent="gnome-terminal"
 
-alias n='n -e'
+alias n='nnn -e'
 alias f='fuck'
 
 alias mocp="mocp -T ~/dotfiles/.config/mocp/mostly_green.txt"

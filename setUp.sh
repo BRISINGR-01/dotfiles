@@ -1,7 +1,13 @@
 #!/bin/bash
 
+
+nixos() {
+	sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
+}
+
 min () {
 	sudo apt install xsel awk xargs curl grep jq fzf git tmux fish nvim nnn ssh stow
+	bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)" # spf
 	dotfiles
 	transient_fish
 }
@@ -11,6 +17,7 @@ all () {
 	sudo apt install chrome firefox code obsidian cava gcc make python node go docker tmuxinator mocp fuck
 	gpaste
 	font
+
 }
 
 gpaste () {

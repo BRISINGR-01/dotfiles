@@ -31,9 +31,6 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -78,19 +75,17 @@ fi
 #--------- End of Default -----------------------------------------------
 
 export EDITOR="nvim"
-export NNN_PLUG="p:preview-tui;"
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_BMS="d:$HOME/Documents;D:$HOME/Downloads/"
 export NVM_DIR="$HOME/.nvm"
+export XDG_RUNTIME_DIR=/run/user/1000
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
-PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/usr/local/go/bin"
-
-if [ -f "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
+PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/usr/local/go/bin:${HOME}/.local/bin"
 
 . ~/bash/aliases.sh
+. ~/bash/quitcd.sh
+. ~/bash/cd_on_quit.sh
 
 fish

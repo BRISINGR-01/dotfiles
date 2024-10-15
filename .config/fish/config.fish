@@ -1,7 +1,3 @@
 if status is-interactive
-  source ~/dotfiles/bash/aliases.sh
+	set -g fish_greeting
 end
-
-source ~/bash/quitcd.fish
-
-thefuck --alias | source
