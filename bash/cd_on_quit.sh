@@ -4,6 +4,7 @@ spf() {
     # Linux
     if [[ "$os" == "Linux" ]]; then
         export SPF_LAST_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/superfile/lastdir"
+        echo "${XDG_STATE_HOME:-$HOME/.local/state}/superfile/lastdir"
     fi
 
     # macOS

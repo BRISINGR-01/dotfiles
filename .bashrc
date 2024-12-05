@@ -82,10 +82,9 @@ export XDG_RUNTIME_DIR=/run/user/1000
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
-PATH="$PATH:~/bin:/opt/nvim-linux64/bin:/usr/local/go/bin:${HOME}/.local/bin"
+PATH="$PATH:~/bin:~/dotfiles/bin:/opt/nvim-linux64/bin:/usr/local/go/bin:${HOME}/.local/bin"
 
 . ~/bash/aliases.sh
-. ~/bash/quitcd.sh
 . ~/bash/cd_on_quit.sh
 
-fish
+# fish
