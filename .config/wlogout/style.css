@@ -1,0 +1,71 @@
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	background-color: rgba(12, 12, 12, 0.9);
+}
+
+button {
+	border-color: black;
+	text-decoration-color: #ffffff;
+	color: #ffffff;
+	background-color: #1e1e1e;
+	border-style: solid;
+	border-width: 1px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20%;
+	border-radius: 10px;
+	margin: 0.75em;
+}
+
+button:focus,
+button:active,
+button:hover {
+	background-color: #3700b3;
+	outline-style: none;
+}
+
+#lock {
+	background-image: image(
+		url("/home/alex/dotfiles/.config/wlogout/assets/lock.png"),
+		url("/usr/local/share/wlogout/icons/lock.png")
+	);
+}
+
+#logout {
+	background-image: image(
+		url("/home/alex/dotfiles/.config/wlogout/assets/logout.png"),
+		url("/usr/local/share/wlogout/icons/logout.png")
+	);
+}
+
+#suspend {
+	background-image: image(
+		url("/home/alex/dotfiles/.config/wlogout/assets/suspend.png"),
+		url("/usr/local/share/wlogout/icons/suspend.png")
+	);
+}
+
+#hibernate {
+	background-image: image(
+		url("/home/alex/dotfiles/.config/wlogout/assets/hibernate.png"),
+		url("/usr/local/share/wlogout/icons/hibernate.png")
+	);
+}
+
+#shutdown {
+	background-image: image(
+		url("/home/alex/dotfiles/.config/wlogout/assets/shutdown.png"),
+		url("/usr/local/share/wlogout/icons/shutdown.png")
+	);
+}
+
+#reboot {
+	background-image: image(
+		url("/home/alex/dotfiles/.config/wlogout/assets/reboot.png"),
+		url("/usr/local/share/wlogout/icons/reboot.png")
+	);
+}

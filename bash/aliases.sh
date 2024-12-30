@@ -25,8 +25,5 @@ alias cat="bat"
 
 alias opent="gnome-terminal"
 
-alias n='nnn -e'
 alias f='fuck'
-
-alias mocp="mocp -T ~/dotfiles/.config/mocp/mostly_green.txt"
 

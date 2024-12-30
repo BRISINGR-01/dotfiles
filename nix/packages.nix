@@ -10,6 +10,7 @@ with pkgs; [
   prismlauncher
   authenticator
   gpaste
+  wlogout
 
   # terminal
   fish
@@ -31,6 +32,7 @@ with pkgs; [
   kitty # required for the default Hyprland config
   bat
   xsel
+  wl-clipboard
   nixfmt-classic
   gh
   # inputs.superfile.packages.${system}.default # spf
