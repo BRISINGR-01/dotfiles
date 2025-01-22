@@ -11,46 +11,41 @@ with pkgs; [
   authenticator
   # gpaste
   wlogout
-  waybar
   beeper
   blender
   nautilus
-  eww
 
   # terminal
   fish
-  tree
   ghostty
-  neovim
-  vim
-  fzf
-  btop
-  lazygit
-  lazydocker
-  hyprpolkitagent
-  polkit
-  polkit_gnome
-  cava
-  moc
-  links2
   tmux
   tmuxinator
   fishPlugins.transient-fish
+
+  #terminal utils
+  fzf
+  tree
+  moc
   z-lua
   thefuck
-  jq
   stow
+  links2
+  cava
   yt-dlp
-  kitty # required for the default Hyprland config
   bat
-  xsel
   wl-clipboard
-  nixfmt-classic
   gh
   fx
+  jq
   # inputs.superfile.packages.${system}.default # spf
 
-  # hacking
+  # development tools
+  neovim
+  btop
+  lazygit
+  lazydocker
+
+  # "ethical" hacking
   nmap
   ghidra
   metasploit
@@ -61,6 +56,11 @@ with pkgs; [
   hyprpicker
   lxqt.lxqt-policykit
   udiskie
+  hyprpolkitagent
+  polkit
+  polkit_gnome
+  waybar
+  eww
 
   # programming
   git
@@ -73,4 +73,7 @@ with pkgs; [
   bun
   rustc
   cargo
+
+  # other
+  nixfmt-classic
 ]

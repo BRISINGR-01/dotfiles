@@ -20,7 +20,6 @@ export XDG_RUNTIME_DIR=/run/user/1000
 
 PATH="$PATH:~/bin:~/dotfiles/bin:${HOME}/.local/bin"
 
-. ~/bash/aliases.sh
 . ~/bash/cd_on_quit.sh
 
 if command -v gsettings >/dev/null 2>&1; then

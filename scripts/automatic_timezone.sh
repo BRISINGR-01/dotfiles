@@ -1,0 +1,1 @@
+timedatectl | grep "Time zone" | awk '{print $3}'
