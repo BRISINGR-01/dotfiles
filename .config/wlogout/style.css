@@ -19,6 +19,7 @@ button {
 	background-size: 20%;
 	border-radius: 10px;
 	margin: 0.75em;
+	padding: 4.75em;
 }
 
 button:focus,

@@ -9,16 +9,28 @@ with pkgs; [
   minecraft
   prismlauncher
   authenticator
-  gpaste
+  # gpaste
   wlogout
+  waybar
+  beeper
+  blender
+  nautilus
+  eww
 
   # terminal
   fish
-  kitty
+  tree
+  ghostty
   neovim
   vim
   fzf
-  # cava
+  btop
+  lazygit
+  lazydocker
+  hyprpolkitagent
+  polkit
+  polkit_gnome
+  cava
   moc
   links2
   tmux
@@ -35,6 +47,7 @@ with pkgs; [
   wl-clipboard
   nixfmt-classic
   gh
+  fx
   # inputs.superfile.packages.${system}.default # spf
 
   # hacking
@@ -42,6 +55,12 @@ with pkgs; [
   ghidra
   metasploit
   binsider
+
+  # Hyprland
+  hyprsunset
+  hyprpicker
+  lxqt.lxqt-policykit
+  udiskie
 
   # programming
   git

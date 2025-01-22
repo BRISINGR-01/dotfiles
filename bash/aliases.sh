@@ -27,3 +27,5 @@ alias opent="gnome-terminal"
 
 alias f='fuck'
 
+alias rnix='nixos-rebuild switch'
+alias srnix='sudo nixos-rebuild switch'

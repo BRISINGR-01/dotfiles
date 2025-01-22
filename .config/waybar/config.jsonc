@@ -1,190 +1,144 @@
 {
-  // "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  // "height": 30, // Waybar height (to be removed for auto height)
-  "margin": "5 20 0 10",
-  // "width": 1280, // Waybar width
-  // Choose the order of the modules
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
   "modules-left": [
-    "sway/workspaces",
-    "sway/language",
-    "keyboard-state",
-    "custom/pacman",
-    "custom/mail",
-    "sway/mode"
-  ],
-  "modules-center": [
+    "custom/notification",
     "clock",
-    "custom/weather"
-  ],
-  "modules-right": [
-    "pulseaudio",
-    "network",
-    "backlight",
-    "battery",
+    "custom/pacman",
     "tray"
   ],
-  //***************************
-  //*  Modules configuration  *
-  //***************************
-  "sway/workspaces": {
-    "disable-scroll": true,
-    "persistent_workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": []
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "group/expand",
+    "bluetooth",
+    "network",
+    "battery"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "󱉳",
+      "default": "",
+      "empty": ""
+    },
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3
+      ]
     }
   },
-  "sway/language": {
-    "format": "{} ",
-    "min-length": 5,
-    "tooltip": false
-  },
-  "keyboard-state": {
-    //"numlock": true,
-    "capslock": true,
-    "format": "{name} {icon} ",
-    "format-icons": {
-      "locked": " ",
-      "unlocked": ""
-    },
-  },
-  "custom/pacman": {
-    "format": "{} ",
-    "interval": 3600, // every hour
-    "exec": "(checkupdates;pacman -Qm | aur vercmp) | wc -l", // # of updates
-    "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "foot sh -c 'yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar", // update system
-    "signal": 8,
+  "custom/notification": {
     "tooltip": false,
-  },
-  "custom/mail": {
-    "format": "{} ",
-    "exec": "$HOME/.config/waybar/scripts/checkgmail.py",
-    "interval": 120,
-    "on-click": "google-chrome-stable https://mail.google.com/mail/u/0/#inbox ; pkill -SIGRTMIN+9 waybar",
-    "signal": 9,
-    "tooltip": false
-  },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
+    "format": "",
+    "on-click": "swaync-client -t -sw",
+    "escape": true
   },
   "clock": {
-    // "timezone": "America/New_York",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "{:%a, %d %b, %I:%M %p}"
+    "format": "{:%I:%M %p} ",
+    "interval": 60,
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#fAfBfC'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "shift_down",
+      "on-click": "shift_up"
+    }
   },
   "network": {
-    "format": "{ifname}",
-    "format-wifi": "{icon} {essid}",
-    "format-icons": [
-      "󰤟",
-      "󰤢",
-      "󰤥",
-      "󰤨"
-    ],
-    "format-ethernet": "󱎔 {ifname}",
-    "format-linked": "󰌷 {ifname}",
-    "format-disconnected": "󰪎",
-    "tooltip-format": "{ifname} via {gwaddr}",
-    "tooltip-format-wifi": "Connected to {essid} ({signalStrength}󰏰 Strength) over {ifname} via {gwaddr}",
-    "tooltip-format-ethernet": "󱎔 {ifname}",
-    "tooltip-disconnected": "Disconnected"
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "󰖪",
+    "tooltip-format-disconnected": "Error",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} 🖧 ",
+    "on-click": "ghostty -e nmtui"
   },
-  "pulseaudio": {
-    "format": "{icon} {volume:2}󰏰",
-    "format-bluetooth": "{icon}  {volume}󰏰",
-    "format-muted": "󰝟",
-    "format-icons": {
-      "headphone": "󰋋",
-      "hands-free": "󰋋",
-      "headset": "󰋋",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": [
-        "󰖀",
-        "󰕾"
-      ]
-    },
-    "scroll-step": 5,
-    "on-click": "pamixer -t",
-    "on-click-right": "pavucontrol"
-  },
-  // "custom/mem": {
-  //   "format": "{} #",
-  //   "interval": 3,
-  //   "exec": "free -h | awk '/Mem:/{printf $3}'",
-  //   "tooltip": false,
-  // },
-  "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 80,
-    // "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}°C {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "tooltip": false,
-  },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{percent}% {icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "min-length": 7,
+  "bluetooth": {
+    "format-on": "󰂯",
+    "format-off": "BT-off",
+    "format-disabled": "󰂲",
+    "format-connected-battery": "{device_battery_percentage}% 󰂯",
+    "format-alt": "{device_alias} 󰂯",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+    "on-click-right": "blueman-manager",
   },
   "battery": {
+    "interval": 30,
     "states": {
+      "good": 95,
       "warning": 30,
-      "critical": 15
+      "critical": 20
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": "{icon} {capacity}%",
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-plugged": "{capacity}% 󰂄 ",
     "format-alt": "{time} {icon}",
-    "format-icons": {
-      "charging": [
-        "󰢜",
-        "󰂆",
-        "󰂇",
-        "󰂈",
-        "󰢝",
-        "󰂉",
-        "󰢞",
-        "󰂊",
-        "󰂋",
-        "󰂅"
-      ],
-      "default": [
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂",
-        "󰁹"
-      ]
+    "format-full": "󰁹",
+    "format-icons": [
+      "󰁻",
+      "󰁼",
+      "󰁾",
+      "󰂀",
+      "󰂂",
+      "󰁹"
+    ]
+  },
+  "custom/expand": {
+    "format": "",
+    "tooltip": false
+  },
+  "custom/endpoint": {
+    "format": "|",
+    "tooltip": false
+  },
+  "group/expand": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "transition-to-left": true,
+      "click-to-reveal": true
     },
-    "on-update": "$HOME/.config/waybar/scripts/check_battery.sh",
+    "modules": [
+      "custom/expand",
+      "custom/colorpicker",
+      "cpu",
+      "memory",
+      "temperature",
+      "custom/endpoint"
+    ],
+  },
+  "custom/colorpicker": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": "once",
+    "exec": "~/.config/waybar/scripts/color_picker.sh -j",
+    "on-click": "~/.config/waybar/scripts/color_picker.sh",
+    "signal": 1
+  },
+  "cpu": {
+    "format": "󰻠",
+    "tooltip": true
+  },
+  "memory": {
+    "format": ""
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "",
   },
   "tray": {
-    "icon-size": 16,
-    "spacing": 0
+    "icon-size": 14,
+    "spacing": 10
   },
 }

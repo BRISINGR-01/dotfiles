@@ -2,11 +2,13 @@
 
 let packages = import /home/alex/dotfiles/nix/packages.nix;
 in {
-  imports = [ ./hardware-configuration.nix ./gnome.nix <home-manager/nixos> ];
+  imports =
+    [ ./hardware-configuration.nix ./hyprland.nix ]; # <home-manager/nixos> ];
 
   hardware = {
-    graphics.enable = true;
-    nvidia.modesetting.enable = true;
+    pulseaudio.enable = false;
+    #   graphics.enable = true;
+    #   nvidia.modesetting.enable = true;
   };
 
   boot.loader = {
@@ -17,12 +19,16 @@ in {
   };
 
   networking = {
+    wireless.iwd.enable = true;
     hostName = "alex-nixos";
     networkmanager.enable = true;
   };
 
-  # time.timeZone = "Europe/Amsterdam";
-  time.timeZone = "Europe/Sofia";
+  fonts.packages = with pkgs;
+    [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ];
+
+  time.timeZone = "Europe/Amsterdam";
+  # time.timeZone = "Europe/Sofia";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -36,12 +42,6 @@ in {
       LC_TELEPHONE = "nl_NL.UTF-8";
       LC_TIME = "nl_NL.UTF-8";
     };
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
   };
 
   security.rtkit.enable = true;
@@ -76,7 +76,7 @@ in {
   };
 
   programs = {
-    fish.enable = true;
+    fish.enable = false;
     nix-ld.enable = true;
     nix-ld.libraries = [ ];
   };
@@ -89,33 +89,35 @@ in {
     };
   };
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   networking.extraHosts = ''
     127.0.0.1 cooleseite.at
   '';
 
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "bp";
-  home-manager.users.alex = { pkgs, ... }: {
-    home.packages = [ ];
-    programs.fish = {
-      enable = true;
-      shellInit = ''
-        if status is-interactive
-          set -g fish_greeting
-        end
-
-        thefuck --alias | source
-      '';
-    };
-    programs.git = {
-      enable = true;
-      userName = "Alexander Popov";
-      userEmail = "alexander.popov233@gmail.com";
-    };
-
-    home.stateVersion = "24.11";
-  };
-
-  system.stateVersion = "25.05";
+  # home-manager.useUserPackages = true;
+  # home-manager.backupFileExtension = "bp";
+  # home-manager.users.alex = { pkgs, ... }: {
+  #   home.packages = [ ];
+  #   programs.fish = {
+  #     enable = true;
+  #     shellInit = ''
+  #       if status is-interactive
+  #         set -g fish_greeting
+  #       end
+  #
+  #       thefuck --alias | source
+  #     '';
+  #   };
+  #   programs.git = {
+  #     enable = true;
+  #     userName = "Alexander Popov";
+  #     userEmail = "alexander.popov233@gmail.com";
+  #   };
+  #
+  #   home.stateVersion = "24.11";
+  # };
+  #
+  system.stateVersion = "24.11";
 }
 
