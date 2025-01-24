@@ -1,12 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.xserver.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
+  programs = {
+    regreet.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
   };
 
-  programs.regreet.enable = true;
+  services.xserver.enable = true;
   environment.sessionVariables = { NIXOS_OZONE_WL = "1"; };
 }

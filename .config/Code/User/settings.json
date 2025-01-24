@@ -1,0 +1,188 @@
+{
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "editor.minimap.enabled": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "never"
+  },
+  "files.exclude": {
+    "desktop.ini": true
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "git.enableSmartCommit": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.fontLigatures": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.wordBasedSuggestionsMode": "currentDocument",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "code-runner.clearPreviousOutput": true,
+  "eslint.codeAction.disableRuleComment": {
+    "enable": true,
+    "location": "separateLine"
+  },
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "react"
+  ],
+  "explorer.fileNesting.enabled": true,
+  "workbench.colorCustomizations": {
+    // "titleBar.activeBackground": "#6a74ff"
+  },
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tabSize": 2,
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "npm.keybindingsChangedWarningShown": true,
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "cmake.autoSelectActiveFolder": false,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.useTabs": true,
+  "python.formatting.provider": "none",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "hexeditor.columnWidth": 16,
+  "hexeditor.showDecodedText": true,
+  "hexeditor.defaultEndianness": "little",
+  "hexeditor.inspectorType": "aside",
+  "tabnine.experimentalAutoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "html.format.indentInnerHtml": true,
+  "html.format.indentHandlebars": true,
+  // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "html.format.enable": false,
+  "editor.formatOnSave": true,
+  "rust-analyzer.displayInlayHints": false,
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "dart.flutterSdkPath": "C:/dev/flutter/flutter",
+  "cmake.configureOnOpen": false,
+  "csharp.suppressBuildAssetsNotification": true,
+  "typescript.format.insertSpaceAfterTypeAssertion": true,
+  // "editor.bracketPairColorization.enabled": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.autoSaveWhenNoErrors": true,
+  "svelte.enable-ts-plugin": true,
+  "terminal.external.linuxExec": "gnome-terminal",
+  "terminal.integrated.defaultProfile.linux": "bash (2)",
+  "svg.preview.mode": "img",
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "[svg]": {
+    "editor.defaultFormatter": "jock.svg"
+  },
+  "javascript.format.semicolons": "insert",
+  "yaml.format.printWidth": 120,
+  "svelte.plugin.svelte.format.config.printWidth": 120,
+  "prettier.printWidth": 120,
+  "evenBetterToml.formatter.columnWidth": 120,
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "svelte.plugin.svelte.format.config.svelteStrictMode": true,
+  "git.openRepositoryInParentFolders": "never",
+  "java.saveActions.organizeImports": true,
+  "editor.foldingImportsByDefault": true,
+  "window.menuBarVisibility": "toggle",
+  "explorer.confirmPasteNative": false,
+  "explorer.confirmDragAndDrop": false,
+  "scm.diffDecorations": "none",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
+    "*.dart": "${capture}.g.dart",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "codeium.enableCommandSideHintEducation": false,
+  "codeium.enableExplainProblem": false,
+  "codeium.enableSearch": false,
+  "codeium.enableCodeLens": false,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "workbench.iconTheme": "helium-icon-theme",
+  "helium-icon-theme.files.associations": {
+    "*.sh": "Console"
+  },
+  "helium-icon-theme.languages.associations": {
+    "shellscript": "Console",
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "brettm12345.nixfmt-vscode"
+  },
+  "cmake.showOptionsMovedNotification": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "go.toolsManagement.autoUpdate": true,
+  "editor.fontFamily": "Firacode Nerd Font",
+  "terminal.integrated.fontFamily": "Firacode Nerd Font",
+  "terminal.integrated.allowedLinkSchemes": [
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders",
+    "man"
+  ],
+  "terminal.integrated.profiles.windows": {
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    }
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "helium-icon-theme.activeIconPack": "nest"
+}

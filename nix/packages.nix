@@ -9,7 +9,6 @@ with pkgs; [
   minecraft
   prismlauncher
   authenticator
-  # gpaste
   wlogout
   beeper
   blender
@@ -17,10 +16,10 @@ with pkgs; [
 
   # terminal
   fish
+  starship
   ghostty
   tmux
   tmuxinator
-  fishPlugins.transient-fish
 
   #terminal utils
   fzf
@@ -42,8 +41,11 @@ with pkgs; [
   # development tools
   neovim
   btop
+  systemctl-tui
   lazygit
   lazydocker
+  cliphist
+  fuzzel
 
   # "ethical" hacking
   nmap
@@ -54,13 +56,12 @@ with pkgs; [
   # Hyprland
   hyprsunset
   hyprpicker
-  lxqt.lxqt-policykit
   udiskie
   hyprpolkitagent
-  polkit
-  polkit_gnome
+  polkit-kde-agent
   waybar
   eww
+  hyprlandPlugins.hy3
 
   # programming
   git
@@ -73,7 +74,9 @@ with pkgs; [
   bun
   rustc
   cargo
+  lua
 
-  # other
+  # nix
+  home-manager
   nixfmt-classic
 ]

@@ -12,7 +12,11 @@
   yt = "yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/";
   opent = "ghostty";
   f = "fuck";
+  r = "rm -i";
+  rr = "rm -ir";
+  mocp = "mocp -T nightly_theme";
 
   rnix = "nixos-rebuild switch";
+  hms = "home-manager switch";
   srnix = "sudo nixos-rebuild switch";
 }

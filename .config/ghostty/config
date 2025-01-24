@@ -1,0 +1,6 @@
+window-decoration = false
+gtk-titlebar = false
+keybind = ctrl+h=new_split:right
+background-opacity = 0.96
+initial-command = tmux
+gtk-tabs-location = hidden

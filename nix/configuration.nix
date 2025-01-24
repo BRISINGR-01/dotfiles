@@ -7,7 +7,7 @@ in {
     /home/alex/dotfiles/nix/system/general.nix
     /home/alex/dotfiles/nix/system/nix.nix
     /home/alex/dotfiles/nix/UI/hyprland.nix
-    # <home-manager/nixos>
+    <home-manager/nixos>
   ];
 
   users.users = {
@@ -19,12 +19,14 @@ in {
   };
 
   environment.systemPackages = packages { pkgs = pkgs; };
-  virtualisation.docker = {
-    enable = false;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-}
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
 
+  # virtualisation.docker = {
+  #   enable = true;
+  #   rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
+  # };
+}
