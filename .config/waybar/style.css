@@ -10,22 +10,21 @@ window#waybar {
 }
 .modules-left {
 	border-radius: 10px;
-	background: alpha(@background, 0.5);
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
 .modules-center {
 	border-radius: 10px;
-	background: alpha(@background, 0.5);
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
 .modules-right {
 	border-radius: 10px;
-	background: alpha(@background, 0.5);
 	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
-tooltip {
-	background: @background;
-	color: @color7;
+.popup {
+	background-color: #333333; /* Set to your desired background color */
+	border-radius: 8px; /* Add rounded corners if you like */
+	border: 1px solid #555555; /* Optional border color */
+	padding: 10px; /* Optional padding for better spacing */
 }
 #clock:hover,
 #custom-notification:hover,
@@ -36,16 +35,13 @@ tooltip {
 #memory:hover,
 #temperature:hover {
 	transition: all 0.3s ease;
-	color: @color9;
 }
 #custom-notification {
 	padding: 0px 5px;
 	transition: all 0.3s ease;
-	color: @color7;
 }
 #clock {
 	padding: 0px 5px;
-	color: @color7;
 	transition: all 0.3s ease;
 }
 #workspaces {
@@ -54,7 +50,6 @@ tooltip {
 #workspaces button {
 	all: unset;
 	padding: 0px 5px;
-	color: alpha(@color9, 0.4);
 	transition: all 0.2s ease;
 }
 #workspaces button:hover {
@@ -64,7 +59,6 @@ tooltip {
 	transition: all 1s ease;
 }
 #workspaces button.active {
-	color: @color9;
 	border: none;
 	text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
@@ -80,27 +74,20 @@ tooltip {
 	transition: all 1s ease;
 }
 #workspaces button.empty.active {
-	color: @color9;
 	border: none;
 	text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
 }
 #bluetooth {
 	padding: 0px 5px;
 	transition: all 0.3s ease;
-	color: @color7;
 }
 #network {
 	padding: 0px 10px 0 5px;
 	transition: all 0.3s ease;
-	color: @color7;
 }
 #battery {
 	padding: 0px 5px;
 	transition: all 0.3s ease;
-	color: @color7;
-}
-#battery.charging {
-	color: #26a65b;
 }
 
 #battery.warning:not(.charging) {
@@ -121,16 +108,12 @@ tooltip {
 }
 #custom-expand {
 	padding: 0px 5px;
-	color: alpha(@foreground, 0.2);
 	text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
 	transition: all 0.3s ease;
 }
 #custom-expand:hover {
 	color: rgba(255, 255, 255, 0.2);
 	text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.5);
-}
-#custom-colorpicker {
-	padding: 0px 5px;
 }
 #custom-endpoint {
 	color: transparent;

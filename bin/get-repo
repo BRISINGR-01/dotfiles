@@ -1,0 +1,9 @@
+#!/bin/bash
+
+repo=$(gh repo list --json name | jq .[].name | sed 's/"//g' | fzf)
+
+if [ -z "$repo" ]; then
+  exit 0
+fi
+
+echo "https://github.com/BRISINGR-01/$repo"

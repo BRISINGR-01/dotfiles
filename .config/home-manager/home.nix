@@ -7,6 +7,7 @@ in {
   imports = [
     # ../../nix/system/hardware.nix
     # ../../nix/system/general.nix
+    # ../../nix/system/timezone.nix
     # ../../nix/system/nix.nix
     # ../../nix/UI/hyprland.nix
     # ../../nix/terminal/default.nix
@@ -82,4 +83,11 @@ in {
 
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  systemd.user.services.update-timezone = {
+    # description = "...";
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig.ExecStart = "/home/alex/dotfiles/bin/update_timezone";
+    serviceConfig.RemainAfterExit = false;
+  };
 }

@@ -3,7 +3,6 @@
   ll = "ls -alF";
   la = "ls -A";
   l = "ls -CF";
-  cat = "bat";
   grep = "grep --color=auto";
   gs = "git status";
   alert = ''notify-send --urgency=normal "Command has finished"'';
@@ -15,6 +14,10 @@
   r = "rm -i";
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
+
+  zr = "zellij run --";
+  zrc = "zellij run -c --";
+  zrf = "zellij run -f --";
 
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";

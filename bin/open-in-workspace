@@ -1,0 +1,28 @@
+#!/usr/bin/env lua
+
+-- usage ex: open-in-workspace ghostty '.*ghostty' 3
+
+command = arg[1];
+class = arg[2];
+workspace = arg[3];
+
+local handle = io.popen(command .. " &> /dev/null & echo $!")
+handle:close()
+
+local function move()
+  handle = io.popen("hyprctl dispatch movetoworkspacesilent \""..workspace..", class:"..class.."\"");
+  local res = handle:read("*a")
+  handle:close()
+
+  return res
+end
+
+for i = 1, 20 do
+  if string.find(move(), "ok") then 
+    break
+  end
+  
+  os.execute("sleep 0.1")
+end
+
+

@@ -12,7 +12,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "group/expand",
+    // "group/expand",
     "bluetooth",
     "network",
     "battery"
@@ -35,7 +35,7 @@
   "custom/notification": {
     "tooltip": false,
     "format": "",
-    "on-click": "swaync-client -t -sw",
+    "on-click": "",
     "escape": true
   },
   "clock": {
@@ -63,15 +63,15 @@
   },
   "bluetooth": {
     "format-on": "󰂯",
-    "format-off": "BT-off",
-    "format-disabled": "󰂲",
+    "format-disabled": "",
     "format-connected-battery": "{device_battery_percentage}% 󰂯",
     "format-alt": "{device_alias} 󰂯",
     "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-    "on-click-right": "blueman-manager",
+    "on-click": "blueman-applet",
+    "on-click-right": "blueman-manager"
   },
   "battery": {
     "interval": 30,
@@ -116,15 +116,7 @@
       "memory",
       "temperature",
       "custom/endpoint"
-    ],
-  },
-  "custom/colorpicker": {
-    "format": "{}",
-    "return-type": "json",
-    "interval": "once",
-    "exec": "~/.config/waybar/scripts/color_picker.sh -j",
-    "on-click": "~/.config/waybar/scripts/color_picker.sh",
-    "signal": 1
+    ]
   },
   "cpu": {
     "format": "󰻠",
@@ -135,10 +127,10 @@
   },
   "temperature": {
     "critical-threshold": 80,
-    "format": "",
+    "format": ""
   },
   "tray": {
     "icon-size": 14,
     "spacing": 10
-  },
+  }
 }

@@ -184,5 +184,8 @@
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "helium-icon-theme.activeIconPack": "nest"
+  "helium-icon-theme.activeIconPack": "nest",
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

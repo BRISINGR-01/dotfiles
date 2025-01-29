@@ -30,4 +30,4 @@ fi
 
 eval "$(thefuck --alias)"
 
-fish && exit
+fish

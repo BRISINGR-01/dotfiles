@@ -13,8 +13,13 @@ with pkgs; [
   beeper
   blender
   nautilus
+  torrential
+  vlc
+  blueman
+  libreoffice
 
   # terminal
+  waveterm
   fish
   starship
   ghostty
@@ -36,6 +41,7 @@ with pkgs; [
   gh
   fx
   jq
+  tzupdate
   # inputs.superfile.packages.${system}.default # spf
 
   # development tools
@@ -46,6 +52,7 @@ with pkgs; [
   lazydocker
   cliphist
   fuzzel
+  zellij
 
   # "ethical" hacking
   nmap
@@ -58,10 +65,15 @@ with pkgs; [
   hyprpicker
   udiskie
   hyprpolkitagent
-  polkit-kde-agent
   waybar
   eww
   hyprlandPlugins.hy3
+  hypridle
+  hyprlock
+  libnotify
+  brightnessctl
+  blueman
+  networkmanagerapplet
 
   # programming
   git

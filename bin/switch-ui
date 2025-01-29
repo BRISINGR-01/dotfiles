@@ -1,0 +1,12 @@
+#!/bin/sh
+
+file=/home/alex/dotfiles/nix/UI/default.nix
+
+if grep -q hyprland $file; then
+  sed -i 's/hyprland/gnome/' $file
+else
+  sed -i 's/gnome/hyprland/' $file
+fi
+
+sudo nixos-rebuild switch
+# sudo reboot now
