@@ -74,6 +74,8 @@ with pkgs; [
   brightnessctl
   blueman
   networkmanagerapplet
+  grimblast
+  dunst
 
   # programming
   git

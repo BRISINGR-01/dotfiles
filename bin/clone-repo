@@ -1,0 +1,7 @@
+#!/bin/bash
+
+repo=$(gh repo list --json name | jq .[].name | fzf)
+
+if [ -n "$repo" ]; then
+  git clone "https://github.com/$repo"
+fi

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+hyprctl notify -1 1000 "rgb(42A5F5)" "Loading config!"
+home-manager switch
