@@ -18,7 +18,7 @@ export XDG_RUNTIME_DIR=/run/user/1000
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
-PATH="$PATH:~/bin:~/dotfiles/bin:${HOME}/.local/bin"
+PATH="$PATH:~/bin:~/dotfiles/bin:~/.local/bin:~/.config/hypr"
 
 . ~/bash/cd_on_quit.sh
 

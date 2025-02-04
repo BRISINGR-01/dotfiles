@@ -1,0 +1,8 @@
+#!/bin/bash
+
+val=$(cliphist list | fuzzel --dmenu --config ~/dotfiles/config/clipboard-fuzzel.ini | cliphist decode)
+
+if [ -n "$val" ]; then
+  wl-copy "$val"
+  # ydotool type "$val"
+fi

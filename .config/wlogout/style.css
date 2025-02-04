@@ -4,7 +4,13 @@
 }
 
 window {
-	background-color: rgba(12, 12, 12, 0.9);
+	background-color: rgba(35, 45, 89, 0.27);
+
+	/* background-image: url("/tmp/shot_blurred.png");
+	background-size: 100%;
+	background-color: #070819;
+	background-repeat: no-repeat;
+	background-position: bottom; */
 }
 
 button {
@@ -12,20 +18,29 @@ button {
 	text-decoration-color: #ffffff;
 	color: #ffffff;
 	background-color: #1e1e1e;
-	border-style: solid;
-	border-width: 1px;
+	border-width: 0px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 20%;
 	border-radius: 10px;
 	margin: 0.75em;
-	padding: 4.75em;
+	padding: 0.75em;
+	background-color: transparent;
 }
 
-button:focus,
 button:active,
+button:focus {
+	border: none;
+	box-shadow: none;
+}
+
 button:hover {
-	background-color: #3700b3;
+	box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
+	color: white;
+	transition: all 0.3s cubic-bezier(0.55, 0, 0.28, 1.682), box-shadow 0.5s ease-in;
+	background-color: rgba(66, 164, 245, 0.728);
+	/* opacity: 0.6; */
+	background-size: 24%;
 	outline-style: none;
 }
 

@@ -13,6 +13,7 @@
   ],
   "modules-right": [
     // "group/expand",
+    "hyprland/language",
     "bluetooth",
     "network",
     "battery"
@@ -20,15 +21,21 @@
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "active": "󱉳",
+      "1": "",
+      "2": "󰨞",
+      "3": "",
+      // "4": "",
+      // "5": "",
+      "active": "󰕖",
       "default": "",
-      "empty": ""
+      "empty": "󰉗"
     },
     "persistent-workspaces": {
       "*": [
         1,
         2,
-        3
+        3,
+        4
       ]
     }
   },
@@ -53,12 +60,13 @@
     }
   },
   "network": {
-    "format-wifi": "",
+    "format-wifi": "󰤨",
     "format-ethernet": "",
-    "format-disconnected": "󰖪",
+    "format-disconnected": "󰤮",
     "tooltip-format-disconnected": "Error",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} 🖧 ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) 󰤨",
+    "tooltip-format-ethernet": "{ifname} 󰈁",
+    "on-right-click": "nm-applet",
     "on-click": "ghostty -e nmtui"
   },
   "bluetooth": {
@@ -72,6 +80,10 @@
     "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
     "on-click": "blueman-applet",
     "on-click-right": "blueman-manager"
+  },
+  "hyprland/language": {
+    "format-en": "en",
+    "format-bg": "bg"
   },
   "battery": {
     "interval": 30,

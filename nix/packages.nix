@@ -76,6 +76,8 @@ with pkgs; [
   networkmanagerapplet
   grimblast
   dunst
+  hyprls
+  imagemagick
 
   # programming
   git

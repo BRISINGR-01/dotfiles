@@ -7,7 +7,7 @@ sudo tar -vczf /backup.tar.gz \
   --exclude='**/target' \
   --exclude='**/databases' \
   --exclude='**/.git' \
-  --exclude='**/*ndroid*'  \
+  --exclude='**/*ndroid*' \
   --exclude='**/snap' \
   --exclude='**/cltk_data' \
   --exclude='**/alex-Vostro-3500' \
@@ -16,4 +16,4 @@ sudo tar -vczf /backup.tar.gz \
   --exclude='**/Downloads' \
   --exclude='**/apps' \
   --exclude='**/.*' \
-  /home /var/spool/mail /etc /root
+  /home/alex

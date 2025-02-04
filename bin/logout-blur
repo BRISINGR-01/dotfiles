@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# grimblast save active /tmp/shot.png
+# magick /tmp/shot.png -filter Gaussian -resize 50% -define filter:sigma=2.5 -resize 200% /tmp/shot_blurred.png
+# magick /tmp/shot.png -blur 0x8 /tmp/shot_blurred.png
+wlogout --protocol layer-shell
+# pkill wlogout
+# wlogout --protocol layer-shell

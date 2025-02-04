@@ -1,4 +1,11 @@
 #!/bin/bash
 
-hyprctl notify -1 1000 "rgb(42A5F5)" "Loading config!"
+notify-send "Reloading..."
+
 home-manager switch
+
+if [ $? -eq 0 ]; then
+  notify-send "Finished reloading"
+else
+  notify-send "Reload failed" -u critical
+fi
