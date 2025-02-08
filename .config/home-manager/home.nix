@@ -118,4 +118,22 @@ in {
   #   serviceConfig.ExecStart = "/home/alex/dotfiles/bin/update_timezone";
   #   serviceConfig.RemainAfterExit = false;
   # };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "google-chrome.desktop";
+      "application/pdf" = "swayimg.desktop";
+      "image/png" = [ "swayimg.desktop" ];
+      "image/jpeg" = [ "swayimg.desktop" ];
+      "image/gif" = [ "swayimg.desktop" ];
+      "image/webp" = [ "swayimg.desktop" ];
+      "image/svg+xml" = [ "swayimg.desktop" ];
+      "x-scheme-handler/http" = "google-chrome.desktop";
+      "x-scheme-handler/https" = "google-chrome.desktop";
+      "x-scheme-handler/about" = "google-chrome.desktop";
+      "x-scheme-handler/unknown" = "google-chrome.desktop";
+      "x-scheme-handler/mailto" = "google-chrome.desktop";
+      "x-scheme-handler/lunarclient" = "lunarclient.desktop";
+    };
+  };
 }

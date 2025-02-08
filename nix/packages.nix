@@ -16,6 +16,7 @@ with pkgs; [
   torrential
   vlc
   blueman
+  pavucontrol
   libreoffice
 
   # terminal
@@ -25,6 +26,7 @@ with pkgs; [
   ghostty
   tmux
   tmuxinator
+  unzip
 
   #terminal utils
   fzf
@@ -77,7 +79,11 @@ with pkgs; [
   grimblast
   dunst
   hyprls
-  imagemagick
+  swayimg
+  ffmpeg
+  ags
+  rofi-wayland
+  swaybg
 
   # programming
   git
@@ -91,6 +97,8 @@ with pkgs; [
   rustc
   cargo
   lua
+
+  # ollama
 
   # nix
   home-manager

@@ -1,0 +1,17 @@
+/***
+ *    ┓ ┏┏┓┓ ┓ ┳┳┏┓┏┳┓  ┳┓┏┓┏┓┳
+ *    ┃┃┃┣┫┃ ┃ ┃┃┗┓ ┃ ━━┣┫┃┃┣ ┃
+ *    ┗┻┛┛┗┗┛┗┛┗┛┗┛ ┻   ┛┗┗┛┻ ┻
+ *                             
+ */
+
+
+
+* {
+    background:     #0001074D;
+    background-alt: #0001074D;
+    foreground:     #A6EDE4;
+    selected:       #FE1415;
+    active:         #F49D89;
+    urgent:         #00CBB3;
+}

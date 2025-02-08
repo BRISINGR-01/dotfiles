@@ -3,13 +3,6 @@
 {
   imports = [ "/home/alex/dotfiles/nix/system/timezone.nix" ];
 
-  services.xserver.enable = true;
-  services.xserver.layout =
-    "us,bg,ru"; # Replace 'us' with your preferred layout if needed
-  services.xserver.xkbVariant =
-    ",phonetic"; # Optional: Adjust to your preferred variant
-  services.xserver.xkbOptions = "grp:alt_shift_toggle"; # Switch b
-
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {

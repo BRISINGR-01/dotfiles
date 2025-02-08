@@ -5,12 +5,12 @@
 
 window {
 	background-color: rgba(35, 45, 89, 0.27);
+	background-image: url("/tmp/shot_blurred.png");
 
-	/* background-image: url("/tmp/shot_blurred.png");
 	background-size: 100%;
 	background-color: #070819;
 	background-repeat: no-repeat;
-	background-position: bottom; */
+	background-position: bottom;
 }
 
 button {
@@ -23,65 +23,45 @@ button {
 	background-position: center;
 	background-size: 20%;
 	border-radius: 10px;
-	margin: 0.75em;
-	padding: 0.75em;
 	background-color: transparent;
+	margin: 0.75em;
 }
 
-button:active,
-button:focus {
+/* button:focus {
 	border: none;
 	box-shadow: none;
-}
+} */
 
+button:focus,
 button:hover {
 	box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.4);
 	color: white;
 	transition: all 0.3s cubic-bezier(0.55, 0, 0.28, 1.682), box-shadow 0.5s ease-in;
-	background-color: rgba(66, 164, 245, 0.728);
-	/* opacity: 0.6; */
+	background-color: rgba(66, 164, 245, 0.828);
 	background-size: 24%;
 	outline-style: none;
 }
 
 #lock {
-	background-image: image(
-		url("/home/alex/dotfiles/.config/wlogout/assets/lock.png"),
-		url("/usr/local/share/wlogout/icons/lock.png")
-	);
+	background-image: url("/home/alex/dotfiles/.config/wlogout/assets/lock.png");
 }
 
 #logout {
-	background-image: image(
-		url("/home/alex/dotfiles/.config/wlogout/assets/logout.png"),
-		url("/usr/local/share/wlogout/icons/logout.png")
-	);
+	background-image: url("/home/alex/dotfiles/.config/wlogout/assets/logout.png");
 }
 
 #suspend {
-	background-image: image(
-		url("/home/alex/dotfiles/.config/wlogout/assets/suspend.png"),
-		url("/usr/local/share/wlogout/icons/suspend.png")
-	);
+	background-image: url("/home/alex/dotfiles/.config/wlogout/assets/suspend.png");
 }
 
 #hibernate {
-	background-image: image(
-		url("/home/alex/dotfiles/.config/wlogout/assets/hibernate.png"),
-		url("/usr/local/share/wlogout/icons/hibernate.png")
-	);
+	background-image: url("/home/alex/dotfiles/.config/wlogout/assets/hibernate.png");
 }
 
 #shutdown {
-	background-image: image(
-		url("/home/alex/dotfiles/.config/wlogout/assets/shutdown.png"),
-		url("/usr/local/share/wlogout/icons/shutdown.png")
-	);
+	background-image: url("/home/alex/dotfiles/.config/wlogout/assets/shutdown.png");
 }
 
 #reboot {
-	background-image: image(
-		url("/home/alex/dotfiles/.config/wlogout/assets/reboot.png"),
-		url("/usr/local/share/wlogout/icons/reboot.png")
-	);
+	background-image: url("/home/alex/dotfiles/.config/wlogout/assets/reboot.png");
 }

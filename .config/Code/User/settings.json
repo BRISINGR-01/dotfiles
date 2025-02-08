@@ -187,5 +187,9 @@
   "helium-icon-theme.activeIconPack": "nest",
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "jest.runMode": "on-demand",
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   }
 }

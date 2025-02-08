@@ -2,5 +2,5 @@
 
 {
   # Managed by bin/update_timezone
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/Sofia";
 }
