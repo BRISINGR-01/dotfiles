@@ -20,5 +20,11 @@
     };
   };
 
+  wayland.windowManager.hyprland = {
+    extraConfig = ''
+      plugin = ${hy3.packages.x86_64-linux.hy3}/lib/libhy3.so
+    '';
+  };
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

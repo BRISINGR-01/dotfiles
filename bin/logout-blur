@@ -1,5 +1,5 @@
 #!/bin/bash
 
-grimblast save screen /tmp/shot.png
-ffmpeg -i /tmp/shot.png -vf "boxblur=5:7" /tmp/shot_blurred.png -y
+# grimblast save screen /tmp/shot.png
+# ffmpeg -i /tmp/shot.png -vf "boxblur=5:7" /tmp/shot_blurred.png -y
 wlogout --protocol layer-shell

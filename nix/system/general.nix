@@ -2,6 +2,7 @@
 
 {
   imports = [ "/home/alex/dotfiles/nix/system/timezone.nix" ];
+  services.gnome.gnome-keyring.enable = true;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

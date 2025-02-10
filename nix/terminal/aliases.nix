@@ -15,6 +15,10 @@
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
 
+  snvim = "sudo -E -s nvim";
+  nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
+  nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
+
   zr = "zellij run --";
   zrc = "zellij run -c --";
   zrf = "zellij run -f --";

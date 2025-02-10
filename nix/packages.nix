@@ -18,6 +18,8 @@ with pkgs; [
   blueman
   pavucontrol
   libreoffice
+  teams-for-linux
+  ferdium
 
   # terminal
   waveterm
@@ -97,6 +99,8 @@ with pkgs; [
   rustc
   cargo
   lua
+  python312Packages.jupyter
+  vscode-extensions.ms-toolsai.jupyter
 
   # ollama
 

@@ -75,32 +75,35 @@ in {
     ];
   };
 
-  services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        offset = "10x10";
-        corner_radius = 10;
-        indicate_hidden = "yes";
-        frame_color = "#eceff1";
-        frame_width = 2;
-        browser = "${pkgs.google-chrome}/bin/google-chrome-stable";
-        # The format of the message.  Possible variables are:
-        #   %a  appname
-        #   %s  summary
-        #   %b  body
-        #   %i  iconname (including its path)
-        #   %I  iconname (without its path)
-        #   %p  progress value if set ([  0%] to [100%]) or nothing
-        #   %n  progress value if set without any extra characters
-        #   %%  Literal %
-        # Markup is allowed
-      };
+  services = {
+    pass-secret-service.enable = true;
+    dunst = {
+      enable = true;
+      settings = {
+        global = {
+          offset = "10x10";
+          corner_radius = 10;
+          indicate_hidden = "yes";
+          frame_color = "#eceff1";
+          frame_width = 2;
+          browser = "${pkgs.google-chrome}/bin/google-chrome-stable";
+          # The format of the message.  Possible variables are:
+          #   %a  appname
+          #   %s  summary
+          #   %b  body
+          #   %i  iconname (including its path)
+          #   %I  iconname (without its path)
+          #   %p  progress value if set ([  0%] to [100%]) or nothing
+          #   %n  progress value if set without any extra characters
+          #   %%  Literal %
+          # Markup is allowed
+        };
 
-      urgency_normal = {
-        background = "#37474f";
-        foreground = "#eceff1";
-        timeout = 5;
+        urgency_normal = {
+          background = "#37474f";
+          foreground = "#eceff1";
+          timeout = 5;
+        };
       };
     };
   };
