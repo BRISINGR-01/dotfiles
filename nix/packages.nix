@@ -86,8 +86,12 @@ with pkgs; [
   ags
   rofi-wayland
   swaybg
+  hyprlandPlugins.hy3
+  hyprlandPlugins.hyprexpo
+  hyprlandPlugins.hyprspace
 
   # programming
+  code-cursor
   git
   nodejs_22
   yarn

@@ -2,8 +2,10 @@
 
 let aliases = import ./aliases.nix;
 in {
+  users.defaultUserShell = pkgs.fish;
   programs = {
     fish.enable = true;
+    bash.enable = false;
     ghostty.enable = true;
     fish.defaultShell = true;
   };

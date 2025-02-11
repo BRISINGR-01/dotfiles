@@ -2,7 +2,9 @@
 
 {
   imports = [ "/home/alex/dotfiles/nix/system/timezone.nix" ];
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
+
+  home-manager.backupFileExtension = "bp";
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

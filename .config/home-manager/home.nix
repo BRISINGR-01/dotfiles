@@ -68,15 +68,14 @@ in {
     # enable = true;
 
     plugins = [
-      #  ${pkgs.hy3.packages.x86_64-linux.hy3}/lib/libhy3.so
-      # legacyPackages.x86_64-linux.hyprlandPlugins.hy3
-      # config.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hy3
       pkgs.hyprlandPlugins.hy3
+      pkgs.hyprlandPlugins.hyprexpo
+      pkgs.hyprlandPlugins.hyprspace
     ];
   };
 
   services = {
-    pass-secret-service.enable = true;
+    # pass-secret-service.enable = true;
     dunst = {
       enable = true;
       settings = {
@@ -112,20 +111,12 @@ in {
     allowUnfree = true;
     allowBroken = true;
   };
-  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # systemd.user.services.update-timezone = {
-  #   # description = "...";
-  #   wantedBy = [ "multi-user.target" ];
-
-  #   serviceConfig.ExecStart = "/home/alex/dotfiles/bin/update_timezone";
-  #   serviceConfig.RemainAfterExit = false;
-  # };
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
       "text/html" = "google-chrome.desktop";
-      "application/pdf" = "swayimg.desktop";
+      "application/pdf" = "google-chrome.desktop";
       "image/png" = [ "swayimg.desktop" ];
       "image/jpeg" = [ "swayimg.desktop" ];
       "image/gif" = [ "swayimg.desktop" ];
@@ -139,4 +130,5 @@ in {
       "x-scheme-handler/lunarclient" = "lunarclient.desktop";
     };
   };
+
 }
