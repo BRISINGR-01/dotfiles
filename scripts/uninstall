@@ -1,0 +1,77 @@
+#!/bin/node
+
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import cmd from "./cmd.js";
+
+export function removeTopic(topic) {
+	if (!topic) process.exit(0);
+
+	topic = topic.replace(/\s/g, "_");
+
+	fs.rmSync(path.resolve(packagesDir, `${topic}.nix`));
+	const defaultNix = fs.readFileSync(path.resolve(packagesDir, "default.nix")).toString();
+	fs.writeFileSync(
+		path.resolve(packagesDir, "default.nix"),
+		defaultNix.replace(`  ${topic} = import ./${topic}.nix;\n`, "").replace(` ++ ${topic} { pkgs = pkgs; }`, "")
+	);
+
+	if (cmd.run("home-manager switch")) cmd.print(`Uninstalled topic "${topic}"`, { color: "redBright", bold: true });
+}
+
+export function reomvePackage(topic, selectedPackage) {
+	const packagesFile = fs
+		.readFileSync(path.resolve(packagesDir, `${topic}.nix`))
+		.toString()
+		.split("\n");
+
+	fs.writeFileSync(
+		path.resolve(packagesDir, `${topic}.nix`),
+		packagesFile.filter((line) => line.trim() !== selectedPackage).join("\n")
+	);
+}
+
+function uninstall() {
+	const topicOptions = fs
+		.readdirSync(packagesDir)
+		.filter((topic) => topic !== "default.nix")
+		.map((topic) => topic.replace(".nix", ""));
+
+	const topic = cmd.fzf(topicOptions);
+
+	if (!topic) {
+		cmd.print("No topic selected", { color: "gray" });
+		process.exit(0);
+	}
+
+	if (process.argv[2] === "-c") {
+		removeTopic(topic);
+		process.exit(0);
+	}
+
+	const packagesFile = fs
+		.readFileSync(path.resolve(packagesDir, `${topic}.nix`))
+		.toString()
+		.split("\n");
+	const packages = packagesFile.slice(packagesFile.indexOf("with pkgs; [") + 1, packagesFile.lastIndexOf("]"));
+
+	const selectedPackage = cmd.fzf(packages);
+
+	if (!selectedPackage) {
+		cmd.print("No package selected", { color: "gray" });
+		process.exit(0);
+	}
+
+	reomvePackage(topic, selectedPackage);
+
+	cmd.print(`Uninstalling package "${selectedPackage}" from "${topic}"`, { color: "redBright", bold: true });
+
+	if (cmd.run("home-manager switch")) cmd.print("Done", { color: "blueBright", bold: true });
+}
+
+const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+	uninstall();
+}

@@ -5,6 +5,7 @@
   # services.gnome.gnome-keyring.enable = true;
 
   home-manager.backupFileExtension = "bp";
+  nix.settings.download-buffer-size = 200;
 
   i18n = {
     defaultLocale = "en_US.UTF-8";

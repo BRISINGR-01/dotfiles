@@ -1,19 +1,19 @@
 #!/bin/bash
 
 current_workspace=$(hyprctl monitors -j | jq '.[] | select(.focused).activeWorkspace.id')
-workspaces_count=$(hyprctl workspaces -j | jq '[.[] | select(.windows > 0)] | length')
-last=$(($workspaces_count + 1))
+last_workspace=$(hyprctl workspaces -j | jq '[.[] | select(.windows > 0)] | map(.id) | max')
+ws_count=$(($last_workspace + 1))
 
 # Determine the action (next or prev workspace)
 if [[ $1 == "next" ]]; then
-    if [[ $current_workspace -eq $last ]]; then
+    if [[ $current_workspace -eq $ws_count ]]; then
         target_ws=1
     else
         target_ws=$(($current_workspace + 1))
     fi
 elif [[ $1 == "prev" ]]; then
     if [[ $current_workspace -eq 1 ]]; then
-        target_ws=$last
+        target_ws=$ws_count
     else
         target_ws=$(($current_workspace - 1))
     fi

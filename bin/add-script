@@ -1,0 +1,11 @@
+#!/bin/bash
+
+name=$1
+
+if [ -z "$name" ]; then
+  echo "Usage: add-script <name>"
+  exit 1
+fi
+
+touch ~/dotfiles/bin/$name
+chmod +x ~/dotfiles/bin/$name

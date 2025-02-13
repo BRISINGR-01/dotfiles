@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Path to your config files
+HYPRLAND_CONFIG="$HOME/.config/hypr/hyprland.conf"
+# CUSTOM_KEYBIND_LIST="$HOME/.config/keybinds.json"
+
+# Parse Hyprland config (example: search for 'bind' lines)
+parse_hyprland() {
+  # Get keybinds from hyprctl and format them for rofi
+  hyprctl binds -j | jq -r '.[] | select(.dispatcher != "") | "\(.modmask) \(.key) - \(.dispatcher) \(.arg)"'
+
+  # Run Rofi with the keybinds
+}
+
+# Parse Custom JSON List using jq (adjust this based on your custom keybind JSON format)
+parse_custom_keybinds() {
+  jq -r 'to_entries | .[] | .value | to_entries | .[] | "\(.key) - \(.value)"' "$CUSTOM_KEYBIND_LIST"
+}
+
+# Combine keybinds
+keybinds=$( (
+  parse_hyprland
+  # parse_custom_keybinds
+))
+
+# Run Rofi with the combined keybinds
+echo "$keybinds" | rofi -dmenu -i -p "Find Keybind"

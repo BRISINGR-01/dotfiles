@@ -9,3 +9,4 @@ Session.vim
 git-credentials
 .password-store
 .obsidian/plugins
+node_modules

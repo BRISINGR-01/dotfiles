@@ -1,0 +1,73 @@
+#!/bin/node
+
+import fs from "fs";
+import path from "path";
+import cmd from "./cmd.js";
+
+function createTopic() {
+	const newTopic = cmd.prompt("Enter new topic:", { color: "cyan" });
+	if (!newTopic) process.exit(0);
+
+	cmd.print("Creating new topic:", newTopic, { color: "greenBright", bold: true });
+	const varName = newTopic.replace(/\s/g, "_");
+	const defaultNix = fs.readFileSync(path.resolve(packagesDir, "default.nix")).toString();
+	fs.writeFileSync(
+		path.resolve(packagesDir, "default.nix"),
+		defaultNix
+			.replace("in with pkgs;", `  ${varName} = import ./${newTopic}.nix;\nin with pkgs;`)
+			.replace("[", `${varName} { pkgs = pkgs; } ++ [`)
+	);
+
+	fs.writeFileSync(
+		path.resolve(packagesDir, `${newTopic}.nix`),
+		`{ pkgs }:
+
+with pkgs; [
+]`
+	);
+
+	return newTopic;
+}
+
+let isCreatintNewTopic = false;
+const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
+const topicOptions = fs
+	.readdirSync(packagesDir)
+	.filter((topic) => topic !== "default.nix")
+	.map((topic) => topic.replace(".nix", ""))
+	.concat("<new topic>");
+
+let topic = cmd.fzf(topicOptions);
+if (!topic) {
+	cmd.print("No topic selected", { color: "gray" });
+	process.exit(0);
+}
+
+if (topic === "<new topic>") {
+	isCreatintNewTopic = true;
+	topic = createTopic();
+}
+
+const packages = cmd.prompt("Enter package(s):", { color: "cyan" }).split(/\s+/);
+if (packages.length === 0) {
+	cmd.print("No packages entered", { color: "gray" });
+	process.exit(0);
+}
+
+const packagesFile = fs.readFileSync(path.resolve(packagesDir, `${topic}.nix`)).toString();
+fs.writeFileSync(path.resolve(packagesDir, `${topic}.nix`), packagesFile.replace("[", `[\n  ${packages.join("\n  ")}`));
+
+cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join(", ")} in "${topic}"`, {
+	color: "greenBright",
+	bold: true,
+});
+
+if (cmd.run("home-manager switch")) {
+	cmd.print("Done", { color: "blueBright", bold: true });
+} else {
+	if (isCreatintNewTopic) {
+		removeTopic(topic);
+	} else {
+		packages.forEach((pkg) => reomvePackage(topic, pkg));
+	}
+}

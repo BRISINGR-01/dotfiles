@@ -1,7 +1,7 @@
 { config, pkgs, osConfig, ... }:
 
 let
-  packages = import ../../nix/packages.nix;
+  packages = import ../../nix/packages;
   aliases = import ../../nix/terminal/aliases.nix;
 in {
   imports = [
@@ -65,12 +65,20 @@ in {
   };
 
   wayland.windowManager.hyprland = {
-    # enable = true;
+    enable = true;
+    systemd.enable = false;
+    # xwayland.enable = true;
+    # package = pkgs.hyprland;
+    extraConfig = ''
+      source=~/dotfiles/.config/hypr/hyprland.conf 
 
+      plugin=${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so
+      plugin=${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
+    '';
     plugins = [
-      pkgs.hyprlandPlugins.hy3
-      pkgs.hyprlandPlugins.hyprexpo
-      pkgs.hyprlandPlugins.hyprspace
+      # pkgs.hyprlandPlugins.hy3
+      # pkgs.hyprlandPlugins.hyprexpo
+      # pkgs.hyprlandPlugins.hyprspace
     ];
   };
 
@@ -130,5 +138,4 @@ in {
       "x-scheme-handler/lunarclient" = "lunarclient.desktop";
     };
   };
-
 }

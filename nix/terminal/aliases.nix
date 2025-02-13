@@ -27,5 +27,5 @@
   hms = "home-manager switch";
   srnix = "sudo nixos-rebuild switch";
 
-  deepseek = "ollama serve; ollama run deepseek-r1:1.5b";
+  deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
 }
