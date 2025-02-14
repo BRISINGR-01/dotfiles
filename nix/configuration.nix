@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let packages = import /home/alex/dotfiles/nix/packages.nix;
+let packages = import /home/alex/dotfiles/nix/packages;
 in {
   imports = [
     /home/alex/dotfiles/nix/system/hardware.nix

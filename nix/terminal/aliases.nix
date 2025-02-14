@@ -14,6 +14,7 @@
   r = "rm -i";
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
+  fzf-clip = "cliphist list | fzf --no-sort | cliphist decode";
 
   snvim = "sudo -E -s nvim";
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";

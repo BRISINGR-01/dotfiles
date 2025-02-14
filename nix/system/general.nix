@@ -32,6 +32,7 @@
   };
 
   services = {
+    tailscale.enable = true;
     blueman.enable = true;
     pipewire = {
       enable = true;

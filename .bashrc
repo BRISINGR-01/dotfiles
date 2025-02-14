@@ -28,6 +28,8 @@ if command -v gsettings >/dev/null 2>&1; then
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "WLogOut" 2>/dev/null
 fi
 
+export YDOTOOL_SOCKET=$HOME/.ydotool_socket
+
 eval "$(thefuck --alias)"
 
 fish

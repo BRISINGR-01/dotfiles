@@ -11,7 +11,12 @@ in {
   };
 
   programs.bash.shellAliases = aliases;
-  # environment.shellAliases = aliases;
   programs.fish.shellAliases = aliases;
   programs.fish.useBabelfish = true;
+
+  environment.sessionVariables = {
+    CHROME_EXECUTABLE = "google-chrome-stable";
+    NIXOS_OZONE_WL = "1";
+    YDOTOOL_SOCKET = "/home/alex/.ydotool_socket";
+  };
 }

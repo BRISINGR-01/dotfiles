@@ -83,7 +83,6 @@ in {
   };
 
   services = {
-    # pass-secret-service.enable = true;
     dunst = {
       enable = true;
       settings = {

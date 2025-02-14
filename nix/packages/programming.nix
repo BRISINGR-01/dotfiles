@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  android-studio
+  flutter
   code-cursor
   git
   nodejs_22

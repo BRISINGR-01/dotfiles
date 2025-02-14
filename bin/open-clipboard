@@ -4,5 +4,5 @@ val=$(cliphist list | fuzzel --dmenu --config ~/dotfiles/config/clipboard-fuzzel
 
 if [ -n "$val" ]; then
   wl-copy "$val"
-  # ydotool type "$val"
+  ydotool type "$val"
 fi

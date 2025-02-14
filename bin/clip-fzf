@@ -1,3 +1,0 @@
-#!/bin/sh
-
-cliphist list | fzf --no-sort | cliphist decode

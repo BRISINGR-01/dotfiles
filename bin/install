@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import cmd from "./cmd.js";
+import cmd from "../scripts/cmd.js";
 
 function createTopic() {
 	const newTopic = cmd.prompt("Enter new topic:", { color: "cyan" });
@@ -63,6 +63,7 @@ cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join("
 });
 
 if (cmd.run("home-manager switch")) {
+	cmd.run("notify-send");
 	cmd.print("Done", { color: "blueBright", bold: true });
 } else {
 	if (isCreatintNewTopic) {
