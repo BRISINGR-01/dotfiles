@@ -2,8 +2,8 @@
 
 brightness=$(brightnessctl g)
 
-for i in {1..100}; do
-  sleep 0.02
+for i in {1..200}; do
+  sleep 0.04
 
   val=$(($brightness - (1000 * $i)))
   if [ $val -gt 0 ]; then

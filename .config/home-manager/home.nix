@@ -14,10 +14,25 @@ in {
   ];
 
   home = {
+    sessionPath = [ "~/bin" "~/dotfiles/bin" "~/.config/hypr" ];
     username = "alex";
+    sessionVariables = {
+      # HYPRCURSOR_SIZE = "24";
+      # HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
+    };
     homeDirectory = "/home/alex";
     stateVersion = "24.11";
     packages = packages { pkgs = pkgs; };
+    # pointerCursor = {
+    #   gtk.enable = true;
+    #   name = "Catppuccin-Mocha-Blue-Cursors";
+    #   package = pkgs.catppuccin-cursors.mochaBlue;
+    #   size = 16;
+    # };
+    file = {
+      ".config/hypr/hypridle.conf".source = ../../conf/hypr/hypridle.conf;
+      ".config/hypr/hyprlock.conf".source = ../../conf/hypr/hyprlock.conf;
+    };
   };
 
   programs = {
@@ -67,19 +82,14 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
-    # xwayland.enable = true;
-    # package = pkgs.hyprland;
+    xwayland.enable = true;
     extraConfig = ''
-      source=~/dotfiles/.config/hypr/hyprland.conf 
+      source=~/dotfiles/conf/hypr/hyprland.conf 
 
+      plugin=${pkgs.hyprlandPlugins.hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so
       plugin=${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so
       plugin=${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
     '';
-    plugins = [
-      # pkgs.hyprlandPlugins.hy3
-      # pkgs.hyprlandPlugins.hyprexpo
-      # pkgs.hyprlandPlugins.hyprspace
-    ];
   };
 
   services = {
@@ -123,12 +133,12 @@ in {
     enable = true;
     defaultApplications = {
       "text/html" = "google-chrome.desktop";
-      "application/pdf" = "google-chrome.desktop";
-      "image/png" = [ "swayimg.desktop" ];
-      "image/jpeg" = [ "swayimg.desktop" ];
-      "image/gif" = [ "swayimg.desktop" ];
-      "image/webp" = [ "swayimg.desktop" ];
-      "image/svg+xml" = [ "swayimg.desktop" ];
+      "application/pdf" = "zathura.desktop";
+      "image/png" = "swayimg.desktop";
+      "image/jpeg" = "swayimg.desktop";
+      "image/gif" = "swayimg.desktop";
+      "image/webp" = "swayimg.desktop";
+      "image/svg+xml" = "swayimg.desktop";
       "x-scheme-handler/http" = "google-chrome.desktop";
       "x-scheme-handler/https" = "google-chrome.desktop";
       "x-scheme-handler/about" = "google-chrome.desktop";

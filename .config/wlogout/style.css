@@ -5,11 +5,12 @@
 
 window {
 	background-color: rgba(35, 45, 89, 0.27);
-	background-image: url("/tmp/shot.png");
+	background-image: url("/home/alex/dotfiles/assets/logout-bg.jpg");
 
 	background-size: 100%;
 	background-color: #070819;
 	background-repeat: no-repeat;
+	background-size: cover;
 	background-position: bottom;
 }
 

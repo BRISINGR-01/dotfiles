@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  android-tools
   android-studio
   flutter
   code-cursor

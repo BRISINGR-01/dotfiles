@@ -4,7 +4,7 @@
   programs = {
     regreet.enable = true;
     hyprlock.enable = true;
-    ydotool.enable = true;
+    # ydotool.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;

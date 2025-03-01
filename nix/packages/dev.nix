@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  gnumake
   neovim
   btop
   systemctl-tui

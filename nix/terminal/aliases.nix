@@ -4,6 +4,7 @@
   la = "ls -A";
   l = "ls -CF";
   grep = "grep --color=auto";
+  g = "grep --color=auto";
   gs = "git status";
   alert = ''notify-send --urgency=normal "Command has finished"'';
   cls = "clear";
@@ -27,6 +28,8 @@
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";
   srnix = "sudo nixos-rebuild switch";
+  temp = "nix-shell --command fish -p";
+  nix-shell = "nix-shell --command fish";
 
   deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
 }

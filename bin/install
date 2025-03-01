@@ -3,6 +3,7 @@
 import fs from "fs";
 import path from "path";
 import cmd from "../scripts/cmd.js";
+import { reomvePackage } from "./uninstall";
 
 function createTopic() {
 	const newTopic = cmd.prompt("Enter new topic:", { color: "cyan" });
@@ -29,6 +30,14 @@ with pkgs; [
 	return newTopic;
 }
 
+function graceFulExit() {
+	if (isCreatintNewTopic) {
+		removeTopic(topic);
+	} else {
+		packages.forEach((pkg) => reomvePackage(topic, pkg));
+	}
+}
+
 let isCreatintNewTopic = false;
 const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
 const topicOptions = fs
@@ -44,8 +53,11 @@ if (!topic) {
 }
 
 if (topic === "<new topic>") {
+	cmd.print("Creating new topic", { color: "blue" });
 	isCreatintNewTopic = true;
 	topic = createTopic();
+} else {
+	cmd.print("Using topic:", topic, "", { color: "blue" });
 }
 
 const packages = cmd.prompt("Enter package(s):", { color: "cyan" }).split(/\s+/);
@@ -62,13 +74,16 @@ cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join("
 	bold: true,
 });
 
+process.on("SIGINT", function () {
+	console.log("Caught interrupt signal");
+
+	graceFulExit();
+	process.exit();
+});
+
 if (cmd.run("home-manager switch")) {
-	cmd.run("notify-send");
+	cmd.run(`notify-send "${packages.join(", ")} downloaded"`);
 	cmd.print("Done", { color: "blueBright", bold: true });
 } else {
-	if (isCreatintNewTopic) {
-		removeTopic(topic);
-	} else {
-		packages.forEach((pkg) => reomvePackage(topic, pkg));
-	}
+	graceFulExit();
 }

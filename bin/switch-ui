@@ -8,5 +8,5 @@ else
   sed -i 's/gnome/hyprland/' $file
 fi
 
-sudo nixos-rebuild switch
-# sudo reboot now
+sudo nixos-rebuild boot
+sudo reboot now

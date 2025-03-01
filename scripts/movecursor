@@ -1,0 +1,8 @@
+#!/bin/bash
+
+IFS=', ' read -r x y < <(hyprctl cursorpos)
+
+((x += $1))
+((y += $2))
+
+hyprctl dispatch movecursor $x $y

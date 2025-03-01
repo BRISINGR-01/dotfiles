@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  zathura
   hyprsunset
   hyprpicker
   udiskie

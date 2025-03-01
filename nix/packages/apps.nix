@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  spotube
+  youtube-music
   obsidian
   google-chrome
   firefox

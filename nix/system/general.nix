@@ -2,10 +2,13 @@
 
 {
   imports = [ "/home/alex/dotfiles/nix/system/timezone.nix" ];
-  # services.gnome.gnome-keyring.enable = true;
 
-  home-manager.backupFileExtension = "bp";
   nix.settings.download-buffer-size = 200;
+
+  programs.java = {
+    enable = true;
+    package = (pkgs.jdk21.override { enableJavaFX = true; });
+  };
 
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -34,6 +37,7 @@
   services = {
     tailscale.enable = true;
     blueman.enable = true;
+    openssh.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -47,4 +51,27 @@
   networking.extraHosts = ''
     127.0.0.1 cooleseite.at
   '';
+
+  environment.pathsToLink = [ "/bin" ];
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
+      };
+    };
+  };
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = [ "alex" ];
+  virtualisation.spiceUSBRedirection.enable = true;
 }

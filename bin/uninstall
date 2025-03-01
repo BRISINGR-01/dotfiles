@@ -33,36 +33,39 @@ export function reomvePackage(topic, selectedPackage) {
 }
 
 function uninstall() {
-	const topicOptions = fs
-		.readdirSync(packagesDir)
-		.filter((topic) => topic !== "default.nix")
-		.map((topic) => topic.replace(".nix", ""));
-
-	const topic = cmd.fzf(topicOptions);
-
-	if (!topic) {
-		cmd.print("No topic selected", { color: "gray" });
-		process.exit(0);
-	}
+	const topicFiles = fs.readdirSync(packagesDir).filter((topic) => topic !== "default.nix");
 
 	if (process.argv[2] === "-c") {
+		const topic = cmd.fzf(topicFiles.map((topic) => topic.replace(".nix", "")));
+
+		if (!topic) {
+			cmd.print("No topic selected", { color: "gray" });
+			process.exit(0);
+		}
+
 		removeTopic(topic);
 		process.exit(0);
 	}
 
-	const packagesFile = fs
-		.readFileSync(path.resolve(packagesDir, `${topic}.nix`))
-		.toString()
-		.split("\n");
-	const packages = packagesFile.slice(packagesFile.indexOf("with pkgs; [") + 1, packagesFile.lastIndexOf("]"));
+	const packages = topicFiles.map((topicFile) => {
+		const packagesFile = fs.readFileSync(path.resolve(packagesDir, topicFile)).toString().split("\n");
 
-	const selectedPackage = cmd.fzf(packages);
+		return {
+			topic: topicFile.replace(".nix", ""),
+			packages: packagesFile
+				.slice(packagesFile.indexOf("with pkgs; [") + 1, packagesFile.lastIndexOf("]"))
+				.map((pkg) => pkg.trim()),
+		};
+	});
+
+	const selectedPackage = cmd.fzf(packages.flatMap((topic) => topic.packages));
 
 	if (!selectedPackage) {
 		cmd.print("No package selected", { color: "gray" });
 		process.exit(0);
 	}
 
+	const topic = packages.find(({ packages }) => packages.includes(selectedPackage)).topic;
 	reomvePackage(topic, selectedPackage);
 
 	cmd.print(`Uninstalling package "${selectedPackage}" from "${topic}"`, { color: "redBright", bold: true });

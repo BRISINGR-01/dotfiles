@@ -6,6 +6,7 @@ in {
     /home/alex/dotfiles/nix/system/hardware.nix
     /home/alex/dotfiles/nix/system/general.nix
     /home/alex/dotfiles/nix/system/nix.nix
+    /home/alex/dotfiles/nix/terminal
     /home/alex/dotfiles/nix/UI
     <home-manager/nixos>
   ];
@@ -14,7 +15,8 @@ in {
     alex = {
       isNormalUser = true;
       description = "Alex";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups =
+        [ "networkmanager" "wheel" "docker" "ydotool" "libvirtd" "kvm" ];
     };
   };
 

@@ -1,0 +1,28 @@
+#!/bin/node
+
+import fs from "fs";
+import path from "path";
+import cmd from "../scripts/cmd.js";
+
+const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
+const packages = fs
+	.readdirSync(packagesDir)
+	.filter((topic) => topic !== "default.nix")
+	.map((file) => {
+		const packagesFile = fs.readFileSync(path.resolve(packagesDir, file)).toString().split("\n");
+		return {
+			file,
+			packages: packagesFile
+				.slice(packagesFile.indexOf("with pkgs; [") + 1, packagesFile.lastIndexOf("]"))
+				.map((pkg) => pkg.trim()),
+		};
+	});
+
+const selectedPackage = cmd.fzf(packages.flatMap((topic) => topic.packages));
+
+if (!selectedPackage) {
+	cmd.print("No package selected", { color: "gray" });
+	process.exit(0);
+}
+
+console.log(path.join(packagesDir, packages.find((topic) => topic.packages.includes(selectedPackage)).file));
