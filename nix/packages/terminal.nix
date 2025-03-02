@@ -1,7 +1,6 @@
 { pkgs }:
 
 with pkgs; [
-  television
   babelfish
   waveterm
   fish

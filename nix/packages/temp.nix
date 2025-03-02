@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  apt
   linuxHeaders
   openconnect
   virt-viewer

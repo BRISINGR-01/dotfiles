@@ -57,7 +57,7 @@ if (topic === "<new topic>") {
 	isCreatintNewTopic = true;
 	topic = createTopic();
 } else {
-	cmd.print("Using topic:", topic, "", { color: "blue" });
+	cmd.print("Using topic: " + topic, { color: "blue" });
 }
 
 const packages = cmd.prompt("Enter package(s):", { color: "cyan" }).split(/\s+/);

@@ -46,11 +46,19 @@ in {
       shellAliases = aliases;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
+        tv init fish | source
+        thefuck --alias | source
       '';
-      plugins = [{
-        name = "transient-fish";
-        src = pkgs.fishPlugins.transient-fish.src;
-      }];
+      plugins = [
+        {
+          name = "transient-fish";
+          src = pkgs.fishPlugins.transient-fish.src;
+        }
+        {
+          name = "z";
+          src = pkgs.fishPlugins.z;
+        }
+      ];
     };
     fuzzel = {
       enable = true;

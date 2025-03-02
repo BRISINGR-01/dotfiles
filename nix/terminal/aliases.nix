@@ -21,15 +21,15 @@
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
   nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
 
-  zr = "zellij run --";
-  zrc = "zellij run -c --";
-  zrf = "zellij run -f --";
+  hist = "tv fish-history";
+  fenv = "tv env";
 
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";
   srnix = "sudo nixos-rebuild switch";
   temp = "nix-shell --command fish -p";
   nix-shell = "nix-shell --command fish";
+  gc = "nix-collect-garbage -d";
 
   deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
 }

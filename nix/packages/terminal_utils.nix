@@ -2,10 +2,10 @@
 
 with pkgs; [
   stow
+  television
   fzf
   tree
   moc
-  z-lua
   thefuck
   links2
   cava

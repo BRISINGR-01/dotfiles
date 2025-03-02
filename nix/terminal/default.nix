@@ -36,7 +36,6 @@ in {
 
   environment = {
     localBinInPath = true;
-    shellInit = "thefuck --alias | source";
     sessionVariables = {
       EDITOR = "nvim";
       CHROME_EXECUTABLE = "google-chrome-stable";
