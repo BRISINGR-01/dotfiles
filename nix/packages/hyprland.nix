@@ -12,7 +12,7 @@ with pkgs; [
   blueman
   networkmanagerapplet
   grimblast
-  dunst
+  # dunst
   hyprls
   swayimg
 ]

@@ -3,11 +3,15 @@
 let
   packages = import ../../nix/packages;
   aliases = import ../../nix/terminal/aliases.nix;
+  hyprpanel-flake =
+    builtins.getFlake "/home/alex/dotfiles/ags/hyprpanel/flake.nix";
 in {
   imports = [
     # ../../nix/system/hardware.nix
     # ../../nix/system/general.nix
     # ../../nix/system/timezone.nix
+    hyprpanel-flake.homeManagerModules.hyprpanel
+
     # ../../nix/system/nix.nix
     # ../../nix/UI/hyprland.nix
     # ../../nix/terminal/default.nix
@@ -46,8 +50,8 @@ in {
       shellAliases = aliases;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
-        tv init fish | source
         thefuck --alias | source
+        export RUST_SRC_PATH=(rustc --print sysroot)/lib/rustlib/rustc-src/rust/
       '';
       plugins = [
         {
@@ -102,33 +106,8 @@ in {
 
   services = {
     dunst = {
-      enable = true;
-      settings = {
-        global = {
-          offset = "10x10";
-          corner_radius = 10;
-          indicate_hidden = "yes";
-          frame_color = "#eceff1";
-          frame_width = 2;
-          browser = "${pkgs.google-chrome}/bin/google-chrome-stable";
-          # The format of the message.  Possible variables are:
-          #   %a  appname
-          #   %s  summary
-          #   %b  body
-          #   %i  iconname (including its path)
-          #   %I  iconname (without its path)
-          #   %p  progress value if set ([  0%] to [100%]) or nothing
-          #   %n  progress value if set without any extra characters
-          #   %%  Literal %
-          # Markup is allowed
-        };
-
-        urgency_normal = {
-          background = "#37474f";
-          foreground = "#eceff1";
-          timeout = 5;
-        };
-      };
+      enable = false;
+      configFile = "/home/alex/dotfiles/conf/dunstrc";
     };
   };
 

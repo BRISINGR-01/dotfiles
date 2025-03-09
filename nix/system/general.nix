@@ -46,6 +46,13 @@
       audio.enable = true;
       jack.enable = true;
     };
+    upower = {
+      enable = true;
+      percentageLow = 15;
+      percentageCritical = 5;
+      percentageAction = 4;
+      criticalPowerAction = "Hibernate";
+    };
   };
 
   networking.extraHosts = ''

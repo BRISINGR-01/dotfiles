@@ -22,23 +22,18 @@
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
+    "show-special": true,
+    "special-visible-only": true,
+    "active-only": true,
     "format-icons": {
-      "1": "",
-      "2": "󰨞",
-      "3": "",
+      "-97": "",
+      "-96": "󰨞",
+      "-95": "",
       // "4": "",
       // "5": "",
       "active": "󰕖",
       "default": "",
       "empty": "󰉗"
-    },
-    "persistent-workspaces": {
-      "*": [
-        1,
-        2,
-        3,
-        4
-      ]
     }
   },
   "custom/notification": {

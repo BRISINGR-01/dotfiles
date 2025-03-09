@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Flowing Fire Animation</title>
+		<style>
+			body {
+				margin: 0;
+				overflow: hidden;
+				background: black;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			canvas {
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d");
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			const cx = canvas.width / 2;
+			const cy = canvas.height / 2;
+			const boxSize = 200;
+
+			const streams = [[], [], []];
+			const maxPoints = 30; // Number of points in the stream
+			const speed = 2;
+			let angle = 0;
+			const algs = [
+				(angle) => ({
+					x: cx + Math.sin(angle) * 250,
+					y: cy + Math.cos(angle * 1.5) * 200,
+				}),
+				(angle) => ({
+					x: cx + Math.sin(angle) * 290 + 100,
+					y: cy + Math.cos(angle * 0.5) * 200 + 40,
+				}),
+				(angle) => ({
+					x: cx + -Math.sin(angle) * 200,
+					y: cy + Math.cos(angle * 1.5) * -200 - 50,
+				}),
+			];
+
+			function updateStreams() {
+				for (let i = 0; i < streams.length; i++) {
+					angle += 0.02;
+
+					streams[i].push(algs[i](angle));
+					if (streams[i].length > maxPoints) {
+						streams[i].shift(); // Remove oldest point
+					}
+				}
+			}
+
+			function drawBox() {
+				ctx.fillStyle = "rgba(255, 255, 255, 1)";
+				ctx.fillRect(cx - boxSize / 2, cy - boxSize / 2, boxSize, boxSize);
+			}
+
+			function drawStreams() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				for (let i = 0; i < streams.length; i++) {
+					if (streams[i].length < 2) return;
+
+					ctx.beginPath();
+					for (let ii = 0; ii < streams[i].length; ii++) {
+						const p = streams[i][ii];
+						const width = Math.sin((ii / streams[i].length) * Math.PI) * 20; // Thicker in the middle
+						ctx.lineTo(p.x, p.y);
+						ctx.strokeStyle = "rgba(50, 150, 255, 0.8)";
+						ctx.lineWidth = width;
+						ctx.lineCap = "round";
+						ctx.stroke();
+					}
+				}
+			}
+
+			function animate() {
+				updateStreams();
+				drawStreams();
+				drawBox();
+				requestAnimationFrame(animate);
+			}
+
+			animate();
+		</script>
+	</body>
+</html>

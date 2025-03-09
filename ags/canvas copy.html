@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Flowing Fire Animation</title>
+		<style>
+			body {
+				margin: 0;
+				overflow: hidden;
+				background: black;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+			canvas {
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script>
+			const canvas = document.getElementById("canvas");
+			const ctx = canvas.getContext("2d");
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			const cx = canvas.width / 2;
+			const cy = canvas.height / 2;
+			const boxSize = 200;
+
+			const streams = [[], [], []];
+			const maxPoints = 30; // Number of points in the stream
+			const speed = 2;
+			let angle = 0;
+			const algs = [
+				(angle) => ({
+					x: cx + Math.sin(angle) * 250,
+					y: cy + Math.cos(angle * 1.5) * 200,
+				}),
+				(angle) => ({
+					x: cx + Math.sin(angle) * 290 + 100,
+					y: cy + Math.cos(angle * 0.5) * 200 + 40,
+				}),
+				(angle) => ({
+					x: cx + -Math.sin(angle) * 200,
+					y: cy + Math.cos(angle * 1.5) * -200 - 50,
+				}),
+			];
+
+			const droplets = []; // Array to store droplets
+
+			function updateStreams() {
+				for (let i = 0; i < streams.length; i++) {
+					angle += 0.02;
+					streams[i].push(algs[i](angle));
+
+					// Add escaping streaks or droplets at random intervals
+					if (Math.random() < 0.3) {
+						const lastPoint = streams[i][streams[i].length - 1];
+						const dropletAngle = angle + (Math.random() * 0.2 - 0.1); // Slight variation in angle
+						const dropletSpeed = Math.random() * 2 + 1; // Random speed
+						droplets.push({
+							x: lastPoint.x,
+							y: lastPoint.y,
+							angle: dropletAngle,
+							speed: dropletSpeed,
+							life: 0, // Life cycle of the droplet
+						});
+					}
+
+					if (streams[i].length > maxPoints) {
+						streams[i].shift(); // Remove oldest point
+					}
+				}
+
+				// Update droplets
+				for (let i = droplets.length - 1; i >= 0; i--) {
+					let droplet = droplets[i];
+					droplet.x += Math.sin(droplet.angle) * droplet.speed;
+					droplet.y += Math.cos(droplet.angle) * droplet.speed + 0.5; // Simulate gravity
+
+					droplet.life++;
+					if (droplet.life > 20) {
+						droplets.splice(i, 1);
+					}
+				}
+			}
+
+			function drawBox() {
+				ctx.fillStyle = "rgba(255, 255, 255, 1)";
+				ctx.fillRect(cx - boxSize / 2, cy - boxSize / 2, boxSize, boxSize);
+			}
+			function drawStreams() {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				// Create a gradient for the stream's fill
+				for (let i = 0; i < streams.length; i++) {
+					if (streams[i].length < 2) return;
+
+					ctx.beginPath();
+
+					// Add a gradient fill effect for the water stream
+					const gradient = ctx.createLinearGradient(
+						streams[i][0].x,
+						streams[i][0].y,
+						streams[i][streams[i].length - 1].x,
+						streams[i][streams[i].length - 1].y
+					);
+
+					gradient.addColorStop(0, "rgba(50, 100, 255, 0.2)"); // Darker blue at the end
+					gradient.addColorStop(0.4, "rgba(50, 150, 255, 0.8)"); // Lighter blue at the start
+					gradient.addColorStop(0.6, "rgba(50, 50, 255, 0.8)"); // Lighter blue at the start
+					gradient.addColorStop(1, "rgba(50, 100, 255, 0.2)"); // Darker blue at the end
+
+					// Apply the gradient as the stroke style
+					ctx.strokeStyle = gradient;
+					for (let ii = 0; ii < streams[i].length; ii++) {
+						const p = streams[i][ii];
+						const width = Math.sin((ii / streams[i].length) * Math.PI) * 20; // Thicker in the middle
+						ctx.lineTo(p.x, p.y);
+						ctx.lineWidth = width;
+						ctx.lineCap = "round";
+						ctx.stroke();
+					}
+				}
+
+				// Add a noise texture overlay for more realistic appearance
+				// addWaterNoise();
+
+				// Draw droplets
+				ctx.fillStyle = "rgba(50, 150, 255, 0.8)";
+				for (let droplet of droplets) {
+					ctx.beginPath();
+					ctx.arc(droplet.x, droplet.y, 3, 0, Math.PI * 2); // Small droplets
+					ctx.fill();
+				}
+			}
+
+			// Add a water noise texture using Perlin noise or simple random noise
+			function addWaterNoise() {
+				const noiseCanvas = document.createElement("canvas");
+				const noiseCtx = noiseCanvas.getContext("2d");
+				noiseCanvas.width = canvas.width * 0;
+				noiseCanvas.height = canvas.height * 0;
+
+				// Generate random noise pattern
+				for (let y = 0; y < noiseCanvas.height; y++) {
+					for (let x = 0; x < noiseCanvas.width; x++) {
+						const noiseValue = Math.random(); // Or use Perlin noise for smoother results
+						const alpha = noiseValue * 0.2; // Low opacity for subtle texture
+						noiseCtx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+						noiseCtx.fillRect(x, y, 1, 1);
+					}
+				}
+
+				// Draw the noise texture on top of the stream
+				ctx.drawImage(noiseCanvas, 0, 0);
+			}
+
+			function animate() {
+				updateStreams();
+				drawStreams();
+				drawBox();
+				requestAnimationFrame(animate);
+			}
+
+			animate();
+		</script>
+	</body>
+</html>

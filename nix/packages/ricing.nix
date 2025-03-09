@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  upower
   hyprcursor
   ags
   rofi-wayland

@@ -1,7 +1,12 @@
 #!/bin/bash
 
+hyprctl dispatch dpms on
+
+exit
+
 notify-send "Reloading..."
 
+rm /tmp/reload.log
 home-manager switch 2>/tmp/reload.log
 
 if [ $? -eq 0 ]; then

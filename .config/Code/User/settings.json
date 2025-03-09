@@ -209,4 +209,8 @@
   "[c]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
+  "prettier.ignorePath": ".prettierignore",
+  "[conf]": {
+    "editor.defaultFormatter": null
+  }
 }

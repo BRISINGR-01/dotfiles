@@ -1,6 +1,11 @@
 { pkgs }:
 
 with pkgs; [
+  vscode-extensions.rust-lang.rust-analyzer
+  rust-analyzer
+  rustfmt
+  cargo
+  rustc
   android-tools
   android-studio
   flutter
