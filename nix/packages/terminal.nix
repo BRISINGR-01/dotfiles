@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  fd
+  zoxide
   babelfish
   waveterm
   fish

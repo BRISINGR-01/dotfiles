@@ -24,7 +24,6 @@
     "format": "{icon}",
     "show-special": true,
     "special-visible-only": true,
-    "active-only": true,
     "format-icons": {
       "-97": "",
       "-96": "󰨞",

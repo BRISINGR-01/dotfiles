@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  dunst
   zathura
   hyprsunset
   hyprpicker
@@ -12,7 +13,6 @@ with pkgs; [
   blueman
   networkmanagerapplet
   grimblast
-  # dunst
   hyprls
   swayimg
 ]

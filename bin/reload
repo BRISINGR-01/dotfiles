@@ -1,9 +1,5 @@
 #!/bin/bash
 
-hyprctl dispatch dpms on
-
-exit
-
 notify-send "Reloading..."
 
 rm /tmp/reload.log

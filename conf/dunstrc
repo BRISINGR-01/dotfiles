@@ -48,11 +48,13 @@ mouse_middle_click = do_action, close_current
 mouse_right_click = close_all
 
 [urgency_low]
-background = "#383c4af0"
+background = "/home/alex/dotfiles/assets/hypr/corndog.png"
+#background = "#383c4af0"
 timeout = 3
 
 [urgency_normal]
 background = "#383c4af0"
+background = "/home/alex/dotfiles/assets/hypr/corndog.png"
 timeout = 8
 
 [urgency_critical]
@@ -67,4 +69,4 @@ fullscreen = delay
 
 [fullscreen_show_critical]
 msg_urgency = critical
-fullscreen = show
+fullscreen = showdunstrc

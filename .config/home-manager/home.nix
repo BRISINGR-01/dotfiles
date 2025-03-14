@@ -10,7 +10,7 @@ in {
     # ../../nix/system/hardware.nix
     # ../../nix/system/general.nix
     # ../../nix/system/timezone.nix
-    hyprpanel-flake.homeManagerModules.hyprpanel
+    # hyprpanel-flake.homeManagerModules.hyprpanel
 
     # ../../nix/system/nix.nix
     # ../../nix/UI/hyprland.nix
@@ -51,7 +51,16 @@ in {
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
         thefuck --alias | source
+        zoxide init fish | source
         export RUST_SRC_PATH=(rustc --print sysroot)/lib/rustlib/rustc-src/rust/
+        function y
+          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+          yazi $argv --cwd-file="$tmp"
+          if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            builtin cd -- "$cwd"
+          end
+          rm -f -- "$tmp"
+        end
       '';
       plugins = [
         {
@@ -106,7 +115,7 @@ in {
 
   services = {
     dunst = {
-      enable = false;
+      enable = true;
       configFile = "/home/alex/dotfiles/conf/dunstrc";
     };
   };

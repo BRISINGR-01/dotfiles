@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  yazi
   apt
   linuxHeaders
   openconnect
