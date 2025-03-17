@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  eza
   fd
   zoxide
   babelfish

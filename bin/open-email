@@ -1,0 +1,16 @@
+#!/bin/bash
+
+arr=("alexphone33" "alexander.popov233" "alp7569" "Fontys")
+
+email=$(echo ${arr[@]} | tr ' ' '\n' | fuzzel --dmenu --)
+
+if [ -n "$email" ]; then
+  index=$(echo ${arr[@]} | tr ' ' '\n' | grep -n "$email" | cut -d ':' -f 1)
+  index=$((index - 1))
+
+  if [ $index == 3 ]; then
+    xdg-open "https://outlook.office.com/mail/"
+  else
+    xdg-open "https://mail.google.com/mail/u/$index/#all"
+  fi
+fi
