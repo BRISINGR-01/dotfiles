@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  hunspell
+  hunspellDicts.en-us
   yazi
   apt
   linuxHeaders

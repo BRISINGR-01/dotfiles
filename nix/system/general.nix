@@ -5,9 +5,15 @@
 
   nix.settings.download-buffer-size = 200;
 
-  programs.java = {
-    enable = true;
-    package = (pkgs.jdk21.override { enableJavaFX = true; });
+  programs = {
+    yazi = {
+      enable = true;
+      # plugins = [ "full-border" ];
+    };
+    java = {
+      enable = true;
+      package = (pkgs.jdk21.override { enableJavaFX = true; });
+    };
   };
 
   i18n = {

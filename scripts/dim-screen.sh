@@ -27,5 +27,3 @@ for i in {1..100}; do
 done
 
 sleep 2
-
-brightnessctl s 86401

@@ -1,0 +1,47 @@
+#!/bin/node
+
+import fs from "fs";
+import cmd from "../../../scripts/cmd.js";
+
+const entries = [
+	[" Downloads", "~/Downloads"],
+	[" Desktop", "~/Desktop"],
+	[" Dotfiles", "~/dotfiles"],
+	["󰙅 My files", "~/Desktop/Alex"],
+	[" Music", "~/Desktop/Alex/Music"],
+	[" Screenshots", "~/screenshots"],
+	[" Home", "~"],
+	// ["", ""],
+];
+
+const entry = entries.find((entry) => entry[0] === cmd.params[0]);
+
+if (entry) {
+	fs.writeFileSync("/tmp/rofi-dir", entry[1]);
+	console.log("\n󰙅 File manager\n Copy\n󰨞 VS Code\n Terminal");
+	cmd.exit();
+}
+
+if (cmd.params[0]) {
+	const data = fs.readFileSync("/tmp/rofi-dir").toString().replace("~", process.env.HOME);
+	switch (cmd.params[0]) {
+		case "󰙅 File manager":
+			cmd.run(`xdg-open "${data}" & pkill rofi`);
+			break;
+		case " Copy":
+			cmd.spawn(`wl-copy ${data}`);
+			break;
+		case "󰨞 VS Code":
+			cmd.spawn(`code ${data}`);
+			break;
+		case " Terminal":
+			cmd.run(`ghostty --working-directory="${data}" & pkill rofi`);
+			break;
+	}
+
+	cmd.spawn("pkill rofi");
+	fs.unlinkSync("/tmp/rofi-dir");
+	cmd.exit();
+}
+
+entries.forEach((entry) => console.log(`${entry[0]}`));

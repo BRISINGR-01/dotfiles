@@ -1,0 +1,47 @@
+#!/bin/node
+
+import fs from "fs";
+import cmd from "../../../scripts/cmd.js";
+
+const entries = [
+	["GitHub", "https://github.com/BRISINGR-01"],
+	["Teams", "https://teams.microsoft.com/v2/"],
+	["My Course", "https://fhict.instructure.com/courses/13860/modules"],
+	["Canvas", "https://fhict.instructure.com/courses"],
+	["Nerdfont", "https://www.nerdfonts.com/cheat-sheet", "https://www.nerdfonts.com/cheat-sheet/assets/img/favicon.ico"],
+	["ChatGPT", "https://chatgpt.com", "https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"],
+	["Netflix", "https://www.netflix.com/browse"],
+	["Discord", "https://discord.com/channels/@me", "https://discord.com/assets/favicon.ico"],
+	["Messenger", "https://www.messenger.com/", "https://static.xx.fbcdn.net/rsrc.php/yO/r/qa11ER6rke_.ico"],
+	["Instagram", "https://www.instagram.com/"],
+	["Youtube", "https://www.youtube.com/"],
+	["Whatsapp", "https://web.whatsapp.com/"],
+	["Translate", "https://translate.google.com/"],
+	["Maps", "https://www.google.com/maps", "https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico"],
+	["NixOS", "https://search.nixos.org/packages", "https://search.nixos.org/favicon.png"],
+	[
+		"Home manager",
+		"https://home-manager-options.extranix.com/",
+		"https://home-manager-options.extranix.com/images/favicon.png",
+	],
+	["Google Password", "chrome://password-manager/passwords"],
+	// ["", ""],
+];
+
+const entry = entries.find((entry) => entry[0] === cmd.params[0]);
+
+if (entry) {
+	cmd.run(`xdg-open ${entry[1]}`);
+	cmd.exit();
+}
+
+function getDesktopIcon(app) {
+	const desktopFile = `${cmd.dotfilesDir}/config/rofi/icons/${app[0]}.ico`;
+	if (!fs.existsSync(desktopFile)) {
+		cmd.run(`curl -sL "${app[2] ?? `${app[1].split(/(?<=\w)\/\w/)[0]}/favicon.ico`}" --output "${desktopFile}"`);
+	}
+
+	return desktopFile;
+}
+
+entries.forEach((entry) => console.log(`${entry[0]}\x00icon\x1f${getDesktopIcon(entry)}`));

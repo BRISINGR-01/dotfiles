@@ -1,12 +1,26 @@
 #!/bin/bash
 
-notify-send "Reloading..."
+NOTIF_ID=$(dunstify -p -t 0 "Running..." "⌛ Home manager is reloading")
+DOTS=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
+i=0
+
+pkill home-manager
 
 rm /tmp/reload.log
-home-manager switch 2>/tmp/reload.log
+home-manager switch 2>/tmp/reload.log &
+
+CMD_PID=$!
+
+while kill -0 $CMD_PID 2>/dev/null; do
+  dunstify -r $NOTIF_ID "Running... ${DOTS[i]}" "Home manager is reloading"
+  i=$(((i + 1) % 10))
+  sleep 0.05
+done
+
+wait $CMD_PID
 
 if [ $? -eq 0 ]; then
-  notify-send "Finished reloading"
+  dunstify -r $NOTIF_ID "Done! ✅" "Home manager is loaded"
 else
-  notify-send "Reload failed" "Check log in /tmp/reload.log" -u critical
+  dunstify -r $NOTIF_ID "Reload failed! ❌" "Check log in /tmp/reload.log" -u critical
 fi

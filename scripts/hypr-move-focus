@@ -1,0 +1,19 @@
+#!/bin/node
+
+import cmd from "./cmd.js";
+
+let dir = cmd.params[0];
+
+const prevWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`)).pid;
+
+cmd.run(`hyprctl dispatch "hy3:movefocus ${dir}"`);
+
+const currWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`)).pid;
+
+if (prevWindow === currWindow) {
+	if (dir === "r" || dir === "l") {
+		cmd.run(`~/dotfiles/scripts/change-workspace ${dir === "r" ? "next" : "prev"}`);
+	} else {
+		cmd.run(`hyprctl dispatch workspace ${dir === "u" ? "+m" : "-m"}`);
+	}
+}

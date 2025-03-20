@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { execSync } from "child_process";
+import { execSync, spawn } from "child_process";
 import path from "path";
 import readline from "readline-sync";
 
@@ -8,15 +8,30 @@ function outToString(out) {
 }
 
 export default {
+	params: process.argv.slice(2),
 	run(command) {
 		try {
 			execSync(command);
+			return true;
 		} catch (e) {
 			console.log(e.stderr.toString());
 			return false;
 		}
+	},
+	spawn(command) {
+		try {
+			const [cmd, ...args] = command.split(" ");
+			const process = spawn(cmd, args, {
+				detached: true, // Runs independently
+				stdio: "ignore", // Prevents Node from waiting for output
+			});
 
-		return true;
+			process.unref();
+			return true;
+		} catch (e) {
+			console.log(e.stderr.toString());
+			return false;
+		}
 	},
 	num(command) {
 		return parseInt(execSync(command));
@@ -25,6 +40,7 @@ export default {
 		try {
 			return outToString(execSync(command));
 		} catch (e) {
+			this.run(`notify-send "${process.argv[1]}: ${e.stderr.toString()}"`);
 			return "";
 		}
 	},
@@ -70,6 +86,9 @@ export default {
 		}
 
 		console.log(message);
+	},
+	exit(code = 0) {
+		process.exit(code);
 	},
 	dotfilesDir: path.resolve("/home", process.env.USER, "dotfiles"),
 };

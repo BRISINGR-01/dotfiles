@@ -1,10 +1,10 @@
 { pkgs }:
 
 with pkgs; [
+  rofi-wayland
   upower
   hyprcursor
   ags
-  rofi-wayland
   swaybg
   hyprlandPlugins.hy3
   hyprlandPlugins.hyprspace
