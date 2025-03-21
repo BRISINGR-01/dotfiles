@@ -113,13 +113,6 @@ in {
     '';
   };
 
-  services = {
-    dunst = {
-      enable = true;
-      configFile = "/home/alex/dotfiles/conf/dunstrc";
-    };
-  };
-
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = true;

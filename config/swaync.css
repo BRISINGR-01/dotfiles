@@ -1,0 +1,260 @@
+* {
+	font-family: "Monocraft";
+}
+
+.notification-row {
+	transition: all 200ms ease;
+	outline: none;
+	margin: 0;
+	border-radius: 80px;
+}
+
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+	opacity: 1;
+	background: transparent;
+}
+
+.notification-row:focus .notification,
+.notification-row:hover .notification {
+	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5);
+	border: 0px solid #222222;
+	background: transparent;
+}
+
+.control-center .notification {
+	box-shadow: none;
+}
+
+.control-center .notification-row {
+	opacity: 0.5;
+	margin: -5px;
+}
+
+.notification {
+	transition: all 200ms ease;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.5);
+	padding: 0;
+	background-image: url("/home/alex/dotfiles/assets/mc.png");
+	background-size: cover;
+	padding: 0.75em;
+	border: 2px solid #535353;
+	font-family: "Monocraft";
+}
+
+/* Uncomment to enable specific urgency colors
+.low {
+  background: yellow;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.normal {
+  background: green;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.critical {
+  background: red;
+  padding: 6px;
+  border-radius: 12px;
+}
+*/
+
+.notification-content {
+	background: transparent;
+	padding: 6px;
+	border-radius: 8px;
+}
+
+.close-button {
+	background: transparent;
+	color: #535353;
+	text-shadow: none;
+	padding: 0;
+	border-radius: 100%;
+	margin-top: 17px;
+	margin-right: 10px;
+	box-shadow: none;
+	border: none;
+	min-width: 24px;
+	min-height: 24px;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+	-gtk-icon-effect: none;
+	background: transparent;
+}
+
+.notification-default-action {
+	border-radius: 8px;
+}
+
+/* When alternative actions are visible */
+.notification-default-action:not(:only-child) {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.notification-action {
+	border-radius: 0px;
+	border-top: none;
+	border-right: none;
+}
+
+/* add bottom border radius to eliminate clipping */
+.notification-action:first-child {
+	border-bottom-left-radius: 8px;
+}
+
+.notification-action:last-child {
+	border-bottom-right-radius: 8px;
+	/* border-right: 1px solid @accent; */
+}
+
+.body-image {
+	margin-top: 6px;
+	background-color: #222222;
+	border-radius: 8px;
+}
+
+.empty {
+	color: #000;
+}
+
+.summary {
+	font-size: 16px;
+	font-weight: bold;
+	background: transparent;
+	text-shadow: none;
+}
+
+.time {
+	font-size: 16px;
+	font-weight: bold;
+	background: transparent;
+	text-shadow: none;
+	margin-right: 18px;
+}
+
+.body {
+	font-size: 15px;
+	font-weight: normal;
+	background: transparent;
+	text-shadow: none;
+}
+
+/* The "Notifications" and "Do Not Disturb" text widget */
+.top-action-title {
+	text-shadow: none;
+}
+
+.control-center-clear-all {
+	text-shadow: none;
+	border: 2px solid #cacaca;
+	background: rgba(202, 202, 202, 0.134);
+	box-shadow: none;
+	border-radius: 8px;
+}
+
+.control-center-clear-all:hover {
+	background: rgba(149, 149, 149, 0.18);
+}
+
+.control-center-dnd {
+	background: rgba(83, 83, 83, 0.245);
+}
+
+.control-center {
+	color: #535353;
+
+	background-image: url("/home/alex/dotfiles/assets/mc-bg.jpg");
+	background-size: cover;
+	border-radius: 10px;
+	background-clip: border-box;
+	padding: 0.5em 1em;
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7), 0 2px 6px 2px rgba(0, 0, 0, 0.3);
+	border: 2px solid #535353;
+}
+
+.control-center-list {
+	background: transparent;
+}
+
+.floating-notifications {
+	background: transparent;
+}
+
+/* Window behind control center and on all other monitors */
+.blank-window {
+	background: transparent;
+}
+
+/*** Widgets ***/
+
+/* Title widget */
+.widget-title {
+	margin: 8px;
+	font-size: 1.5rem;
+}
+.widget-title > button {
+	font-size: initial;
+	text-shadow: none;
+	/* background: @background; */
+	/* border: 2px solid @accent; */
+	box-shadow: none;
+	border-radius: 8px;
+}
+
+/* DND widget */
+.widget-dnd {
+	margin: 8px;
+	font-size: 1.1rem;
+}
+.widget-dnd > switch {
+	border-radius: 8px;
+	background: rgba(83, 83, 83, 0.455);
+	border: 1px solid #535353;
+}
+.widget-dnd > switch:checked {
+	background: rgba(255, 255, 255, 0.455);
+}
+.widget-dnd > switch slider {
+	background: rgba(83, 83, 83, 0.455);
+
+	border-radius: 8px;
+	/* border: 1px solid @foreground; */
+}
+
+/* Label widget */
+.widget-label {
+	margin: 8px;
+}
+.widget-label > label {
+	font-size: 1.1rem;
+}
+
+/* Mpris widget */
+.widget-mpris-player {
+	border: 2px solid #535353;
+	border-radius: 20px;
+}
+.widget-mpris-album-art {
+	border-radius: 12px;
+}
+.widget-mpris-player button {
+	/* The media player buttons (play, pause, next, etc...) */
+	margin: -100px;
+	opacity: 0;
+}
+
+.widget-mpris-title {
+	font-weight: bold;
+	font-size: 1.25rem;
+}
+.widget-mpris-subtitle {
+	font-size: 1.1rem;
+}

@@ -1,7 +1,7 @@
 { pkgs }:
 
 with pkgs; [
-  dunst
+  swaynotificationcenter
   zathura
   hyprsunset
   hyprpicker
