@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CMDs
-uptime="$(uptime | sed -e 's/up //g')"
+uptime="$(uptime | cut -d 's/up' -f1)"
 host=$(hostname)
 
 shutdown=""
@@ -11,7 +11,6 @@ logout=""
 
 chosen=$(
   echo -e "$shutdown\n$suspend\n$reboot\n$logout" | rofi -dmenu \
-    -p "Uptime: $uptime" \
     -mesg "Uptime: $uptime" \
     -theme ~/dotfiles/config/rofi/power-menu.rasi
 )

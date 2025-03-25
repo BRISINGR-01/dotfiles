@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  pinta
   spotube
   youtube-music
   obsidian

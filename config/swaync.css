@@ -31,6 +31,11 @@
 	margin: -5px;
 }
 
+.notification image {
+	padding-right: 1em;
+	margin: -2px;
+}
+
 .notification {
 	transition: all 200ms ease;
 	border-radius: 8px;
@@ -38,7 +43,7 @@
 	padding: 0;
 	background-image: url("/home/alex/dotfiles/assets/mc.png");
 	background-size: cover;
-	padding: 0.75em;
+	padding: 0.5em;
 	border: 2px solid #535353;
 	font-family: "Monocraft";
 }
@@ -65,7 +70,7 @@
 
 .notification-content {
 	background: transparent;
-	padding: 6px;
+	padding: 0.5em;
 	border-radius: 8px;
 }
 
@@ -116,7 +121,6 @@
 }
 
 .body-image {
-	margin-top: 6px;
 	background-color: #222222;
 	border-radius: 8px;
 }
@@ -169,7 +173,8 @@
 }
 
 .control-center {
-	color: #535353;
+	color: #ffffff;
+	text-shadow: 1px 1px #353535;
 
 	background-image: url("/home/alex/dotfiles/assets/mc-bg.jpg");
 	background-size: cover;
@@ -239,6 +244,7 @@
 
 /* Mpris widget */
 .widget-mpris-player {
+	color: aliceblue;
 	border: 2px solid #535353;
 	border-radius: 20px;
 }

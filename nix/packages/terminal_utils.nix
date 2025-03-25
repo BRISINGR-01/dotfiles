@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  p7zip
   stow
   television
   fzf

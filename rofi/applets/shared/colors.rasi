@@ -1,9 +1,0 @@
-/***
- *    ┏┓┏┓┓ ┏┓┳┓┏┓
- *    ┃ ┃┃┃ ┃┃┣┫┗┓
- *    ┗┛┗┛┗┛┗┛┛┗┗┛
- *                
- */
-
-
-@import "~/dotfiles/rofi/wallust/global-colors-rofi.rasi"
