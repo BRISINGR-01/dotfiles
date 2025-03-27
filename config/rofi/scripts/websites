@@ -4,12 +4,13 @@ import fs from "fs";
 import cmd from "../../../scripts/cmd.js";
 
 const entries = [
-	["GitHub", "https://github.com/BRISINGR-01"],
-	["Teams", "https://teams.microsoft.com/v2/"],
+	["NixOS", "https://search.nixos.org/packages", "https://search.nixos.org/favicon.png"],
 	["My Course", "https://fhict.instructure.com/courses/13860/modules"],
 	["Canvas", "https://fhict.instructure.com/courses"],
 	["Nerdfont", "https://www.nerdfonts.com/cheat-sheet", "https://www.nerdfonts.com/cheat-sheet/assets/img/favicon.ico"],
+	["Teams", "https://teams.microsoft.com/v2/"],
 	["ChatGPT", "https://chatgpt.com", "https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"],
+	["GitHub", "https://github.com/BRISINGR-01"],
 	["Netflix", "https://www.netflix.com/browse"],
 	["Discord", "https://discord.com/channels/@me", "https://discord.com/assets/favicon.ico"],
 	["Messenger", "https://www.messenger.com/", "https://static.xx.fbcdn.net/rsrc.php/yO/r/qa11ER6rke_.ico"],
@@ -18,7 +19,6 @@ const entries = [
 	["Whatsapp", "https://web.whatsapp.com/"],
 	["Translate", "https://translate.google.com/"],
 	["Maps", "https://www.google.com/maps", "https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico"],
-	["NixOS", "https://search.nixos.org/packages", "https://search.nixos.org/favicon.png"],
 	[
 		"Home manager",
 		"https://home-manager-options.extranix.com/",
@@ -31,7 +31,7 @@ const entries = [
 const entry = entries.find((entry) => entry[0] === cmd.params[0]);
 
 if (entry) {
-	cmd.run(`xdg-open ${entry[1]}`);
+	cmd.run(`google-chrome-stable ${entry[1]}`);
 	cmd.exit();
 }
 

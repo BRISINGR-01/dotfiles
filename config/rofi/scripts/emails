@@ -4,10 +4,10 @@ import fs from "fs";
 import cmd from "../../../scripts/cmd.js";
 
 const entries = [
+	["Fontys", "https://outlook.office.com/mail/", "Outlook"],
 	["alexphone33@gmail.com", "https://mail.google.com/mail/u/0", "Gmail"],
 	["alexander.popov233@gmail.com", "https://mail.google.com/mail/u/1", "Gmail"],
 	["alp7569@gmail.com", "https://mail.google.com/mail/u/2", "Gmail"],
-	["Fontys", "https://outlook.office.com/mail/", "Outlook"],
 ];
 
 const entry = entries.find((entry) => entry[0] === cmd.params[0]);

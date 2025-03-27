@@ -16,7 +16,6 @@ chosen=$(
 )
 
 echo "$chosen"
-exit
 
 case ${chosen} in
 $shutdown)

@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  postgresql
   sqlite
   vscode-extensions.rust-lang.rust-analyzer
   rust-analyzer
