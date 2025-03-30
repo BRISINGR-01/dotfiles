@@ -2,7 +2,6 @@
 
 # CMDs
 uptime="$(uptime | cut -d ',' -f1 | cut -d ' ' -f6)"
-host=$(hostname)
 
 shutdown=" "
 suspend=" "

@@ -5,13 +5,13 @@ import cmd from "../../../scripts/cmd.js";
 
 const entries = [
 	[" Downloads", "~/Downloads"],
+	["󱝏 Temp", "~/Downloads/temp"],
 	[" Desktop", "~/Desktop"],
 	[" Dotfiles", "~/dotfiles"],
 	["󰙅 My files", "~/Desktop/Alex"],
 	[" Music", "~/Desktop/Alex/Music"],
 	[" Screenshots", "~/screenshots"],
 	[" Home", "~"],
-	// ["", ""],
 ];
 
 const entry = entries.find((entry) => entry[0] === cmd.params[0]);

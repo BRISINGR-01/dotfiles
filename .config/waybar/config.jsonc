@@ -120,6 +120,7 @@
       "warning": 30,
       "critical": 20
     },
+    "on-update": "/home/alex/dotfiles/scripts/check-battery",
     "format": "{capacity}% {icon}",
     "format-charging": "{capacity}% 󰂄",
     "format-plugged": "{capacity}% 󰂄 ",

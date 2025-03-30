@@ -1,0 +1,5 @@
+#!/bin/bash
+
+val=$(echo -en "$(date +'%H:%M:%S')\n$(date +'%A, %d %B %Y')")
+
+rofi -dmenu -theme ~/dotfiles/config/rofi/clock.rasi -p "Clock" -mesg "${val}"

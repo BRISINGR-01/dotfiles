@@ -1,0 +1,17 @@
+#!/bin/node
+
+import cmd from "./cmd.js";
+
+const brightness = cmd.num("brightnessctl g");
+
+for (let i = 0; i < 100; i++) {
+	cmd.wait(0.04);
+
+	const val = brightness - 1000 * i;
+	if (val <= 0) break;
+
+	cmd.run(`brightnessctl set ${val}`);
+}
+
+cmd.run("brightnessctl s 86401");
+cmd.run("ghostty --background-opacity=1 --background=#1D1F21 --fullscreen -e cmatrix -b -C blue");

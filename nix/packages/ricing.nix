@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  cmatrix
   rofi-wayland
   upower
   hyprcursor

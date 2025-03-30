@@ -34,7 +34,6 @@ in {
     #   size = 16;
     # };
     file = {
-      ".config/hypr/hypridle.conf".source = ../../conf/hypr/hypridle.conf;
       ".config/hypr/hyprlock.conf".source = ../../conf/hypr/hyprlock.conf;
     };
   };

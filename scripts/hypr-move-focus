@@ -4,13 +4,13 @@ import cmd from "./cmd.js";
 
 let dir = cmd.params[0];
 
-const prevWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`)).pid;
+const prevWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
 
 cmd.run(`hyprctl dispatch "hy3:movefocus ${dir}"`);
 
-const currWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`)).pid;
+const currWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
 
-if (prevWindow === currWindow) {
+if (prevWindow.pid === currWindow.pid && prevWindow.title === currWindow.title) {
 	if (dir === "r" || dir === "l") {
 		cmd.run(`~/dotfiles/scripts/change-workspace ${dir === "r" ? "next" : "prev"}`);
 	} else {

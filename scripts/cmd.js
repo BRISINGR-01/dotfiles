@@ -14,9 +14,11 @@ export default {
 			execSync(command);
 			return true;
 		} catch (e) {
-			console.log(e.stderr.toString());
 			return false;
 		}
+	},
+	wait(n) {
+		execSync(`sleep ${n}`);
 	},
 	spawn(command) {
 		try {
@@ -29,7 +31,6 @@ export default {
 			process.unref();
 			return true;
 		} catch (e) {
-			console.log(e.stderr.toString());
 			return false;
 		}
 	},
@@ -40,7 +41,6 @@ export default {
 		try {
 			return outToString(execSync(command));
 		} catch (e) {
-			this.run(`notify-send "${process.argv[1]}: ${e.stderr.toString()}"`);
 			return "";
 		}
 	},

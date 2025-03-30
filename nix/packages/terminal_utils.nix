@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  cbonsai
   p7zip
   stow
   television

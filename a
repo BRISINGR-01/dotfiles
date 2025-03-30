@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Path to your config files
-HYPRLAND_CONFIG="$HOME/.config/hypr/hyprland.conf"
 # CUSTOM_KEYBIND_LIST="$HOME/.config/keybinds.json"
 
 # Parse Hyprland config (example: search for 'bind' lines)

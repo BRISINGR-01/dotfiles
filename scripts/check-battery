@@ -1,0 +1,39 @@
+#!/bin/node
+import fs from "fs";
+import cmd from "./cmd.js";
+
+const bat = "/sys/class/power_supply/BAT0";
+
+const CRIT = 15;
+const LOW = 30;
+
+const FILE_CRIT = "/tmp/battery-notified-critical";
+const FILE_LOW = "/tmp/battery-notified-low";
+
+const perc = cmd.num(`cat ${bat}/capacity`);
+
+if (perc <= CRIT) {
+	if (!fs.existsSync(FILE_CRIT)) {
+		cmd.run(
+			`notify-send --icon=dialog-warning "Battery Critical" "Current charge: ${perc}%"
+      touch ${FILE_CRIT}`
+		);
+	}
+
+	cmd.exit();
+} else if (fs.existsSync(FILE_CRIT)) {
+	fs.unlinkSync(FILE_CRIT);
+}
+
+if (perc <= LOW) {
+	if (!fs.existsSync(FILE_LOW)) {
+		cmd.run(
+			`notify-send --icon=dialog-warning "Battery Low" "Current charge: ${perc}%"
+      touch ${FILE_LOW}`
+		);
+	}
+
+	cmd.exit();
+} else if (fs.existsSync(FILE_LOW)) {
+	fs.unlinkSync(FILE_LOW);
+}
