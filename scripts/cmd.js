@@ -37,6 +37,14 @@ export default {
 	num(command) {
 		return parseInt(execSync(command));
 	},
+	bool(command) {
+		try {
+			execSync(command);
+			return true;
+		} catch {
+			return false;
+		}
+	},
 	str(command) {
 		try {
 			return outToString(execSync(command));
@@ -51,7 +59,9 @@ export default {
 			return "";
 		}
 	},
-
+	isRunning(command) {
+		return this.bool(`pgrep "${command}"`);
+	},
 	/**
 	 * @param {string} message
 	 * @param {{ color: "black" | "red" | "green" | "yellow" | "blue" | "cyan" | "magenta" | "white" | "gray" | "grey" | "blackBright" | "redBright" | "greenBright" | "yellowBright" | "blueBright" | "cyanBright" | "magentaBright" | "whiteBright", bold: boolean }} options

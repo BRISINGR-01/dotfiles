@@ -120,6 +120,7 @@ in {
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      "text/plain" = "code.desktop";
       "text/html" = "google-chrome.desktop";
       "application/pdf" = "zathura.desktop";
       "image/png" = "swayimg.desktop";

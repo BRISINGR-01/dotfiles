@@ -2,6 +2,8 @@
 
 import cmd from "./cmd.js";
 
+if (cmd.isRunning("cmatrix")) cmd.exit();
+
 const brightness = cmd.num("brightnessctl g");
 
 for (let i = 0; i < 100; i++) {

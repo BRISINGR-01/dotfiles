@@ -6,7 +6,7 @@ let dir = cmd.params[0];
 
 const prevWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
 
-cmd.run(`hyprctl dispatch "hy3:movefocus ${dir}"`);
+cmd.run(`~/dotfiles/scripts/close-special-workspace.sh && hyprctl dispatch "hy3:movefocus ${dir}"`);
 
 const currWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
 

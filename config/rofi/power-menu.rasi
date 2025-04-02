@@ -26,18 +26,20 @@ window {
 mainbox {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      40% 0 0 0;
+    location:                    center;
+    anchor:                      center;
     border:                      0px solid;
     border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
+    margin:                       40% 0 0;
     children:                    [ "message", "listview" ];
 }
 
 /*****----- Message -----*****/
 message {
+    margin:                      0 40%;
     enabled:                     true;
-    margin:                      0px 41%;
     padding:                     15px;
     border-radius:               30px 30px 15px 15px;
     background-color:rgba(40, 43, 49, 0.9);

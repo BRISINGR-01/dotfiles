@@ -9,14 +9,13 @@
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,websites:~/dotfiles/config/rofi/scripts/websites,email:~/dotfiles/config/rofi/scripts/emails,dirs:~/dotfiles/config/rofi/scripts/dirs,window";
+	modi:                       "drun,websites:~/dotfiles/config/rofi/scripts/websites,email:~/dotfiles/config/rofi/scripts/emails,window";
     show-icons:                 true;
     display-drun:               " Apps";
     display-filebrowser:        " Files";
     display-websites:           " Websites";
     display-window:             " Windows";
     display-email:              "󰻧 Emails";
-    display-dirs:               "  Dirs";
 	drun-display-format:        "{name}";
 	window-format:              "{w} {c} | {t}";
 }

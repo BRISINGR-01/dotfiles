@@ -1,0 +1,21 @@
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Colors
+ **/
+
+* {
+    dark:                #1E2127FF;
+    lighter-dark:        #282B31FF;
+    white:               #FFFFFFFF;
+    light-blue:          #61AFEFFF;
+    light-green:         #98C379FF;
+    light-gray:            rgb(74, 77, 85);
+    urgent:              #E06C75FF;
+    border-width:          2px;
+    border-radius:         12px;
+    border-radius-small:   8px;
+    border-color:        #282B31FF;
+}

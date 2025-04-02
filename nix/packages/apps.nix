@@ -1,8 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  freetube
   pinta
-  spotube
   youtube-music
   obsidian
   google-chrome
