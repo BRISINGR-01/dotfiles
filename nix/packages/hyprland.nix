@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  greetd.tuigreet
   swaynotificationcenter
   zathura
   hyprsunset

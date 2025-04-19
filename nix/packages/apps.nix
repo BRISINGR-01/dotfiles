@@ -1,6 +1,9 @@
 { pkgs }:
 
 with pkgs; [
+  beeper
+  brave
+  brave
   freetube
   pinta
   youtube-music
@@ -13,7 +16,6 @@ with pkgs; [
   prismlauncher
   authenticator
   wlogout
-  beeper
   blender
   nautilus
   torrential

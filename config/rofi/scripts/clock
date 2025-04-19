@@ -1,5 +1,13 @@
-#!/bin/bash
+#!/bin/node
 
-val=$(echo -en "$(date +'%H:%M:%S')\n$(date +'%A, %d %B %Y')")
+import cmd from "../../../scripts/cmd.js";
 
-rofi -dmenu -theme ~/dotfiles/config/rofi/clock.rasi -p "Clock" -mesg "${val}"
+const perc = cmd.num(`cat /sys/class/power_supply/BAT0/capacity`);
+
+const icon = ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"][Math.round((perc / 100) * 6) - 1] ?? "󰂎";
+
+const val = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + " | " + icon + " " + perc + "%";
+
+cmd.spawn("rofi", "-dmenu", "-theme", "~/dotfiles/config/rofi/clock.rasi", "-p", "Clock", "-mesg", val);
+cmd.wait(1);
+cmd.run("pkill /rofi");

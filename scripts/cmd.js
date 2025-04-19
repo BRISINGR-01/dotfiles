@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { execSync, spawn } from "child_process";
+import fs from "fs";
 import path from "path";
 import readline from "readline-sync";
 
@@ -9,6 +10,7 @@ function outToString(out) {
 
 export default {
 	params: process.argv.slice(2),
+	parameter: process.argv[2],
 	run(command) {
 		try {
 			execSync(command);
@@ -22,8 +24,8 @@ export default {
 	},
 	spawn(command) {
 		try {
-			const [cmd, ...args] = command.split(" ");
-			const process = spawn(cmd, args, {
+			console.log(...arguments);
+			const process = spawn(command, [...arguments].slice(1), {
 				detached: true, // Runs independently
 				stdio: "ignore", // Prevents Node from waiting for output
 			});
@@ -31,20 +33,15 @@ export default {
 			process.unref();
 			return true;
 		} catch (e) {
+			console.log(e);
+			this.notify(e.message);
 			return false;
 		}
 	},
 	num(command) {
 		return parseInt(execSync(command));
 	},
-	bool(command) {
-		try {
-			execSync(command);
-			return true;
-		} catch {
-			return false;
-		}
-	},
+	bool(command) {},
 	str(command) {
 		try {
 			return outToString(execSync(command));
@@ -99,6 +96,17 @@ export default {
 	},
 	exit(code = 0) {
 		process.exit(code);
+	},
+	notify(message) {
+		this.run(`notify-send "${message}"`);
+	},
+	read(p) {
+		if (!p.startsWith("/") && !p.startsWith("~")) p = path.resolve(process.cwd(), p);
+		return fs.readFileSync(p, "utf8").toString();
+	},
+	writeTo(p, data) {
+		if (!p.startsWith("/") && !p.startsWith("~")) p = path.resolve(process.cwd(), p);
+		return fs.writeFileSync(p, data);
 	},
 	dotfilesDir: path.resolve("/home", process.env.USER, "dotfiles"),
 };

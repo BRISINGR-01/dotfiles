@@ -10,6 +10,8 @@ const LOW = 30;
 const FILE_CRIT = "/tmp/battery-notified-critical";
 const FILE_LOW = "/tmp/battery-notified-low";
 
+if (fs.readFileSync(`${bat}/status`).toString() === "Charging\n") cmd.exit();
+
 const perc = cmd.num(`cat ${bat}/capacity`);
 
 if (perc <= CRIT) {

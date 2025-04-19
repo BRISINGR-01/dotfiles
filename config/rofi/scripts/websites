@@ -34,6 +34,7 @@ const entry = entries.find((entry) => entry[0] === cmd.params[0]);
 
 if (entry) {
 	cmd.run(`google-chrome-stable ${entry[1]}`);
+	cmd.run("pkill /rofi");
 	cmd.exit();
 }
 

@@ -75,9 +75,9 @@ listview {
 
     reverse:                     false;
     // margin:                      0 600px 160px 0;
-    padding:                     0 25.5%;
+    padding:                     0 23%;
     
-    spacing:                     25px;
+    spacing:                     20px;
     border-color:                @selected;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -92,7 +92,7 @@ element {
     border:                      0px solid;
     border-radius:               40px;
     border-color:                @selected;
-    background-color:rgba(40, 43, 49, 0.9);
+    background-color:          rgba(40, 43, 49, 0.9);
     text-color:                  @foreground;
     cursor:                      pointer;
 }

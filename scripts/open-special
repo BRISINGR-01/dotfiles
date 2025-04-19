@@ -1,0 +1,13 @@
+#!/bin/node
+
+import cmd from "./cmd.js";
+
+const workspace = cmd.parameter;
+
+if (!workspace) {
+	console.log("Usage: open-special <workspace>");
+	cmd.exit(1);
+}
+
+cmd.run(`hyprctl dispatch togglespecialworkspace ${workspace}`);
+cmd.writeTo("/tmp/last-special-workspace", workspace);

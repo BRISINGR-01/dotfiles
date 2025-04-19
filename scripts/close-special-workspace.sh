@@ -5,5 +5,8 @@
 active=$(hyprctl -j monitors | jq --raw-output '.[] | select(.focused==true).specialWorkspace.name | split(":") | if length > 1 then .[1] else "" end')
 
 if [[ ${#active} -gt 0 ]]; then
+  echo $active >/tmp/last-special-workspace
   hyprctl dispatch togglespecialworkspace "$active"
+else
+  cat /tmp/last-special-workspace | xargs hyprctl dispatch togglespecialworkspace
 fi

@@ -1,0 +1,60 @@
+#!/bin/node
+
+import cmd from "../../../scripts/cmd.js";
+
+const options = ["5 min", "10 min", "1 hour", "2 hours", "24 hours"];
+function parseTime(str) {
+	const now = new Date();
+	const m = now.getMinutes();
+	const h = now.getHours();
+
+	switch (str) {
+		case "5 min":
+			now.setMinutes(m + 5);
+			break;
+		case "10 min":
+			now.setMinutes(m + 10);
+			break;
+		case "1 hour":
+			now.setHours(h + 1);
+			break;
+		case "2 hours":
+			now.setHours(h + 2);
+			break;
+		case "24 hours":
+			now.setDate(h + 24);
+			break;
+		default:
+			if (!str.includes("at")) {
+				cmd.notify("Invalid time format");
+				cmd.exit(1);
+			}
+
+			const time = str.split("at ")[1];
+			const [hour, minute] = time.split(":");
+			now.setHours(hour);
+			now.setMinutes(minute);
+
+			if (now < new Date()) cmd.exit(0);
+			break;
+	}
+
+	return now;
+}
+
+if (cmd.parameter) {
+	cmd.run(`notify-send "Timer" "Timer set for ${parseTime(cmd.parameter)}"`);
+	cmd.run("ffplay ~/dotfiles/assets/alarm.wav -nodisp");
+	cmd.exit();
+}
+
+const now = new Date();
+const h = now.getHours();
+if (now.getMinutes() < 30) {
+	options.push(`at ${h}:${30}`);
+}
+
+const nextHour = h == 24 ? 0 : h + 1;
+options.push(`at ${h + 1}:00`);
+
+console.log(options.join("\n"));

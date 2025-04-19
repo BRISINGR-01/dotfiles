@@ -11,10 +11,13 @@ in {
   lsd = "${eza} -D --show-symlinks";
   lls = "${ezaList} --total-size";
 
+  c = "wl-copy";
+  wdc = "pwd | wl-copy";
   grep = "grep --color=auto";
   g = "grep --color=auto";
   gs = "git status";
   gc = "git add --all; git commit -m";
+  gp = "git pull";
   alert = ''notify-send --urgency=normal "Command has finished"'';
   n = ''notify-send --urgency=normal "Command has finished"'';
   cls = "clear";
@@ -25,21 +28,21 @@ in {
   r = "rm -i";
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
-  fzf-clip = "cliphist list | fzf --no-sort | cliphist decode";
 
   snvim = "sudo -E -s nvim";
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
   nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
 
   hist = "tv fish-history";
-  fenv = "tv env";
+  envt = "tv env";
 
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";
-  srnix = "sudo nixos-rebuild switch";
+  srnix = "sudo nixos-rebuild switch; notify-send 'NixOS rebuilt'";
   temp = "nix-shell --command fish -p";
   nix-shell = "nix-shell --command fish";
   ngc = "nix-collect-garbage -d";
 
   deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
+  "+x" = "chmod +x";
 }

@@ -1,6 +1,9 @@
 { pkgs }:
 
 with pkgs; [
+  zip
+  at
+  busybox
   cbonsai
   p7zip
   stow

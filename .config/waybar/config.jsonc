@@ -92,9 +92,10 @@
     "on-click-right": "blueman-manager"
   },
   "hyprland/language": {
-    // "format-en": "🇬🇧",
-    "format-en": "en",
-    "format-bg": "🇧🇬"
+    "format-en": "",
+    "format-bg": "🇧🇬",
+    "format-gr": "🇬🇷",
+    "format-ru": "🇷🇺"
   },
   "pulseaudio": {
     "format": "{volume}%  {icon}",

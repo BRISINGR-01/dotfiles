@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CMDs
-uptime="$(uptime | cut -d ',' -f1 | cut -d ' ' -f6)"
+uptime="$(uptime | cut -d ',' -f1 | cut -d ' ' -f4-10)"
 
 shutdown=" "
 suspend=" "

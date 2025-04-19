@@ -1,4 +1,5 @@
 {
+  "window.enableMenuBarMnemonics": true,
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "editor.minimap.enabled": false,
   "editor.codeActionsOnSave": {
@@ -87,7 +88,7 @@
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "dart.flutterSdkPath": "C:/dev/flutter/flutter",
+  "dart.flutterSdkPath": "/nix/store/8q6qa729i37ij7vdjc90pd19d1myv4dd-flutter-wrapped-3.24.4-sdk-links",
   "cmake.configureOnOpen": false,
   "csharp.suppressBuildAssetsNotification": true,
   "typescript.format.insertSpaceAfterTypeAssertion": true,
@@ -117,7 +118,6 @@
   "git.openRepositoryInParentFolders": "never",
   "java.saveActions.organizeImports": true,
   "editor.foldingImportsByDefault": true,
-  "window.menuBarVisibility": "toggle",
   "explorer.confirmPasteNative": false,
   "explorer.confirmDragAndDrop": false,
   "scm.diffDecorations": "none",
@@ -212,5 +212,6 @@
   "prettier.ignorePath": ".prettierignore",
   "[conf]": {
     "editor.defaultFormatter": null
-  }
+  },
+  "window.menuBarVisibility": "hidden"
 }

@@ -7,5 +7,10 @@ if [ -z "$name" ]; then
   exit 1
 fi
 
-echo "#!/bin/bash" >~/dotfiles/bin/$name
-chmod +x ~/dotfiles/bin/$name
+if [[ $2 == "bin" ]]; then
+  echo "#!/bin/bash" >~/dotfiles/bin/$name
+  chmod +x ~/dotfiles/bin/$name
+else
+  echo "#!/bin/bash" >~/dotfiles/scripts/$name
+  chmod +x ~/dotfiles/scripts/$name
+fi

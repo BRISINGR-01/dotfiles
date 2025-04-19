@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NOTIF_ID=$(dunstify -p -t 0 "Running..." "⌛ Home manager is reloading")
+NOTIF_ID=$(notify-send -p -t 0 "Running..." "⌛ Home manager is reloading")
 DOTS=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")
 i=0
 

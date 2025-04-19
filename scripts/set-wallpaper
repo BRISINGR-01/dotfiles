@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/sh
-
 # Set the directory where wallpapers are stored
 WALLPAPER_DIR="$HOME/dotfiles/assets/hypr"
 

@@ -2,18 +2,32 @@
 
 import cmd from "./cmd.js";
 
-let dir = cmd.params[0];
+const dir = cmd.parameter;
 
-const prevWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
-
-cmd.run(`~/dotfiles/scripts/close-special-workspace.sh && hyprctl dispatch "hy3:movefocus ${dir}"`);
-
-const currWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
-
-if (prevWindow.pid === currWindow.pid && prevWindow.title === currWindow.title) {
+function move() {
 	if (dir === "r" || dir === "l") {
 		cmd.run(`~/dotfiles/scripts/change-workspace ${dir === "r" ? "next" : "prev"}`);
 	} else {
 		cmd.run(`hyprctl dispatch workspace ${dir === "u" ? "+m" : "-m"}`);
 	}
 }
+
+const prevWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
+cmd.run(`hyprctl dispatch "hy3:movefocus ${dir}"`);
+
+const currWindow = JSON.parse(cmd.str(`hyprctl activewindow -j`));
+
+if (!currWindow.pid) {
+	move();
+	cmd.exit();
+}
+
+if (prevWindow.pid !== currWindow.pid || prevWindow.title !== currWindow.title) cmd.exit();
+
+if (currWindow.workspace.name.startsWith("special")) {
+	const monitors = JSON.parse(cmd.str("hyprctl -j monitors"));
+	cmd.run(`~/dotfiles/scripts/close-special-workspace.sh`);
+	cmd.exit();
+}
+
+move();

@@ -21,18 +21,12 @@ in {
     sessionPath = [ "~/bin" "~/dotfiles/bin" "~/.config/hypr" ];
     username = "alex";
     sessionVariables = {
-      # HYPRCURSOR_SIZE = "24";
-      # HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
+      HYPRCURSOR_SIZE = "24";
+      HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
     };
     homeDirectory = "/home/alex";
     stateVersion = "24.11";
     packages = packages { pkgs = pkgs; };
-    # pointerCursor = {
-    #   gtk.enable = true;
-    #   name = "Catppuccin-Mocha-Blue-Cursors";
-    #   package = pkgs.catppuccin-cursors.mochaBlue;
-    #   size = 16;
-    # };
     file = {
       ".config/hypr/hyprlock.conf".source = ../../conf/hypr/hyprlock.conf;
     };
@@ -71,31 +65,6 @@ in {
           src = pkgs.fishPlugins.z;
         }
       ];
-    };
-    fuzzel = {
-      enable = true;
-      settings = {
-        main = {
-          prompt = ''"󰣉 "'';
-          inner-pad = 10;
-          exit-on-keyboard-focus-loss = true;
-          terminal = "${pkgs.foot}/bin/foot";
-          layer = "overlay";
-        };
-        colors = {
-          background = "1e1e2edd";
-          text = "cdd6f4ff";
-          prompt = "bac2deff";
-          placeholder = "7f849cff";
-          input = "cdd6f4ff";
-          match = "89b4faff";
-          selection = "585b70ff";
-          selection-text = "cdd6f4ff";
-          selection-match = "89b4faff";
-          counter = "7f849cff";
-          border = "89b4faff";
-        };
-      };
     };
   };
 

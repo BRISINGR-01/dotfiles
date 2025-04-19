@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  wireshark
+  arp-scan
   linuxHeaders
   tailscale
   nmap
