@@ -1,0 +1,58 @@
+#!/bin/node
+
+import cmd from "./cmd.js";
+
+function cloneRepo() {
+	const repo = cmd.str("gh repo list --json name | jq .[].name | fzf").replace(/\"/g, "");
+
+	if (repo) cmd.run(`git clone "https://github.com/BRISINGR-01/${repo}"`);
+}
+
+function swtitchUI() {
+	const path = "/home/alex/dotfiles/nix/UI/default.nix";
+	const file = cmd.read(path);
+	if (file.includes("hyprland")) {
+		cmd.print("hyprland").writeTo(path, file.replace("hyprland", "gnome"));
+	} else {
+		cmd.print("gnome").writeTo(path, file.replace("gnome", "hyprland"));
+	}
+
+	cmd.run(`sudo nixos-rebuild boot; sudo reboot now`);
+}
+
+function timezone() {
+	const zone = cmd.str("tzupdate -p");
+	const timezoneFile = "/home/alex/dotfiles/nix/system/timezone.nix";
+
+	const fileContent = cmd.read(timezoneFile);
+	if (!fileContent.includes(zone)) {
+		cmd
+			.writeTo(timezoneFile, fileContent.replace(/.*time.timeZone.*/, `time\.timeZone = \"${zone}\";`))
+			.run(`sudo nixos-rebuild switch;`);
+	}
+}
+
+function addScript() {
+	const name = cmd.params[1];
+	if (!name) cmd.print("Usage: add-script <name>").exit(1);
+
+	cmd.run(`
+    echo "#!/bin/node" >~/dotfiles/scripts/${name}
+    chmod +x ~/dotfiles/scripts/${name}
+  `);
+}
+
+switch (cmd.parameter || cmd.fzf(["clone-repo", "switch-ui", "update-timezone", "add-script"])) {
+	case "clone-repo":
+		cloneRepo();
+		break;
+	case "switch-ui":
+		swtitchUI();
+		break;
+	case "update-timezone":
+		timezone();
+		break;
+	case "add-script":
+		addScript();
+		break;
+}

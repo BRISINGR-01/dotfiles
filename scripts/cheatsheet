@@ -1,0 +1,62 @@
+#!/bin/node
+
+// # Path to your config files
+// # CUSTOM_KEYBIND_LIST="$HOME/.config/keybinds.json"
+
+const modmask = {
+	Shift: 1,
+	"Caps Lock": 2,
+	Control: 4,
+	Alt: 8,
+	Super: 64,
+};
+
+import cmd from "./cmd.js";
+
+function parse_hyprland() {
+	const parsedBinds = {
+		common: [],
+	};
+	const binds = cmd.json("hyprctl binds -j");
+
+	for (const bind of binds) {
+		let modCombo = "";
+		for (const mod in modmask) {
+			if (bind.modmask & modmask[mod]) {
+				modCombo += mod + " ";
+			}
+		}
+
+		if (bind.submap) {
+			modCombo = `{submap ${bind.submap}} ${modCombo}`;
+		}
+
+		const parsedBind = {
+			key: `${modCombo}${bind.key}`,
+			command: `${bind.dispatcher}: ${bind.arg}`,
+		};
+
+		if (bind.submap || bind.dispatcher === "submap") {
+			if (!parsedBinds[bind.submap]) {
+				parsedBinds[bind.submap] = [];
+			}
+
+			parsedBinds[bind.submap].push(parsedBind);
+		} else {
+			console.log(bind.dispatcher);
+			parsedBinds.common.push(parsedBind);
+		}
+	}
+
+	return parsedBinds;
+}
+
+function transformBind(bind) {
+	return `${bind.key} - ${bind.command}`.replace(/\"/g, '\\"');
+}
+
+if (cmd.parameter) {
+	cmd.print(parse_hyprland()[cmd.parameter].map(transformBind).join("\n"));
+} else {
+	cmd.print(parse_hyprland().map(transformBind).join("\n"));
+}

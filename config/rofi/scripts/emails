@@ -10,7 +10,7 @@ const entries = [
 	["alp7569@gmail.com", "https://mail.google.com/mail/u/2", "Gmail"],
 ];
 
-const entry = entries.find((entry) => entry[0] === cmd.params[0]);
+const entry = entries.find((entry) => entry[0] === cmd.parameter);
 
 if (entry) {
 	fs.writeFileSync("/tmp/rofi-email", entry[1]);
@@ -18,7 +18,7 @@ if (entry) {
 	cmd.exit();
 }
 
-if (cmd.params[0]) {
+if (cmd.parameter) {
 	const address = fs.readFileSync("/tmp/rofi-email").toString();
 	if (cmd.params[0].includes("Copy")) {
 		let email = entries.find((entry) => entry[1] === address)[0];
@@ -33,4 +33,4 @@ if (cmd.params[0]) {
 	cmd.exit();
 }
 
-entries.forEach((entry) => console.log(`${entry[0]}\x00icon\x1f${cmd.dotfilesDir}/config/rofi/icons/${entry[2]}.ico`));
+entries.forEach((entry) => cmd.print(`${entry[0]}\x00icon\x1f${cmd.dotfilesDir}/config/rofi/icons/${entry[2]}.ico`));

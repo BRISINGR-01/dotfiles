@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import { execSync, spawn } from "child_process";
+import { execSync, spawn, spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import readline from "readline-sync";
@@ -14,34 +14,36 @@ export default {
 	run(command) {
 		try {
 			execSync(command);
-			return true;
-		} catch (e) {
-			return false;
-		}
+		} catch (e) {}
+
+		return this;
 	},
 	wait(n) {
 		execSync(`sleep ${n}`);
+		return this;
 	},
 	spawn(command) {
 		try {
-			console.log(...arguments);
 			const process = spawn(command, [...arguments].slice(1), {
 				detached: true, // Runs independently
 				stdio: "ignore", // Prevents Node from waiting for output
 			});
 
 			process.unref();
-			return true;
-		} catch (e) {
-			console.log(e);
-			this.notify(e.message);
-			return false;
-		}
+		} catch (e) {}
+
+		return this;
 	},
 	num(command) {
 		return parseInt(execSync(command));
 	},
-	bool(command) {},
+	bool(command) {
+		try {
+			return !!execSync(command);
+		} catch (e) {
+			return false;
+		}
+	},
 	str(command) {
 		try {
 			return outToString(execSync(command));
@@ -49,9 +51,17 @@ export default {
 			return "";
 		}
 	},
+	json(command) {
+		return JSON.parse(this.str(command));
+	},
 	fzf(command) {
 		try {
-			return outToString(execSync(`echo "${command.join("\n")}" | fzf`));
+			return outToString(
+				spawnSync("fzf", {
+					input: command.join("\n"),
+					encoding: "utf8",
+				})
+			);
 		} catch (e) {
 			return "";
 		}
@@ -93,12 +103,14 @@ export default {
 		}
 
 		console.log(message);
+		return this;
 	},
 	exit(code = 0) {
 		process.exit(code);
 	},
 	notify(message) {
 		this.run(`notify-send "${message}"`);
+		return this;
 	},
 	read(p) {
 		if (!p.startsWith("/") && !p.startsWith("~")) p = path.resolve(process.cwd(), p);
@@ -106,7 +118,8 @@ export default {
 	},
 	writeTo(p, data) {
 		if (!p.startsWith("/") && !p.startsWith("~")) p = path.resolve(process.cwd(), p);
-		return fs.writeFileSync(p, data);
+		fs.writeFileSync(p, data);
+		return this;
 	},
 	dotfilesDir: path.resolve("/home", process.env.USER, "dotfiles"),
 };

@@ -3,8 +3,9 @@
 let
   packages = import ../../nix/packages;
   aliases = import ../../nix/terminal/aliases.nix;
+  home = "/home/alex";
   hyprpanel-flake =
-    builtins.getFlake "/home/alex/dotfiles/ags/hyprpanel/flake.nix";
+    builtins.getFlake "${home}/dotfiles/ags/hyprpanel/flake.nix";
 in {
   imports = [
     # ../../nix/system/hardware.nix
@@ -18,17 +19,19 @@ in {
   ];
 
   home = {
-    sessionPath = [ "~/bin" "~/dotfiles/bin" "~/.config/hypr" ];
+    sessionPath = [ "${home}/dotfiles/scripts" ];
     username = "alex";
     sessionVariables = {
       HYPRCURSOR_SIZE = "24";
       HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
     };
-    homeDirectory = "/home/alex";
+    homeDirectory = home;
     stateVersion = "24.11";
     packages = packages { pkgs = pkgs; };
     file = {
-      ".config/hypr/hyprlock.conf".source = ../../conf/hypr/hyprlock.conf;
+      ".config/hypr/hyprlock.conf".source =
+        /home/alex/dotfiles/config/hypr/hyprlock.conf;
+      ".config/.tmux.conf".source = /home/alex/dotfiles/config/.tmux.conf;
     };
   };
 
@@ -73,7 +76,7 @@ in {
     systemd.enable = false;
     xwayland.enable = true;
     extraConfig = ''
-      source=~/dotfiles/conf/hypr/hyprland.conf 
+      source=~/dotfiles/config/hypr/hyprland.conf 
 
       plugin=${pkgs.hyprlandPlugins.hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so
       plugin=${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so

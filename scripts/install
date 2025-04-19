@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import cmd from "../scripts/cmd.js";
+import cmd from "./cmd.js";
 import { reomvePackage } from "./uninstall";
 
 function createTopic() {

@@ -1,8 +1,0 @@
-#!/bin/bash
-
-repo=$(gh repo list --json name | jq .[].name | fzf)
-repo=${repo//\"/}
-
-if [ -n "$repo" ]; then
-  git clone "https://github.com/BRISINGR-01/$repo"
-fi

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-zone=$(tzupdate -p)
-timezoneFile=/home/alex/dotfiles/nix/system/timezone.nix
-
-if ! grep -q $zone $timezoneFile; then
-  sed -i "s:.*timeZone.*:  time\.timeZone = \"$zone\";:" $timezoneFile
-  sudo nixos-rebuild switch
-fi

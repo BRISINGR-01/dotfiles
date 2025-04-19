@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import cmd from "../scripts/cmd.js";
+import cmd from "./cmd.js";
 
 const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
 const packages = fs

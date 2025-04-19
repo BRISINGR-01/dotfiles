@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import cmd from "../scripts/cmd.js";
+import cmd from "./cmd.js";
 
 export function removeTopic(topic) {
 	if (!topic) process.exit(0);

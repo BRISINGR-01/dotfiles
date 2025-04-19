@@ -34,7 +34,8 @@ in {
   nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
 
   hist = "tv fish-history";
-  envt = "tv env";
+  envs = "tv env";
+  paths = "echo $PATH | tr ' ' '\\n' | tv";
 
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";

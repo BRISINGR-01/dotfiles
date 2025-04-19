@@ -1,0 +1,82 @@
+#!/bin/node
+import cmd from "../../../scripts/cmd.js";
+
+const MODMASK = {
+	Shift: 1,
+	"Caps Lock": 2,
+	Control: 4,
+	Alt: 8,
+	Super: 64,
+};
+
+function prettyKey(key) {
+	switch (key) {
+		case "Super":
+			return "";
+		case "Shift":
+			return "󰘶";
+		case "Control":
+			return "⌃";
+		default:
+			return key;
+	}
+}
+
+const parsedBinds = { common: [] };
+const binds = cmd.json("hyprctl binds -j");
+
+for (const bind of binds) {
+	let modCombo = "";
+	for (const mod in MODMASK) {
+		if (bind.modmask & MODMASK[mod]) {
+			modCombo += prettyKey(mod) + " ";
+		}
+	}
+
+	if (bind.submap) {
+		modCombo = `{submap ${bind.submap}} ${modCombo}`;
+	}
+
+	if (modCombo) modCombo += "+ ";
+
+	const parsedBind = {
+		key: `${modCombo}${bind.key}`,
+		command: `${bind.dispatcher} ${bind.arg}`,
+	};
+
+	if (bind.submap || bind.dispatcher === "submap") {
+		const submap = bind.submap || bind.arg;
+		if (!parsedBinds[submap]) {
+			parsedBinds[submap] = [];
+		}
+
+		parsedBinds[submap].push(parsedBind);
+	} else {
+		parsedBinds.common.push(parsedBind);
+	}
+}
+
+const modi = Object.keys(parsedBinds);
+
+if (cmd.parameter === "list") {
+	const p = cmd.dotfilesDir + "/config/rofi/scripts/hyprland-cheatsheet";
+	cmd.run(
+		`rofi -show common -modi "${modi
+			.map((mod) => `${mod}:${p} ${mod}`)
+			.join(",")}" -theme ~/dotfiles/config/rofi/hyprland-cheatsheet.rasi`
+	);
+} else if (cmd.params.length === 1 && modi.includes(cmd.parameter)) {
+	const list = parsedBinds[cmd.parameter];
+	if (cmd.parameter !== "common") {
+		for (const bind of list) {
+			bind.key = bind.key.replace(/\{submap .*\} (\+ )?/g, "");
+		}
+	}
+
+	const largetCell = Math.max(...list.map((bind) => bind.key.length));
+	cmd.print(
+		list.map((bind) => `${bind.key.padEnd(largetCell, " ")} | ${bind.command.replace(/\"/g, '\\"')}`).join("\n")
+	);
+} else if (cmd.parameter) {
+	cmd.run(`hyprctl dispatch "${cmd.params.slice(1).join(" ").split(/\|\s+/)[1]}"`);
+}
