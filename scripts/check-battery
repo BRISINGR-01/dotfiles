@@ -17,7 +17,7 @@ const perc = cmd.num(`cat ${bat}/capacity`);
 if (perc <= CRIT) {
 	if (!fs.existsSync(FILE_CRIT)) {
 		cmd.run(
-			`notify-send --icon=dialog-warning "Battery Critical" "Current charge: ${perc}%"
+			`notify-send -e --icon=dialog-warning "Battery Critical" "Current charge: ${perc}%"
       touch ${FILE_CRIT}`
 		);
 	}
@@ -30,7 +30,7 @@ if (perc <= CRIT) {
 if (perc <= LOW) {
 	if (!fs.existsSync(FILE_LOW)) {
 		cmd.run(
-			`notify-send --icon=dialog-warning "Battery Low" "Current charge: ${perc}%"
+			`notify-send -e --icon=dialog-warning "Battery Low" "Current charge: ${perc}%"
       touch ${FILE_LOW}`
 		);
 	}

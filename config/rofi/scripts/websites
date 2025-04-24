@@ -26,15 +26,13 @@ const entries = [
 		"https://home-manager-options.extranix.com/",
 		"https://home-manager-options.extranix.com/images/favicon.png",
 	],
-	["Google Password", "chrome://password-manager/passwords"],
 	// ["", ""],
 ];
 
 const entry = entries.find((entry) => entry[0] === cmd.params[0]);
 
 if (entry) {
-	cmd.run(`google-chrome-stable ${entry[1]}`);
-	cmd.run("pkill /rofi");
+	cmd.run(`brave ${entry[1]}`);
 	cmd.exit();
 }
 

@@ -82,7 +82,7 @@ process.on("SIGINT", function () {
 });
 
 if (cmd.run("home-manager switch")) {
-	cmd.run(`notify-send "${packages.join(", ")} downloaded"`);
+	cmd.run(`notify-send -e "${packages.join(", ")} downloaded"`);
 	cmd.print("Done", { color: "blueBright", bold: true });
 } else {
 	graceFulExit();

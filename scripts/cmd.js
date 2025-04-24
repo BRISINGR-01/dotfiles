@@ -60,7 +60,7 @@ export default {
 				spawnSync("fzf", {
 					input: command.join("\n"),
 					encoding: "utf8",
-				})
+				}).stdout
 			);
 		} catch (e) {
 			return "";
@@ -109,7 +109,7 @@ export default {
 		process.exit(code);
 	},
 	notify(message) {
-		this.run(`notify-send "${message}"`);
+		this.run(`notify-send -e "${message}"`);
 		return this;
 	},
 	read(p) {

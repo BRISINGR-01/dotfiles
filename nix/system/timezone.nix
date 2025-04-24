@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Managed by bin/update_timezone
-  time.timeZone = "Europe/Sofia";
+  # Managed by a script
+  time.timeZone = "Europe/Amsterdam";
 }

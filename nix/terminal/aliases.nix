@@ -18,8 +18,8 @@ in {
   gs = "git status";
   gc = "git add --all; git commit -m";
   gp = "git pull";
-  alert = ''notify-send --urgency=normal "Command has finished"'';
-  n = ''notify-send --urgency=normal "Command has finished"'';
+  alert = ''notify-send -e --urgency=normal "Command has finished"'';
+  n = ''notify-send -e --urgency=normal "Command has finished"'';
   cls = "clear";
   coder = "code -r";
   yt = "yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/";
@@ -39,7 +39,7 @@ in {
 
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";
-  srnix = "sudo nixos-rebuild switch; notify-send 'NixOS rebuilt'";
+  srnix = "sudo nixos-rebuild switch; notify-send -e 'NixOS rebuilt'";
   temp = "nix-shell --command fish -p";
   nix-shell = "nix-shell --command fish";
   ngc = "nix-collect-garbage -d";

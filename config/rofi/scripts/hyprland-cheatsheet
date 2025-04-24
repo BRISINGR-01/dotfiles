@@ -73,9 +73,9 @@ if (cmd.parameter === "list") {
 		}
 	}
 
-	const largetCell = Math.max(...list.map((bind) => bind.key.length));
+	const largestCell = Math.max(...list.map((bind) => bind.key.length));
 	cmd.print(
-		list.map((bind) => `${bind.key.padEnd(largetCell, " ")} | ${bind.command.replace(/\"/g, '\\"')}`).join("\n")
+		list.map((bind) => `${bind.key.padEnd(largestCell, " ")} | ${bind.command.replace(/\"/g, '\\"')}`).join("\n")
 	);
 } else if (cmd.parameter) {
 	cmd.run(`hyprctl dispatch "${cmd.params.slice(1).join(" ").split(/\|\s+/)[1]}"`);

@@ -14,7 +14,7 @@ const entries = [
 	[" Home", "~"],
 ];
 
-const entry = entries.find((entry) => entry[0] === cmd.params[0]);
+const entry = entries.find((entry) => entry[0] === cmd.parameter);
 
 if (entry) {
 	fs.writeFileSync("/tmp/rofi-dir", entry[1]);
@@ -22,9 +22,9 @@ if (entry) {
 	cmd.exit();
 }
 
-if (cmd.params[0]) {
+if (cmd.parameter) {
 	const data = fs.readFileSync("/tmp/rofi-dir").toString().replace("~", process.env.HOME);
-	switch (cmd.params[0]) {
+	switch (cmd.parameter) {
 		case "󰙅 File manager":
 			cmd.run(`xdg-open "${data}" & pkill "/rofi"`);
 			break;

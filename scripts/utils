@@ -24,11 +24,12 @@ function timezone() {
 	const zone = cmd.str("tzupdate -p");
 	const timezoneFile = "/home/alex/dotfiles/nix/system/timezone.nix";
 
+	console.log(zone);
 	const fileContent = cmd.read(timezoneFile);
 	if (!fileContent.includes(zone)) {
 		cmd
 			.writeTo(timezoneFile, fileContent.replace(/.*time.timeZone.*/, `time\.timeZone = \"${zone}\";`))
-			.run(`sudo nixos-rebuild switch;`);
+			.run(`sudo nixos-rebuild switch`);
 	}
 }
 
@@ -42,6 +43,7 @@ function addScript() {
   `);
 }
 
+console.log(cmd.fzf(["clone-repo", "switch-ui", "update-timezone", "add-script"]));
 switch (cmd.parameter || cmd.fzf(["clone-repo", "switch-ui", "update-timezone", "add-script"])) {
 	case "clone-repo":
 		cloneRepo();

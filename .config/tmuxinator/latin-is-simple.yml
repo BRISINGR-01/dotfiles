@@ -3,7 +3,6 @@
 name: latin-is-simple
 root: ~/Desktop/VSC/latin-is-simple.com
 
-
 # Optional tmux socket
 # socket_name: foo
 
@@ -13,7 +12,7 @@ root: ~/Desktop/VSC/latin-is-simple.com
 # Project hooks
 
 # Runs on project start, always
-on_project_start: google-chrome "http://localhost:8000/en/trainer/__next/"
+on_project_start: brave "http://localhost:8000/en/trainer/__next/"
 
 # Run on project start, the first time
 # on_project_first_start: command
