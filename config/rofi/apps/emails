@@ -19,6 +19,7 @@ if (entry) {
 }
 
 if (cmd.parameter) {
+	cmd.notify(cmd.parameter);
 	const address = fs.readFileSync("/tmp/rofi-email").toString();
 	if (cmd.params[0].includes("Copy")) {
 		let email = entries.find((entry) => entry[1] === address)[0];

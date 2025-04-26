@@ -24,11 +24,8 @@ const emojis = [
 
 if (cmd.parameter) {
 	const chosen = emojis.find((entry) => entry[1] === cmd.parameter.split(" ")[0]);
-
-	if (chosen) {
-		cmd.run(`wl-copy ${chosen[1]}`);
-		cmd.exit();
-	}
+	cmd.spawn("wl-copy", chosen[1]); // no idea why, but this has to use `spawn` instead of `run`
+	cmd.exit();
 }
 
 emojis.forEach(([name, emoji]) => console.log(`${emoji} ${name}`));

@@ -2,8 +2,8 @@
 
 configuration {
 	modi:                       "emoji:~/dotfiles/config/rofi/emoji/script";
-  show-icons:                 false;
-  display-dirs:               "󰞅  Emojis";
+    show-icons:                 false;
+    display-dirs:               "󰞅  Emojis";
 	drun-display-format:        "{name}";
 	window-format:              "{w} {c} | {t}";
 }

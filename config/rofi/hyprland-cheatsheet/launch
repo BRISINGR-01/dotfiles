@@ -1,10 +1,10 @@
 #!/bin/node
 import cmd from "../../../scripts/cmd.js";
-import { modi } from "./hyprland-cheatsheet";
+import { modi } from "./script";
 
-const p = cmd.dotfilesDir + "/config/rofi/scripts/hyprland-cheatsheet";
+const p = cmd.dotfilesDir + "/config/rofi/hyprland-cheatsheet/script";
 cmd.run(
 	`rofi -show common -modi "${modi
 		.map((mod) => `${mod}:${p} ${mod}`)
-		.join(",")}" -theme ~/dotfiles/config/rofi/hyprland-cheatsheet.rasi`
+		.join(",")}" -theme ~/dotfiles/config/rofi/hyprland-cheatsheet/conf.rasi`
 );
