@@ -1,0 +1,16 @@
+#!/bin/node
+import fs from "fs";
+import cmd from "./cmd.js";
+
+const pid = cmd.str("pgrep -f bin/rofi");
+if (pid) {
+	cmd.run(`kill ${pid}`);
+	cmd.exit();
+}
+
+const launcher = `${cmd.dotfilesDir}/config/rofi/${cmd.parameter}/launch`;
+if (fs.existsSync(launcher)) {
+	cmd.run(launcher);
+} else {
+	cmd.run(`rofi -show ${cmd.parameter} -theme ${cmd.dotfilesDir}/config/rofi/${cmd.parameter}/conf.rasi`);
+}

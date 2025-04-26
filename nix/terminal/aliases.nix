@@ -2,6 +2,7 @@ let
   eza = "eza --icons=always --git-ignore";
   ezaList = "${eza} -l -M --no-user --no-time";
 in {
+  h = "Hyprland";
   l = eza;
   ll = ezaList;
   lla = "eza --icons=always -a -l -M --no-user --no-time";

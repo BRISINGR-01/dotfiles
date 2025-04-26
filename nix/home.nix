@@ -1,0 +1,1 @@
+/home/alex/dotfiles/.config/home-manager/home.nix

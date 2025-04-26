@@ -26,20 +26,19 @@ if (cmd.parameter) {
 	const data = fs.readFileSync("/tmp/rofi-dir").toString().replace("~", process.env.HOME);
 	switch (cmd.parameter) {
 		case "󰙅 File manager":
-			cmd.run(`xdg-open "${data}" & pkill "/rofi"`);
+			cmd.run(`xdg-open "${data}" &`);
 			break;
 		case " Copy":
-			cmd.spawn(`wl-copy ${data}`);
+			cmd.spawn(`wl-copy "${data}"`);
 			break;
 		case "󰨞 VS Code":
-			cmd.spawn(`code ${data}`);
+			cmd.spawn(`code "${data}"`);
 			break;
 		case " Terminal":
-			cmd.run(`ghostty --working-directory="${data}" & pkill "/rofi"`);
+			cmd.run(`ghostty --working-directory="${data}" &`);
 			break;
 	}
 
-	cmd.spawn('pkill "/rofi"');
 	fs.unlinkSync("/tmp/rofi-dir");
 	cmd.exit();
 }

@@ -19,6 +19,7 @@ const emojis = [
 	["face_vomiting", "🤮"],
 	["face_savoring_food", "😋"],
 	["upside_down_face", "🙃"],
+	["sleeping_face", "😴"],
 ];
 
 if (cmd.parameter) {
@@ -26,7 +27,6 @@ if (cmd.parameter) {
 
 	if (chosen) {
 		cmd.run(`wl-copy ${chosen[1]}`);
-		cmd.run("pkill /rofi");
 		cmd.exit();
 	}
 }

@@ -48,7 +48,6 @@ in {
         set fish_greeting # Disable greeting
         thefuck --alias | source
         zoxide init fish | source
-        export RUST_SRC_PATH=(rustc --print sysroot)/lib/rustlib/rustc-src/rust/
         function y
           set tmp (mktemp -t "yazi-cwd.XXXXXX")
           yazi $argv --cwd-file="$tmp"

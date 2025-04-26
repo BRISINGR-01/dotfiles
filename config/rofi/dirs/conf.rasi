@@ -1,9 +1,9 @@
 @import                          "~/dotfiles/config/rofi/shared/constants.rasi"
 
 configuration {
-	modi:                       "emojis:~/dotfiles/config/rofi/scripts/emojis";
-  show-icons:                 false;
-  display-dirs:               "󰞅  Emojis";
+	modi:                       "dirs:~/dotfiles/config/rofi/dirs/script";
+    show-icons:                 false;
+    display-dirs:               "  Dirs";
 	drun-display-format:        "{name}";
 	window-format:              "{w} {c} | {t}";
 }
@@ -14,11 +14,11 @@ configuration {
 
 window {
     transparency:                "real";
-    location:                    east;
+    location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       250px;
-    x-offset:                    -6;
+    width:                       400px;
+    x-offset:                    0px;
     y-offset:                    0px;
 
     enabled:                     true;
@@ -61,7 +61,7 @@ textbox-prompt-colon {
     enabled:                     true;
     padding:                     5px 0px;
     expand:                      false;
-    str:                         "󰞅 ";
+    str:                         " ";
     background-color:            inherit;
 }
 entry {
@@ -96,8 +96,8 @@ case-indicator {
 
 listview {
     enabled:                     true;
-    columns:                     1;
-    lines:                       10;
+    columns:                     2;
+    lines:                       4;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

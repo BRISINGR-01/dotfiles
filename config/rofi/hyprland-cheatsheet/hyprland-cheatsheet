@@ -56,16 +56,9 @@ for (const bind of binds) {
 	}
 }
 
-const modi = Object.keys(parsedBinds);
+export const modi = Object.keys(parsedBinds);
 
-if (cmd.parameter === "list") {
-	const p = cmd.dotfilesDir + "/config/rofi/scripts/hyprland-cheatsheet";
-	cmd.run(
-		`rofi -show common -modi "${modi
-			.map((mod) => `${mod}:${p} ${mod}`)
-			.join(",")}" -theme ~/dotfiles/config/rofi/hyprland-cheatsheet.rasi`
-	);
-} else if (cmd.params.length === 1 && modi.includes(cmd.parameter)) {
+if (cmd.params.length === 1 && modi.includes(cmd.parameter)) {
 	const list = parsedBinds[cmd.parameter];
 	if (cmd.parameter !== "common") {
 		for (const bind of list) {

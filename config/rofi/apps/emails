@@ -24,7 +24,7 @@ if (cmd.parameter) {
 		let email = entries.find((entry) => entry[1] === address)[0];
 		if (email === "Fontys") email = "aleksandar.popov@student.fontys.nl";
 
-		cmd.run(`wl-copy "${email}"; pkill /rofi`);
+		cmd.run(`wl-copy "${email}"`);
 	} else if (cmd.params[0].includes("Open")) {
 		cmd.run(`xdg-open "${fs.readFileSync("/tmp/rofi-email").toString()}"`);
 	}
