@@ -2,12 +2,28 @@
 
 import cmd from "./cmd.js";
 
+const clients = {
+	editor: "code",
+	terminal: "ghostty",
+	browser: "brave",
+	music: "brave https://music.youtube.com/",
+};
+
 const workspace = cmd.parameter;
 
-if (!workspace) {
-	console.log("Usage: open-special <workspace>");
-	cmd.exit(1);
+if (!workspace) cmd.error("Usage: open-special <workspace>").exit(1);
+
+if (cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `special:${workspace}`)) {
+	cmd.run(`hyprctl dispatch togglespecialworkspace ${workspace}`);
+} else {
+	const currentWindow = cmd.json("hyprctl activewindow -j").address;
+	cmd.spawn(clients[workspace]);
+
+	for (let i = 0; currentWindow === cmd.json("hyprctl activewindow -j").address && i < 30; i++) {
+		cmd.wait(0.01);
+	}
+
+	cmd.run("hyprctl dispatch movetoworkspace special:" + workspace);
 }
 
-cmd.run(`hyprctl dispatch togglespecialworkspace ${workspace}`);
 cmd.writeTo("/tmp/last-special-workspace", workspace);

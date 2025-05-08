@@ -32,7 +32,7 @@ mainbox {
     border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
-    margin:                       40% 0 0;
+    margin:                      35% 0 0;
     children:                    [ "message", "listview" ];
 }
 

@@ -41,7 +41,6 @@ in {
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-      YDOTOOL_SOCKET = "/home/alex/.ydotool_socket";
       MOZ_ENABLE_WAYLAND = "1";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };

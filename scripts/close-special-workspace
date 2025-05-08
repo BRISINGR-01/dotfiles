@@ -8,5 +8,5 @@ if [[ ${#active} -gt 0 ]]; then
   echo $active >/tmp/last-special-workspace
   hyprctl dispatch togglespecialworkspace "$active"
 else
-  cat /tmp/last-special-workspace | xargs hyprctl dispatch togglespecialworkspace
+  cat /tmp/last-special-workspace | xargs open-special
 fi

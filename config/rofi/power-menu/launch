@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# CMDs
 uptime="$(uptime | cut -d ',' -f1 | cut -d ' ' -f4-10)"
 
 shutdown=" "
@@ -11,7 +10,7 @@ logout=" "
 chosen=$(
   echo -e "$shutdown\n$suspend\n$reboot\n$logout" | rofi -dmenu \
     -mesg "Uptime: $uptime" \
-    -theme ~/dotfiles/config/rofi/power-menu.rasi
+    -theme ~/dotfiles/config/rofi/power-menu/conf.rasi
 )
 
 echo "$chosen"

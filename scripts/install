@@ -3,29 +3,23 @@
 import fs from "fs";
 import path from "path";
 import cmd from "./cmd.js";
-import { reomvePackage } from "./uninstall";
+import { removePackage } from "./uninstall";
 
 function createTopic() {
 	const newTopic = cmd.prompt("Enter new topic:", { color: "cyan" });
-	if (!newTopic) process.exit(0);
+	if (!newTopic) cmd.exit();
 
-	cmd.print("Creating new topic:", newTopic, { color: "greenBright", bold: true });
+	cmd.print(`Creating new topic: ${newTopic}`, { color: "greenBright", bold: true });
 	const varName = newTopic.replace(/\s/g, "_");
-	const defaultNix = fs.readFileSync(path.resolve(packagesDir, "default.nix")).toString();
-	fs.writeFileSync(
+	const defaultNix = cmd.read(path.resolve(packagesDir, "default.nix"));
+	cmd.writeTo(
 		path.resolve(packagesDir, "default.nix"),
 		defaultNix
 			.replace("in with pkgs;", `  ${varName} = import ./${newTopic}.nix;\nin with pkgs;`)
 			.replace("[", `${varName} { pkgs = pkgs; } ++ [`)
 	);
 
-	fs.writeFileSync(
-		path.resolve(packagesDir, `${newTopic}.nix`),
-		`{ pkgs }:
-
-with pkgs; [
-]`
-	);
+	cmd.writeTo(path.resolve(packagesDir, `${newTopic}.nix`), "{ pkgs }:\n\nwith pkgs; [\n]");
 
 	return newTopic;
 }
@@ -34,7 +28,7 @@ function graceFulExit() {
 	if (isCreatintNewTopic) {
 		removeTopic(topic);
 	} else {
-		packages.forEach((pkg) => reomvePackage(topic, pkg));
+		packages.forEach((pkg) => removePackage(topic, pkg));
 	}
 }
 
@@ -47,10 +41,7 @@ const topicOptions = fs
 	.concat("<new topic>");
 
 let topic = cmd.fzf(topicOptions);
-if (!topic) {
-	cmd.print("No topic selected", { color: "gray" });
-	process.exit(0);
-}
+if (!topic) cmd.print("No topic selected", { color: "gray" }).exit();
 
 if (topic === "<new topic>") {
 	cmd.print("Creating new topic", { color: "blue" });
@@ -61,13 +52,10 @@ if (topic === "<new topic>") {
 }
 
 const packages = cmd.prompt("Enter package(s):", { color: "cyan" }).split(/\s+/);
-if (packages.length === 0) {
-	cmd.print("No packages entered", { color: "gray" });
-	process.exit(0);
-}
+if (packages.length === 0) cmd.print("No packages entered", { color: "gray" }).exit();
 
-const packagesFile = fs.readFileSync(path.resolve(packagesDir, `${topic}.nix`)).toString();
-fs.writeFileSync(path.resolve(packagesDir, `${topic}.nix`), packagesFile.replace("[", `[\n  ${packages.join("\n  ")}`));
+const packagesFile = cmd.read(path.resolve(packagesDir, `${topic}.nix`));
+cmd.writeTo(path.resolve(packagesDir, `${topic}.nix`), packagesFile.replace("[", `[\n  ${packages.join("\n  ")}`));
 
 cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join(", ")} in "${topic}"`, {
 	color: "greenBright",
@@ -75,14 +63,13 @@ cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join("
 });
 
 process.on("SIGINT", function () {
-	console.log("Caught interrupt signal");
-
+	cmd.error("Caught interrupt signal");
 	graceFulExit();
-	process.exit();
+	cmd.exit(1);
 });
 
 if (cmd.run("home-manager switch")) {
-	cmd.run(`notify-send -e "${packages.join(", ")} downloaded"`);
+	cmd.notify(`${packages.join(", ")} downloaded`);
 	cmd.print("Done", { color: "blueBright", bold: true });
 } else {
 	graceFulExit();

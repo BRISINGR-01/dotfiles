@@ -13,18 +13,23 @@ in {
   lls = "${ezaList} --total-size";
 
   c = "wl-copy";
-  wdc = "pwd | wl-copy";
+  pwdc = "pwd | wl-copy";
+  pc = "utils path-copy";
+
   grep = "grep --color=auto";
   g = "grep --color=auto";
+
   gs = "git status";
   gc = "git add --all; git commit -m";
   gp = "git pull";
+
   alert = ''notify-send -e --urgency=normal "Command has finished"'';
   n = ''notify-send -e --urgency=normal "Command has finished"'';
+
   cls = "clear";
   coder = "code -r";
+
   yt = "yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/";
-  opent = "ghostty";
   f = "fuck";
   r = "rm -i";
   rr = "rm -ir";
@@ -35,8 +40,8 @@ in {
   nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
 
   hist = "tv fish-history";
-  envs = "tv env";
-  paths = "echo $PATH | tr ' ' '\\n' | tv";
+  fenv = "tv env";
+  fpath = "echo $PATH | tr ' ' '\\n' | tv";
 
   rnix = "nixos-rebuild switch";
   hms = "home-manager switch";

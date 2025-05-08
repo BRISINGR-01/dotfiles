@@ -1,31 +1,33 @@
 #!/bin/node
-import cmd from "../../../scripts/cmd.js";
+import cmd, { copy, paste } from "../../../scripts/cmd.js";
 
 const emojis = [
-	["rolling_on_the_floor_laughing", "🤣"],
-	["grinning_squinting_face", "😆"],
-	["face_with_tears_of_joy", "😂"],
-	["thumbs_up", "👍️"],
-	["crying_face", "😢"],
-	["smiling_face_with_tear", "🥲"],
-	["face_with_open_mouth", "😮"],
-	["squinting_face_with_tongue", "😝"],
-	["clapping_hands", "👏"],
-	["party_popper", "🎉"],
-	["dizzy", "💫"],
-	["waving_hand", "👋"],
-	["weary_cat", "🙀"],
-	["loudly_crying_face", "😭"],
-	["face_vomiting", "🤮"],
-	["face_savoring_food", "😋"],
-	["upside_down_face", "🙃"],
-	["sleeping_face", "😴"],
+	"🤣 rolling_on_the_floor_laughing",
+	"😆 grinning_squinting_face",
+	"😂 face_with_tears_of_joy",
+	"👍️ thumbs_up",
+	"😢 crying_face",
+	"🥲 smiling_face_with_tear",
+	"😮 face_with_open_mouth",
+	"😝 squinting_face_with_tongue",
+	"🎉 party_popper",
+	"💫 dizzy",
+	"👋 waving_hand",
+	"👏 clapping_hands",
+	"🤝 handshake",
+	"🙏 praying_hand",
+	"🙀 weary_cat",
+	"😭 loudly_crying_face",
+	"🤮 face_vomiting",
+	"😋 face_savoring_food",
+	"🙃 upside_down_face",
+	"😴 sleeping_face",
 ];
 
-if (cmd.parameter) {
-	const chosen = emojis.find((entry) => entry[1] === cmd.parameter.split(" ")[0]);
-	cmd.spawn("wl-copy", chosen[1]); // no idea why, but this has to use `spawn` instead of `run`
+if (emojis.includes(cmd.parameter)) {
+	copy(cmd.parameter.split(" ")[0]); // no idea why, but this has to use `spawn` instead of `run`
+	paste();
 	cmd.exit();
 }
 
-emojis.forEach(([name, emoji]) => console.log(`${emoji} ${name}`));
+console.log(emojis.join("\n"));

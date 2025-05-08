@@ -1,10 +1,9 @@
-#!/bin/bash
+#!/bin/node
+import cmd, { copy, paste } from "./cmd.js";
 
-val=$(cliphist list | rofi -dmenu -theme ~/dotfiles/config/rofi/clipboard.rasi | cliphist decode)
+const val = cmd.str("cliphist list | rofi -dmenu -theme ~/dotfiles/config/rofi/clipboard.rasi | cliphist decode");
 
-echo "$val" >/tmp/clipboard
-
-if [ -n "$val" ]; then
-  wl-copy "$val"
-  ydotool type "$val"
-fi
+if (val) {
+	copy(val);
+	paste();
+}

@@ -72,7 +72,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
     xwayland.enable = true;
     extraConfig = ''
       source=~/dotfiles/config/hypr/hyprland.conf 

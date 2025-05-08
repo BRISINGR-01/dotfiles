@@ -1,5 +1,7 @@
 #!/bin/node
 
+import fs from "fs";
+import path from "path";
 import cmd from "./cmd.js";
 
 function cloneRepo() {
@@ -11,20 +13,19 @@ function cloneRepo() {
 function swtitchUI() {
 	const path = "/home/alex/dotfiles/nix/UI/default.nix";
 	const file = cmd.read(path);
-	if (file.includes("hyprland")) {
-		cmd.print("hyprland").writeTo(path, file.replace("hyprland", "gnome"));
-	} else {
-		cmd.print("gnome").writeTo(path, file.replace("gnome", "hyprland"));
-	}
+
+	const newUI = file.includes("hyprland") ? "gnome" : "hyprland";
+	const oldUI = !file.includes("hyprland") ? "gnome" : "hyprland";
+
+	cmd.print(`Switching to ${newUI}`, { bold: true, color: "cyan" }).writeTo(path, file.replace(oldUI, newUI));
 
 	cmd.run(`sudo nixos-rebuild boot; sudo reboot now`);
 }
 
-function timezone() {
+function updateTimezone() {
 	const zone = cmd.str("tzupdate -p");
 	const timezoneFile = "/home/alex/dotfiles/nix/system/timezone.nix";
 
-	console.log(zone);
 	const fileContent = cmd.read(timezoneFile);
 	if (!fileContent.includes(zone)) {
 		cmd
@@ -33,9 +34,21 @@ function timezone() {
 	}
 }
 
+function pathCopy() {
+	const arg = cmd.params.slice(1).join(" ").trim();
+
+	if (!arg) cmd.error("Usage: path-copy <path>").exit(1);
+
+	const p = path.resolve(cmd.currentDir, arg);
+
+	if (!fs.existsSync(p)) cmd.error(`"${p}" does not exist`).exit(1);
+
+	copy(cmd.str(`realpath "${p}"`));
+}
+
 function addScript() {
 	const name = cmd.params[1];
-	if (!name) cmd.print("Usage: add-script <name>").exit(1);
+	if (!name) cmd.error("Usage: add-script <name>").exit(1);
 
 	cmd.run(`
     echo "#!/bin/node" >~/dotfiles/scripts/${name}
@@ -43,18 +56,17 @@ function addScript() {
   `);
 }
 
-console.log(cmd.fzf(["clone-repo", "switch-ui", "update-timezone", "add-script"]));
-switch (cmd.parameter || cmd.fzf(["clone-repo", "switch-ui", "update-timezone", "add-script"])) {
-	case "clone-repo":
-		cloneRepo();
-		break;
-	case "switch-ui":
-		swtitchUI();
-		break;
-	case "update-timezone":
-		timezone();
-		break;
-	case "add-script":
-		addScript();
-		break;
-}
+const choices = {
+	"clone-repo": cloneRepo,
+	"switch-ui": swtitchUI,
+	"update-timezone": updateTimezone,
+	"add-script": addScript,
+	"path-copy": pathCopy,
+};
+
+const arg = cmd.parameter || cmd.fzf(Object.keys(choices));
+
+if (!arg) cmd.error("No choice selected").exit();
+if (!choices[arg]) cmd.error(`Unknown choice: ${arg}`).exit();
+
+choices[arg]();

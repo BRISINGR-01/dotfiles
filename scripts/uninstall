@@ -6,13 +6,13 @@ import { fileURLToPath } from "url";
 import cmd from "./cmd.js";
 
 export function removeTopic(topic) {
-	if (!topic) process.exit(0);
+	if (!topic) cmd.exit();
 
 	topic = topic.replace(/\s/g, "_");
 
 	fs.rmSync(path.resolve(packagesDir, `${topic}.nix`));
-	const defaultNix = fs.readFileSync(path.resolve(packagesDir, "default.nix")).toString();
-	fs.writeFileSync(
+	const defaultNix = cmd.read(path.resolve(packagesDir, "default.nix"));
+	cmd.writeTo(
 		path.resolve(packagesDir, "default.nix"),
 		defaultNix.replace(`  ${topic} = import ./${topic}.nix;\n`, "").replace(` ++ ${topic} { pkgs = pkgs; }`, "")
 	);
@@ -20,35 +20,33 @@ export function removeTopic(topic) {
 	if (cmd.run("home-manager switch")) cmd.print(`Uninstalled topic "${topic}"`, { color: "redBright", bold: true });
 }
 
-export function reomvePackage(topic, selectedPackage) {
-	const packagesFile = fs
-		.readFileSync(path.resolve(packagesDir, `${topic}.nix`))
-		.toString()
-		.split("\n");
+export function removePackage(topic, selectedPackage) {
+	const packagesFile = cmd
+		.read(path.resolve(packagesDir, `${topic}.nix`))
+		.split("\n")
+		.filter((line) => line.trim() !== selectedPackage)
+		.join("\n");
 
-	fs.writeFileSync(
-		path.resolve(packagesDir, `${topic}.nix`),
-		packagesFile.filter((line) => line.trim() !== selectedPackage).join("\n")
-	);
+	cmd.writeTo(path.resolve(packagesDir, `${topic}.nix`), packagesFile);
 }
 
 function uninstall() {
 	const topicFiles = fs.readdirSync(packagesDir).filter((topic) => topic !== "default.nix");
 
-	if (process.argv[2] === "-c") {
+	if (cmd.parameter === "-c") {
 		const topic = cmd.fzf(topicFiles.map((topic) => topic.replace(".nix", "")));
 
 		if (!topic) {
 			cmd.print("No topic selected", { color: "gray" });
-			process.exit(0);
+			cmd.exit();
 		}
 
 		removeTopic(topic);
-		process.exit(0);
+		cmd.exit();
 	}
 
 	const packages = topicFiles.map((topicFile) => {
-		const packagesFile = fs.readFileSync(path.resolve(packagesDir, topicFile)).toString().split("\n");
+		const packagesFile = cmd.read(path.resolve(packagesDir, topicFile)).split("\n");
 
 		return {
 			topic: topicFile.replace(".nix", ""),
@@ -62,11 +60,11 @@ function uninstall() {
 
 	if (!selectedPackage) {
 		cmd.print("No package selected", { color: "gray" });
-		process.exit(0);
+		cmd.exit();
 	}
 
 	const topic = packages.find(({ packages }) => packages.includes(selectedPackage)).topic;
-	reomvePackage(topic, selectedPackage);
+	removePackage(topic, selectedPackage);
 
 	cmd.print(`Uninstalling package "${selectedPackage}" from "${topic}"`, { color: "redBright", bold: true });
 
@@ -75,6 +73,6 @@ function uninstall() {
 
 const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (cmd.parameter === fileURLToPath(import.meta.url)) {
 	uninstall();
 }

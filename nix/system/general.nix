@@ -14,6 +14,7 @@
       enable = true;
       package = (pkgs.jdk21.override { enableJavaFX = true; });
     };
+    ydotool.enable = true;
   };
 
   i18n = {
@@ -58,6 +59,7 @@
       percentageAction = 4;
       criticalPowerAction = "Hibernate";
     };
+    gnome.gnome-keyring.enable = true;
   };
 
   networking.extraHosts = ''

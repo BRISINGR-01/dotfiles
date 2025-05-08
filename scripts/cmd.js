@@ -8,7 +8,7 @@ function outToString(out) {
 	return out.toString().replace(/\n$/, "").trim();
 }
 
-export default {
+const cmd = {
 	params: process.argv.slice(2),
 	parameter: process.argv[2],
 	run(command) {
@@ -66,6 +66,15 @@ export default {
 			return "";
 		}
 	},
+	tv(command) {
+		try {
+			console.log(`echo "${command.join("\n").replace(/\$/g, "\\$")}" | tv`);
+			execSync("tv", ["list-channels"]);
+			// return spawn(`echo "${command.join("\n").replace(/\$/g, "\\$")}" | tv`);
+		} catch (e) {
+			return "";
+		}
+	},
 	isRunning(command) {
 		return this.bool(`pgrep "${command}"`);
 	},
@@ -105,11 +114,14 @@ export default {
 		console.log(message);
 		return this;
 	},
+	error(message) {
+		return this.print(message, { color: "red", bold: true });
+	},
 	exit(code = 0) {
 		process.exit(code);
 	},
 	notify(message) {
-		this.run(`notify-send -e "${message}"`);
+		this.spawn("notify-send", "-e", message);
 		return this;
 	},
 	read(p) {
@@ -122,4 +134,15 @@ export default {
 		return this;
 	},
 	dotfilesDir: path.resolve("/home", process.env.USER, "dotfiles"),
+	currentDir: process.cwd(),
 };
+
+export default cmd;
+
+export function copy(text) {
+	cmd.spawn("wl-copy", text);
+}
+
+export function paste() {
+	cmd.spawn("ydotool", "key", "29:1", "47:1", "47:0", "29:0");
+}

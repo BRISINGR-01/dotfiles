@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  ydotool
   cmatrix
   rofi-wayland
   upower
