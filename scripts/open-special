@@ -2,6 +2,9 @@
 
 import cmd from "./cmd.js";
 
+import net from "net";
+import { env } from "process";
+
 const clients = {
 	editor: "code",
 	terminal: "ghostty",
@@ -12,18 +15,29 @@ const clients = {
 const workspace = cmd.parameter;
 
 if (!workspace) cmd.error("Usage: open-special <workspace>").exit(1);
+cmd.writeTo("/tmp/last-special-workspace", workspace);
 
-if (cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `special:${workspace}`)) {
-	cmd.run(`hyprctl dispatch togglespecialworkspace ${workspace}`);
-} else {
-	const currentWindow = cmd.json("hyprctl activewindow -j").address;
-	cmd.spawn(clients[workspace]);
+if (!cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `special:${workspace}`)) {
+	if (cmd.params[1] === "g") {
+		// For some reason, ghostty opens in the old workspace unless this script is run like this:
+		cmd.spawn("ghostty", "-e", process.argv[1], cmd.parameter);
+		// it gives hyprland time to load the special workspace before ghostty and possibly other apps start
 
-	for (let i = 0; currentWindow === cmd.json("hyprctl activewindow -j").address && i < 30; i++) {
-		cmd.wait(0.01);
+		cmd.exit(0);
 	}
 
-	cmd.run("hyprctl dispatch movetoworkspace special:" + workspace);
+	const sig = env.HYPRLAND_INSTANCE_SIGNATURE;
+	const socketPath = `${process.env.XDG_RUNTIME_DIR}/hypr/${sig}/.socket2.sock`;
+
+	const socketClient = net.createConnection(socketPath);
+	socketClient.on("data", (data) => {
+		if (data.toString().includes(`special:${workspace}`)) {
+			socketClient.end();
+			const pid = cmd.spawn(clients[workspace]);
+			cmd.run(`hyprctl dispatch movetoworkspace ${workspace},pid:${pid}`);
+			cmd.exit(0);
+		}
+	});
 }
 
-cmd.writeTo("/tmp/last-special-workspace", workspace);
+cmd.run(`hyprctl dispatch togglespecialworkspace ${workspace}`);

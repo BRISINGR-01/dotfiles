@@ -30,9 +30,9 @@ const cmd = {
 			});
 
 			process.unref();
-		} catch (e) {}
 
-		return this;
+			return process.pid;
+		} catch (e) {}
 	},
 	num(command) {
 		return parseInt(execSync(command));
