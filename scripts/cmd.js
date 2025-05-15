@@ -30,7 +30,6 @@ const cmd = {
 			});
 
 			process.unref();
-
 			return process.pid;
 		} catch (e) {}
 	},
@@ -101,7 +100,7 @@ const cmd = {
 	 * @param {{ color: "black" | "red" | "green" | "yellow" | "blue" | "cyan" | "magenta" | "white" | "gray" | "grey" | "blackBright" | "redBright" | "greenBright" | "yellowBright" | "blueBright" | "cyanBright" | "magentaBright" | "whiteBright", bold: boolean }} options
 	 */
 	print(message, options = {}) {
-		if (!message) return;
+		if (!message) return this;
 
 		const { color, bold } = options;
 		if (color) {

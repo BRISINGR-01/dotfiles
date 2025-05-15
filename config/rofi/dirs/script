@@ -4,20 +4,21 @@ import fs from "fs";
 import cmd from "../../../scripts/cmd.js";
 
 const entries = [
-	[" Downloads", "~/Downloads"],
-	["󱝏 Temp", "~/Downloads/temp"],
-	[" Desktop", "~/Desktop"],
-	[" Dotfiles", "~/dotfiles"],
-	["󰙅 My files", "~/Desktop/Alex"],
-	[" Music", "~/Desktop/Alex/Music"],
-	[" Screenshots", "~/screenshots"],
-	[" Home", "~"],
+	{ display: " Downloads", path: "~/Downloads" },
+	{ display: "󱝏 Temp", path: "~/Downloads/temp" },
+	{ display: " Desktop", path: "~/Desktop" },
+	{ display: " Dotfiles", path: "~/dotfiles" },
+	{ display: "󰙅 My files", path: "~/Desktop/Alex" },
+	{ display: " Music", path: "~/Desktop/Alex/Music" },
+	{ display: " Screenshots", path: "~/screenshots" },
+	{ display: " Home", path: "~" },
+	{ display: "󰨞 VSC", path: "~/Desktop/VSC" },
 ];
 
-const entry = entries.find((entry) => entry[0] === cmd.parameter);
+const entry = entries.find((entry) => entry.display === cmd.parameter);
 
 if (entry) {
-	fs.writeFileSync("/tmp/rofi-dir", entry[1]);
+	fs.writeFileSync("/tmp/rofi-dir", entry.path);
 	console.log("\n󰙅 File manager\n Copy\n󰨞 VS Code\n Terminal");
 	cmd.exit();
 }
@@ -35,7 +36,7 @@ if (cmd.parameter) {
 			cmd.spawn("code", data);
 			break;
 		case " Terminal":
-			cmd.spawn("ghostty", `--working-directory="${data}"`);
+			cmd.spawn("ghostty", `--working-directory=${data}`);
 			break;
 	}
 
@@ -43,4 +44,4 @@ if (cmd.parameter) {
 	cmd.exit();
 }
 
-entries.forEach((entry) => console.log(`${entry[0]}`));
+entries.forEach((entry) => console.log(`${entry.display}`));

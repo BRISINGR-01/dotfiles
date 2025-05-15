@@ -68,9 +68,10 @@ process.on("SIGINT", function () {
 	cmd.exit(1);
 });
 
-if (cmd.run("home-manager switch")) {
+try {
+	cmd.run("home-manager switch");
 	cmd.notify(`${packages.join(", ")} downloaded`);
 	cmd.print("Done", { color: "blueBright", bold: true });
-} else {
+} catch (error) {
 	graceFulExit();
 }

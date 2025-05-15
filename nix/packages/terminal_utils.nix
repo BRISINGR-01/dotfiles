@@ -1,13 +1,11 @@
 { pkgs }:
 
 with pkgs; [
+  exiftool
+  nix-search-tv
   zip
   at
-  cbonsai
-  p7zip
   stow
-  television
-  fzf
   tree
   moc
   thefuck

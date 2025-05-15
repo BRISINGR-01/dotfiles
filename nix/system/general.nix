@@ -32,8 +32,7 @@
     };
   };
 
-  fonts.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; }) ];
+  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
 
   networking = {
     hostName = "alex-nixos";
@@ -44,6 +43,7 @@
   services = {
     blueman.enable = true;
     openssh.enable = true;
+    pulseaudio.enable = false;
     pipewire = {
       enable = true;
       alsa.enable = true;

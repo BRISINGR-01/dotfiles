@@ -111,9 +111,6 @@
   "svelte.plugin.svelte.format.config.printWidth": 120,
   "prettier.printWidth": 120,
   "evenBetterToml.formatter.columnWidth": 120,
-  "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
-  },
   "svelte.plugin.svelte.format.config.svelteStrictMode": true,
   "git.openRepositoryInParentFolders": "never",
   "java.saveActions.organizeImports": true,
@@ -213,5 +210,8 @@
   "[conf]": {
     "editor.defaultFormatter": null
   },
-  "window.menuBarVisibility": "hidden"
+  "window.menuBarVisibility": "hidden",
+  "workbench.startupEditor": "none",
+  "window.customTitleBarVisibility": "never",
+  "window.titleBarStyle": "native"
 }

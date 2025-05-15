@@ -7,16 +7,12 @@ if (cmd.isRunning("cmatrix")) cmd.exit();
 const brightness = cmd.num("brightnessctl g");
 
 for (let val = brightness; val > 0; val -= 1000) {
-	cmd.wait(0.04).run(`brightnessctl set ${val}`);
+	cmd.wait(0.04).run(`brightnessctl s ${val}`);
 }
 
-cmd
-	.spawn(
-		`
-	brightnessctl s ${brightness};
-	hyprctl dispatch "togglespecialworkspace dim-screen"
-	ghostty -e "ghostty --background-opacity=1 --background=#1D1F21 --fullscreen -e cmatrix -b -C blue" &
-`
-	)
-	.wait(100)
-	.run("hyprctl dispatch dpms off; hyprlock");
+const pid = cmd
+	.run(`brightnessctl s ${brightness}`)
+	.spawn("ghostty", "-e", "ghostty --background-opacity=1 --background=#1D1F21 --fullscreen -e cmatrix -b -C blue");
+
+cmd.notify(`kill ${pid}; hyprctl dispatch dpms off; hyprlock`);
+cmd.wait(1).run(`kill ${pid}; hyprctl dispatch dpms off; hyprlock`);

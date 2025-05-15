@@ -10,6 +10,7 @@ const clients = {
 	terminal: "ghostty",
 	browser: "brave",
 	music: "brave https://music.youtube.com/",
+	beeper: "beeper",
 };
 
 const workspace = cmd.parameter;

@@ -21,8 +21,7 @@ const packages = fs
 const selectedPackage = cmd.fzf(packages.flatMap((topic) => topic.packages));
 
 if (!selectedPackage) {
-	cmd.print("No package selected", { color: "gray" });
-	process.exit(0);
+	cmd.print("No package selected", { color: "gray" }).exit();
 }
 
 console.log(path.join(packagesDir, packages.find((topic) => topic.packages.includes(selectedPackage)).file));

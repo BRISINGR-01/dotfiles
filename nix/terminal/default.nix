@@ -17,6 +17,7 @@ in {
           shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
           exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
         fi
+        export GTK_THEME=Adwaita-dark
       '';
       shellAliases = aliases;
     };
@@ -42,6 +43,7 @@ in {
       QT_QPA_PLATFORM = "wayland";
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
+      GTK_THEME = "Adwaita-dark";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
     };
   };

@@ -12,7 +12,7 @@ home-manager switch 2>/tmp/reload.log &
 CMD_PID=$!
 
 while kill -0 $CMD_PID 2>/dev/null; do
-  notify-send -er $NOTIF_ID "Running... ${DOTS[i]}" "Home manager is reloading"
+  notify-send -re $NOTIF_ID "Running... ${DOTS[i]}" "Home manager is reloading"
   i=$(((i + 1) % 10))
   sleep 0.05
 done

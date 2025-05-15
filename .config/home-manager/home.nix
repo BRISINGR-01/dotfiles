@@ -23,7 +23,7 @@ in {
     username = "alex";
     sessionVariables = {
       HYPRCURSOR_SIZE = "24";
-      HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
+      HYPRCURSOR_THEME = "-catppuccin-mocha-dark-cursors";
     };
     homeDirectory = home;
     stateVersion = "24.11";
@@ -106,5 +106,10 @@ in {
       "x-scheme-handler/mailto" = "brave.desktop";
       "x-scheme-handler/lunarclient" = "lunarclient.desktop";
     };
+  };
+
+  gtk = {
+    enable = true;
+    theme = { name = "Adwaita-dark"; };
   };
 }

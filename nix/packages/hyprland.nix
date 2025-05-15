@@ -2,7 +2,6 @@
 
 with pkgs; [
   wf-recorder
-  wf-recorder
   greetd.tuigreet
   swaynotificationcenter
   zathura
