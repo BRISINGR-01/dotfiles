@@ -3,7 +3,16 @@
 import fs from "fs";
 import path from "path";
 import cmd from "./cmd.js";
-import { removePackage } from "./uninstall";
+
+function removePackage(topic, selectedPackage) {
+	const packagesFile = cmd
+		.read(path.resolve(packagesDir, `${topic}.nix`))
+		.split("\n")
+		.filter((line) => line.trim() !== selectedPackage)
+		.join("\n");
+
+	cmd.writeTo(path.resolve(packagesDir, `${topic}.nix`), packagesFile);
+}
 
 function createTopic() {
 	const newTopic = cmd.prompt("Enter new topic:", { color: "cyan" });
@@ -24,15 +33,15 @@ function createTopic() {
 	return newTopic;
 }
 
-function graceFulExit() {
-	if (isCreatintNewTopic) {
+function gracefulExit() {
+	if (isCreatingNewTopic) {
 		removeTopic(topic);
 	} else {
 		packages.forEach((pkg) => removePackage(topic, pkg));
 	}
 }
 
-let isCreatintNewTopic = false;
+let isCreatingNewTopic = false;
 const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
 const topicOptions = fs
 	.readdirSync(packagesDir)
@@ -45,7 +54,7 @@ if (!topic) cmd.print("No topic selected", { color: "gray" }).exit();
 
 if (topic === "<new topic>") {
 	cmd.print("Creating new topic", { color: "blue" });
-	isCreatintNewTopic = true;
+	isCreatingNewTopic = true;
 	topic = createTopic();
 } else {
 	cmd.print("Using topic: " + topic, { color: "blue" });
@@ -64,14 +73,19 @@ cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join("
 
 process.on("SIGINT", function () {
 	cmd.error("Caught interrupt signal");
-	graceFulExit();
+	gracefulExit();
 	cmd.exit(1);
 });
 
 try {
-	cmd.run("home-manager switch");
+	if (!cmd.bool("home-manager switch")) {
+		cmd.error("Failed to install package(s)");
+		gracefulExit();
+		cmd.exit(1);
+	}
+
 	cmd.notify(`${packages.join(", ")} downloaded`);
 	cmd.print("Done", { color: "blueBright", bold: true });
 } catch (error) {
-	graceFulExit();
+	gracefulExit();
 }

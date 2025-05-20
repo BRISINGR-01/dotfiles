@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  binaryninja-free
   wf-recorder
   greetd.tuigreet
   swaynotificationcenter

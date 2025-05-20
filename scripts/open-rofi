@@ -2,10 +2,24 @@
 import fs from "fs";
 import cmd from "./cmd.js";
 
-const pid = cmd.str("pgrep -f bin/rofi");
-if (pid) cmd.run(`kill ${pid}`).exit();
-
 const launcher = `${cmd.dotfilesDir}/config/rofi/${cmd.parameter}/launch`;
+
+cmd.register(
+	`Usage: open-rofi <type>\nIf the rofi process is already running, it will be killed.\nIf the same type of rofi is already running, it will only be closed, otherwise it will open the new one.\n\nIt works by running ${cmd.dotfilesDir}/config/rofi/<type>/launch or the following command:\nrofi -show <type> -theme ${cmd.dotfilesDir}/config/rofi/<type>/conf.rasi`
+);
+
+const pid = cmd.str("pgrep -f bin/rofi");
+if (pid) {
+	const isSameType =
+		cmd
+			.str(`ps -aux | grep "open-rofi ${cmd.parameter}"`)
+			.split("\n")
+			.filter((line) => line.includes("scripts/open-rofi")).length > 1;
+	cmd.run(`kill ${pid}`);
+
+	if (isSameType) cmd.exit();
+}
+
 cmd.run(
 	fs.existsSync(launcher)
 		? launcher

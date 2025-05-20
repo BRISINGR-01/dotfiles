@@ -4,7 +4,6 @@ with pkgs; [
   xournalpp
   beeper
   brave
-  brave
   freetube
   pinta
   youtube-music

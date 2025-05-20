@@ -42,9 +42,17 @@ function parseTime(str) {
 	return now;
 }
 
-if (cmd.parameter) {
-	cmd.run(`notify-send "Timer" "Timer set for ${parseTime(cmd.parameter)}"`);
+if (cmd.parameter === "Remind") {
+	cmd.notify(`Timer is done`);
 	cmd.run("ffplay ~/dotfiles/assets/alarm.wav -nodisp");
+} else if (cmd.parameter) {
+	const time = parseTime(cmd.parameter);
+	cmd.notify(`Timer set for ${time}`);
+
+	setTimeout(() => {
+		cmd.notify(`Timer is done`);
+		cmd.run("ffplay ~/dotfiles/assets/alarm.wav -nodisp");
+	}, time - new Date());
 	cmd.exit();
 }
 
@@ -55,6 +63,6 @@ if (now.getMinutes() < 30) {
 }
 
 const nextHour = h == 24 ? 0 : h + 1;
-options.push(`at ${h + 1}:00`);
+options.push(`at ${nextHour}:00`);
 
 console.log(options.join("\n"));

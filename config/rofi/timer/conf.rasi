@@ -1,7 +1,7 @@
 @import                          "~/dotfiles/config/rofi/shared/constants.rasi"
 
 configuration {
-	modi:                       "timer:~/dotfiles/config/rofi/scripts/timer";
+	modi:                       "timer:~/dotfiles/config/rofi/timer/script";
     show-icons:                 false;
     display-timer:               "󱤥 Timer";
 	drun-display-format:        "{name}";

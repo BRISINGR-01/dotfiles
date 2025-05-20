@@ -9,7 +9,7 @@ const clients = {
 	editor: "code",
 	terminal: "ghostty",
 	browser: "brave",
-	music: "brave https://music.youtube.com/",
+	music: "brave --new-window https://music.youtube.com/",
 	beeper: "beeper",
 };
 
@@ -20,8 +20,8 @@ cmd.writeTo("/tmp/last-special-workspace", workspace);
 
 if (!cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `special:${workspace}`)) {
 	if (cmd.params[1] === "g") {
-		// For some reason, ghostty opens in the old workspace unless this script is run like this:
-		cmd.spawn("ghostty", "-e", process.argv[1], cmd.parameter);
+		// For some reason, ghostty and other apps open in the old workspace unless this script is run like this:
+		cmd.spawn("ghostty", "-e", `${process.argv[1]} ${cmd.parameter}`);
 		// it gives hyprland time to load the special workspace before ghostty and possibly other apps start
 
 		cmd.exit(0);
@@ -35,8 +35,7 @@ if (!cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `
 		if (data.toString().includes(`special:${workspace}`)) {
 			socketClient.end();
 			const pid = cmd.spawn(clients[workspace]);
-			cmd.run(`hyprctl dispatch movetoworkspace ${workspace},pid:${pid}`);
-			cmd.exit(0);
+			cmd.run(`hyprctl dispatch movetoworkspace ${workspace},pid:${pid}`).exit();
 		}
 	});
 }

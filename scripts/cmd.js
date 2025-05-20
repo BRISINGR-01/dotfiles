@@ -4,6 +4,14 @@ import fs from "fs";
 import path from "path";
 import readline from "readline-sync";
 
+const DATA_FILE = path.resolve("/home", process.env.USER, "user-data.json");
+
+function checkDataFile() {
+	if (!fs.existsSync(DATA_FILE)) {
+		fs.writeFileSync(DATA_FILE, "{}");
+	}
+}
+
 function outToString(out) {
 	return out.toString().replace(/\n$/, "").trim();
 }
@@ -11,6 +19,14 @@ function outToString(out) {
 const cmd = {
 	params: process.argv.slice(2),
 	parameter: process.argv[2],
+	dotfilesDir: path.resolve("/home", process.env.USER, "dotfiles"),
+	currentDir: process.cwd(),
+	register(description) {
+		if (this.parameter == "--help" || this.parameter == "-h") {
+			console.log(description);
+			this.exit();
+		}
+	},
 	run(command) {
 		try {
 			execSync(command);
@@ -67,12 +83,24 @@ const cmd = {
 	},
 	tv(command) {
 		try {
-			console.log(`echo "${command.join("\n").replace(/\$/g, "\\$")}" | tv`);
-			execSync("tv", ["list-channels"]);
-			// return spawn(`echo "${command.join("\n").replace(/\$/g, "\\$")}" | tv`);
+			return outToString(
+				spawnSync("echo", {
+					input: `-e ${command.join("\n")} | tv`,
+					encoding: "utf8",
+				}).stdout
+			);
 		} catch (e) {
+			console.log(e);
 			return "";
 		}
+		// try {
+		// 	// const a = this.str(`echo "${command.join("\n").replace(/\$/g, "\\$")}" | tv`);
+		// 	// execSync("tv", ["list-channels"]);
+		// 	return this.spawn("echo", "-e", command.join("\n").replace(/\$/g, "\\$"), "| tv");
+		// } catch (e) {
+		// 	console.log(e);
+		// 	return "";
+		// }
 	},
 	isRunning(command) {
 		return this.bool(`pgrep "${command}"`);
@@ -132,16 +160,34 @@ const cmd = {
 		fs.writeFileSync(p, data);
 		return this;
 	},
-	dotfilesDir: path.resolve("/home", process.env.USER, "dotfiles"),
-	currentDir: process.cwd(),
+	set(key, value) {
+		checkDataFile();
+
+		const data = JSON.parse(this.read(DATA_FILE));
+		data[key] = value;
+
+		this.writeTo(DATA_FILE, JSON.stringify(data));
+
+		return this;
+	},
+	get(key) {
+		checkDataFile();
+		return JSON.parse(this.read(DATA_FILE))[key];
+	},
 };
 
 export default cmd;
 
 export function copy(text) {
-	cmd.spawn("wl-copy", text);
+	cmd.spawn("wl-copy", text); // must be done with "spawn"
 }
 
 export function paste() {
-	cmd.spawn("ydotool", "key", "29:1", "47:1", "47:0", "29:0");
+	if (cmd.json("hyprctl activewindow -j").class.endsWith("ghostty")) {
+		// ctrl + shift + v
+		cmd.spawn("ydotool", "key", "29:1", "42:1", "47:1", "47:0", "42:0", "29:0");
+	} else {
+		// ctrl + v
+		cmd.spawn("ydotool", "key", "29:1", "47:1", "47:0", "29:0");
+	}
 }

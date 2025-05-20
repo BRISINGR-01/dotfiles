@@ -15,7 +15,7 @@ elif [[ $1 == "prev" ]]; then
     if [[ $current_workspace -eq 1 ]]; then
         target_ws=$ws_count
     else
-        target_ws=$(($current_workspace - 1))
+        target_ws=$current_workspace
     fi
 fi
 
