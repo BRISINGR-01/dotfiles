@@ -1,7 +1,6 @@
 #!/bin/node
 
-import fs from "fs";
-import cmd from "../../../scripts/cmd.js";
+import cmd, { KEYS } from "../../../scripts/cmd.js";
 
 const entries = [
 	{ display: " Downloads", path: "~/Downloads" },
@@ -18,13 +17,11 @@ const entries = [
 const entry = entries.find((entry) => entry.display === cmd.parameter);
 
 if (entry) {
-	fs.writeFileSync("/tmp/rofi-dir", entry.path);
-	console.log("\n󰙅 File manager\n Copy\n󰨞 VS Code\n Terminal");
-	cmd.exit();
+	cmd.set(KEYS.rofiDir, entry.path).print("\n󰙅 File manager\n Copy\n󰨞 VS Code\n Terminal").exit();
 }
 
 if (cmd.parameter) {
-	const data = fs.readFileSync("/tmp/rofi-dir").toString().replace("~", process.env.HOME);
+	const data = cmd.get(KEYS.rofiDir).replace("~", process.env.HOME);
 	switch (cmd.parameter) {
 		case "󰙅 File manager":
 			cmd.spawn("xdg-open", data);
@@ -40,8 +37,7 @@ if (cmd.parameter) {
 			break;
 	}
 
-	fs.unlinkSync("/tmp/rofi-dir");
-	cmd.exit();
+	cmd.set(KEYS.rofiDir, "").exit();
 }
 
 entries.forEach((entry) => console.log(`${entry.display}`));

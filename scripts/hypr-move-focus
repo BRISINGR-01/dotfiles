@@ -25,7 +25,6 @@ if (!currWindow.pid) {
 if (prevWindow.pid !== currWindow.pid || prevWindow.title !== currWindow.title) cmd.exit();
 
 if (currWindow.workspace.name.startsWith("special")) {
-	const monitors = JSON.parse(cmd.str("hyprctl -j monitors"));
 	cmd.run(`~/dotfiles/scripts/close-special-workspace.sh`);
 	cmd.exit();
 }

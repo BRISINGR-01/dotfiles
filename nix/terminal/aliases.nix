@@ -8,7 +8,7 @@ in {
   lla = "eza --icons=always -a -l -M --no-user --no-time";
   la = "eza --icons=always -a";
   lr = "${eza} -T -L=3";
-  lsf = "${eza} -f --show-symlinks";
+  lsf = "${eza} -f --show-symlinks -a";
   lsd = "${eza} -D --show-symlinks";
   lls = "${ezaList} --total-size";
 
@@ -41,6 +41,7 @@ in {
 
   hist = "eval (tv fish-history)";
   envf = "tv env | c";
+  envd = "env | grep (tv env) | cut -d '=' -f2-";
   pathf = "echo $PATH | tr ' ' '\\n' | tv";
 
   rnix = "nixos-rebuild switch";
@@ -52,4 +53,6 @@ in {
 
   deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
   "+x" = "chmod +x";
+  t =
+    "tmux capture-pane -S -1000 && tmux show-buffer | sed -e '/❯ */d' -e '/^t$/d' -e '/^$/d' -e '/^ ~ 󰮺$/d'| nvim +";
 }

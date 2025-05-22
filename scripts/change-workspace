@@ -13,9 +13,9 @@ if [[ $1 == "next" ]]; then
     fi
 elif [[ $1 == "prev" ]]; then
     if [[ $current_workspace -eq 1 ]]; then
-        target_ws=$ws_count
+        target_ws=$((ws_count - 1))
     else
-        target_ws=$current_workspace
+        target_ws=$(($current_workspace - 1))
     fi
 fi
 

@@ -6,7 +6,6 @@ with pkgs; [
   fd
   zoxide
   babelfish
-  waveterm
   fish
   television
   fzf

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+monitor=$(hyprctl monitors -j | jq '.[] | select(.focused == true)')
+width=$(echo "$monitor" | jq '.width')
+height=$(echo "$monitor" | jq '.height')
+
+x=$(echo "$monitor" | jq '.x')
+y=$(echo "$monitor" | jq '.y')
+
+center_x=$((x + width / 2))
+center_y=$((y + height / 2))
+
+hyprctl dispatch movecursor $center_x $center_y

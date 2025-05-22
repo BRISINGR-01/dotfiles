@@ -1,6 +1,6 @@
 #!/bin/node
 
-import cmd from "./cmd.js";
+import cmd, { KEYS } from "./cmd.js";
 
 import net from "net";
 import { env } from "process";
@@ -16,7 +16,7 @@ const clients = {
 const workspace = cmd.parameter;
 
 if (!workspace) cmd.error("Usage: open-special <workspace>").exit(1);
-cmd.writeTo("/tmp/last-special-workspace", workspace);
+cmd.set(KEYS.lastWorkspace, workspace);
 
 if (!cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `special:${workspace}`)) {
 	if (cmd.params[1] === "g") {

@@ -23,6 +23,5 @@ with pkgs; [
   blueman
   pavucontrol
   libreoffice
-  teams-for-linux
   ferdium
 ]

@@ -1,5 +1,5 @@
 #!/bin/node
-import cmd from "./cmd.js";
+import cmd, { KEYS } from "./cmd.js";
 
 // close special workspace on focused monitor if one is present
 
@@ -11,7 +11,7 @@ const workspace = cmd
 	.specialWorkspace.name.replace("special:", "");
 
 if (workspace) {
-	cmd.writeTo("/tmp/last-special-workspace", workspace).run(`hyprctl dispatch togglespecialworkspace "${workspace}"`);
+	cmd.set(KEYS.lastWorkspace, workspace).run(`hyprctl dispatch togglespecialworkspace "${workspace}"`);
 } else {
-	cmd.run(`open-special "${cmd.read("/tmp/last-special-workspace")}" g`);
+	cmd.run(`open-special "${cmd.get(KEYS.lastWorkspace)}" g`);
 }

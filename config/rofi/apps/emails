@@ -1,7 +1,6 @@
 #!/bin/node
 
-import fs from "fs";
-import cmd, { copy, paste } from "../../../scripts/cmd.js";
+import cmd, { copy, KEYS, paste } from "../../../scripts/cmd.js";
 
 const copyText = " Copy";
 const openText = "󰇯 Open";
@@ -16,13 +15,11 @@ const entries = [
 const entry = entries.find((entry) => entry[0] === cmd.parameter);
 
 if (entry) {
-	fs.writeFileSync("/tmp/rofi-email", entry[1]);
-	console.log(`\n${copyText}\n${openText}\n`);
-	cmd.exit();
+	cmd.set(KEYS.email, entry[1]).print(`\n${copyText}\n${openText}\n`).exit();
 }
 
 if (cmd.parameter) {
-	const address = fs.readFileSync("/tmp/rofi-email").toString();
+	const address = cmd.get(KEYS.email);
 	switch (cmd.parameter) {
 		case copyText:
 			let email = entries.find((entry) => entry[1] === address)[0];
@@ -31,12 +28,11 @@ if (cmd.parameter) {
 			paste();
 			break;
 		case openText:
-			cmd.run(`xdg-open "${fs.readFileSync("/tmp/rofi-email").toString()}"`);
+			cmd.run(`xdg-open "${address}"`);
 			break;
 	}
 
-	fs.unlinkSync("/tmp/rofi-email");
-	cmd.exit();
+	cmd.set(KEYS.email, "").exit();
 }
 
 entries.forEach((entry) => cmd.print(`${entry[0]}\x00icon\x1f${cmd.dotfilesDir}/config/rofi/icons/${entry[2]}.ico`));

@@ -191,3 +191,9 @@ export function paste() {
 		cmd.spawn("ydotool", "key", "29:1", "47:1", "47:0", "29:0");
 	}
 }
+
+export const KEYS = {
+	lastWorkspace: "last-special-workspace",
+	rofiDir: "rofi-dir",
+	email: "rofi-email",
+};

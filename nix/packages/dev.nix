@@ -12,5 +12,4 @@ with pkgs; [
   lazydocker
   cliphist
   fuzzel
-  zellij
 ]
