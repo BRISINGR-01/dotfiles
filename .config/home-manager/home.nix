@@ -26,7 +26,7 @@ in {
       HYPRCURSOR_THEME = "-catppuccin-mocha-dark-cursors";
     };
     homeDirectory = home;
-    stateVersion = "24.11";
+    stateVersion = "25.05";
     packages = packages { pkgs = pkgs; };
     file = {
       ".config/hypr/hyprlock.conf".source =

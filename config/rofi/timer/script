@@ -50,10 +50,8 @@ if (cmd.parameter === "Remind") {
 	cmd.notify(`Timer set for ${time}`);
 
 	setTimeout(() => {
-		cmd.notify(`Timer is done`);
-		cmd.run("ffplay ~/dotfiles/assets/alarm.wav -nodisp");
+		cmd.notify(`Timer is done`).run("ffplay ~/dotfiles/assets/alarm.wav -nodisp").run("pkill /rofi").exit();
 	}, time - new Date());
-	cmd.exit();
 }
 
 const now = new Date();

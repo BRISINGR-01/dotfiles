@@ -18,4 +18,4 @@ if [ -z "$RANDOM_WALLPAPER" ]; then
   exit 1
 fi
 
-swaybg -i $RANDOM_WALLPAPER -m fit
+swaybg -i $RANDOM_WALLPAPER -m fill

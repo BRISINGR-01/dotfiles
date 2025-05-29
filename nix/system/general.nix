@@ -10,11 +10,12 @@
       enable = true;
       # plugins = [ "full-border" ];
     };
-    java = {
-      enable = true;
-      package = (pkgs.jdk21.override { enableJavaFX = true; });
-    };
+    # java = {
+    #   enable = true;
+    #   package = (pkgs.jdk21.override { enableJavaFX = true; });
+    # };
     ydotool.enable = true;
+    virt-manager.enable = true;
   };
 
   i18n = {
@@ -85,7 +86,8 @@
       };
     };
   };
-  programs.virt-manager.enable = true;
   users.groups.libvirtd.members = [ "alex" ];
   virtualisation.spiceUSBRedirection.enable = true;
+  nixpkgs.config.android_sdk.accept_license = true;
 }
+

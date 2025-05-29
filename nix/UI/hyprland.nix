@@ -6,11 +6,11 @@
       enable = true;
       settings = {
         background = {
-          path = "/home/alex/dotfiles/assets/greet-wallpaper.jpg";
+          path = "/etc/greetd/bg.jpg";
           fit = "Contain";
         };
 
-        GTK = { application_prefer_dark_theme = true; };
+        GTK.application_prefer_dark_theme = true;
         commands = {
           reboot = [ "systemctl" "reboot" ];
           poweroff = [ "systemctl" "poweroff" ];
@@ -28,20 +28,20 @@
       };
     };
     hyprlock.enable = true;
-    # ydotool.enable = true;
     hyprland = {
       enable = true;
       xwayland.enable = true;
     };
   };
+  environment.etc."greetd/bg.jpg".source =
+    "/home/alex/dotfiles/assets/greet-wallpaper.jpg";
 
   services = {
     hypridle.enable = true;
     gvfs.enable = true;
-    # greetd.settings.default_session = {
-    #   command =
-    #     "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
-    #   user = "greeter";
-    # };
+    greetd.settings.default_session = {
+      command = "${pkgs.hyprland}/bin/Hyprland";
+      user = "greeter";
+    };
   };
 }

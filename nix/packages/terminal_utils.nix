@@ -1,5 +1,6 @@
 { pkgs }:
 with pkgs; [
+  tokei
   exiftool
   nix-search-tv
   zip

@@ -1,7 +1,7 @@
 #!/bin/node
 import cmd, { KEYS } from "./cmd.js";
 
-// close special workspace on focused monitor if one is present
+// toggle special workspace on focused monitor if one is present
 
 if (cmd.isRunning("open-special")) cmd.exit();
 
@@ -12,6 +12,6 @@ const workspace = cmd
 
 if (workspace) {
 	cmd.set(KEYS.lastWorkspace, workspace).run(`hyprctl dispatch togglespecialworkspace "${workspace}"`);
-} else {
+} else if (cmd.parameter !== "close") {
 	cmd.run(`open-special "${cmd.get(KEYS.lastWorkspace)}" g`);
 }

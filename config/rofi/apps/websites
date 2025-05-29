@@ -6,8 +6,8 @@ import cmd from "../../../scripts/cmd.js";
 const entries = [
 	["NixOS", "https://search.nixos.org/packages", "https://search.nixos.org/favicon.png"],
 	["My Course", "https://fhict.instructure.com/courses/13860/modules"],
-	["C", "https://fhict.instructure.com/courses/14422/modules"],
-	["D", "https://fhict.instructure.com/courses/14424/modules"],
+	["Stat + DETH", "https://fhict.instructure.com/courses/14422/modules"],
+	["FP + Sync + ALG", "https://fhict.instructure.com/courses/14424/modules"],
 	["Canvas", "https://fhict.instructure.com/courses"],
 	["Nerdfont", "https://www.nerdfonts.com/cheat-sheet", "https://www.nerdfonts.com/cheat-sheet/assets/img/favicon.ico"],
 	["Teams", "https://teams.microsoft.com/v2/"],

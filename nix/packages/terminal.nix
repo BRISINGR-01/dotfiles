@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  nushell
   yazi
   eza
   fd

@@ -12,7 +12,7 @@ function checkDataFile() {
 	}
 }
 
-function outToString(out) {
+export function outToString(out) {
 	return out.toString().replace(/\n$/, "").trim();
 }
 
@@ -47,7 +47,17 @@ const cmd = {
 
 			process.unref();
 			return process.pid;
-		} catch (e) {}
+		} catch (e) {
+			console.log(e);
+		}
+	},
+	spawnSync(command) {
+		spawnSync(command, {
+			encoding: "utf8",
+			stdio: "inherit",
+		});
+
+		return this;
 	},
 	num(command) {
 		return parseInt(execSync(command));
@@ -83,10 +93,18 @@ const cmd = {
 	},
 	tv(command) {
 		try {
+			const s = spawnSync("echo", {
+				input: `-e ${command.join("\n")} | tv`,
+				encoding: "utf8",
+				stdio: "inherit",
+			});
+
+			console.log(s);
 			return outToString(
 				spawnSync("echo", {
 					input: `-e ${command.join("\n")} | tv`,
 					encoding: "utf8",
+					stdio: "inherit",
 				}).stdout
 			);
 		} catch (e) {

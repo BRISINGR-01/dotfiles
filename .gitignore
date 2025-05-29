@@ -12,3 +12,4 @@ git-credentials
 node_modules
 ags/types
 agsout
+config/rofi/icons

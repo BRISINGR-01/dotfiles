@@ -1,14 +1,18 @@
 #!/bin/node
 
+import { spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import cmd from "./cmd.js";
+import cmd, { outToString } from "./cmd.js";
 
-function removePackage(topic, selectedPackage) {
+let isCreatingNewTopic = false;
+const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
+
+function removePackage(topic, pkg) {
 	const packagesFile = cmd
 		.read(path.resolve(packagesDir, `${topic}.nix`))
 		.split("\n")
-		.filter((line) => line.trim() !== selectedPackage)
+		.filter((line) => line.trim() !== pkg)
 		.join("\n");
 
 	cmd.writeTo(path.resolve(packagesDir, `${topic}.nix`), packagesFile);
@@ -33,59 +37,79 @@ function createTopic() {
 	return newTopic;
 }
 
-function gracefulExit() {
-	if (isCreatingNewTopic) {
-		removeTopic(topic);
+function gracefulExit(topic, pkg) {
+	if (isCreatingNewTopic) removeTopic(topic);
+
+	removePackage(topic, pkg);
+}
+
+function chooseTopic() {
+	const topic = cmd.fzf(
+		fs
+			.readdirSync(packagesDir)
+			.filter((topic) => topic !== "default.nix")
+			.map((topic) => topic.replace(".nix", ""))
+			.concat("<new topic>")
+	);
+
+	if (!topic) cmd.print("No topic selected", { color: "gray" }).exit();
+
+	if (topic === "<new topic>") {
+		cmd.print("Creating new topic", { color: "blue" });
+		isCreatingNewTopic = true;
+		topic = createTopic();
 	} else {
-		packages.forEach((pkg) => removePackage(topic, pkg));
+		cmd.print("Using topic: " + topic, { color: "blue" });
 	}
+
+	return topic;
 }
 
-let isCreatingNewTopic = false;
-const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");
-const topicOptions = fs
-	.readdirSync(packagesDir)
-	.filter((topic) => topic !== "default.nix")
-	.map((topic) => topic.replace(".nix", ""))
-	.concat("<new topic>");
+function installPackage(topic, pkg) {
+	const packagesFile = cmd.read(path.resolve(packagesDir, `${topic}.nix`));
+	cmd.writeTo(path.resolve(packagesDir, `${topic}.nix`), packagesFile.replace("[", `[\n  ${pkg}`));
 
-let topic = cmd.fzf(topicOptions);
-if (!topic) cmd.print("No topic selected", { color: "gray" }).exit();
+	cmd.print(`Installing package ${pkg} in "${topic}"`, {
+		color: "greenBright",
+		bold: true,
+	});
+}
 
-if (topic === "<new topic>") {
-	cmd.print("Creating new topic", { color: "blue" });
-	isCreatingNewTopic = true;
-	topic = createTopic();
+let topic, pkg;
+if (cmd.parameter) {
+	pkg = cmd.parameter;
+	topic = chooseTopic();
+	installPackage(topic, pkg);
 } else {
-	cmd.print("Using topic: " + topic, { color: "blue" });
+	pkg = outToString(
+		spawnSync("bash", ["-c", "nix-search-tv print | tv"], {
+			stdio: ["inherit", "pipe", "inherit"], // stdin -> terminal, stdout -> pipe
+			env: process.env,
+		}).stdout
+	).split(" ")[1];
+
+	if (!pkg || pkg.length === 0) cmd.print("No package entered", { color: "gray" }).exit();
+
+	topic = chooseTopic();
+	installPackage(topic, pkg);
 }
-
-const packages = cmd.prompt("Enter package(s):", { color: "cyan" }).split(/\s+/);
-if (packages.length === 0) cmd.print("No packages entered", { color: "gray" }).exit();
-
-const packagesFile = cmd.read(path.resolve(packagesDir, `${topic}.nix`));
-cmd.writeTo(path.resolve(packagesDir, `${topic}.nix`), packagesFile.replace("[", `[\n  ${packages.join("\n  ")}`));
-
-cmd.print(`Installing package${packages.length > 1 ? "s" : ""} ${packages.join(", ")} in "${topic}"`, {
-	color: "greenBright",
-	bold: true,
-});
 
 process.on("SIGINT", function () {
 	cmd.error("Caught interrupt signal");
-	gracefulExit();
+	gracefulExit(topic, pkg);
 	cmd.exit(1);
 });
 
 try {
 	if (!cmd.bool("home-manager switch")) {
 		cmd.error("Failed to install package(s)");
-		gracefulExit();
+		gracefulExit(topic, pkg);
 		cmd.exit(1);
 	}
 
-	cmd.notify(`${packages.join(", ")} downloaded`);
+	cmd.notify(`${pkg} downloaded`);
 	cmd.print("Done", { color: "blueBright", bold: true });
 } catch (error) {
-	gracefulExit();
+	console.log(error);
+	gracefulExit(topic, pkg);
 }

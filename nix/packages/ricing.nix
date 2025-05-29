@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  gimp
+  swaybg
   ydotool
   cmatrix
   rofi-wayland
