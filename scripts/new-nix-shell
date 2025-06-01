@@ -1,0 +1,12 @@
+#!/bin/node
+
+import path from "path";
+import cmd from "./cmd.js";
+
+cmd.writeTo(
+	path.resolve(cmd.currentDir, "shell.nix"),
+	`{ pkgs ? import <nixpkgs> { } }:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs.buildPackages; [ ${cmd.parameter} ];
+}`
+);

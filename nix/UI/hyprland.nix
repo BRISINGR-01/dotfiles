@@ -39,9 +39,5 @@
   services = {
     hypridle.enable = true;
     gvfs.enable = true;
-    greetd.settings.default_session = {
-      command = "${pkgs.hyprland}/bin/Hyprland";
-      user = "greeter";
-    };
   };
 }
