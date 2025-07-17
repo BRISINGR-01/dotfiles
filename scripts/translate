@@ -1,0 +1,97 @@
+#!/bin/node
+
+import cmd, { copy, paste } from "./cmd.js";
+
+const selected = cmd.str("wl-paste --primary");
+
+cmd.spawn("ydotool", "key", "14:1", "14:0");
+cmd.exit(1);
+
+const mapping = [
+	{ cyrillic: "А", latin: "A", keycode: 30 },
+	{ cyrillic: "Б", latin: "B", keycode: 48 },
+	{ cyrillic: "В", latin: "V", keycode: 32 },
+	{ cyrillic: "Г", latin: "G", keycode: 34 },
+	{ cyrillic: "Д", latin: "D", keycode: 35 },
+	{ cyrillic: "Е", latin: "E", keycode: 18 },
+	{ cyrillic: "Ё", latin: "Yo", keycode: 41 },
+	{ cyrillic: "Ж", latin: "Zh", keycode: 42 },
+	{ cyrillic: "З", latin: "Z", keycode: 43 },
+	{ cyrillic: "И", latin: "I", keycode: 31 },
+	{ cyrillic: "Й", latin: "Y", keycode: 44 },
+	{ cyrillic: "К", latin: "K", keycode: 45 },
+	{ cyrillic: "Л", latin: "L", keycode: 46 },
+	{ cyrillic: "М", latin: "M", keycode: 50 },
+	{ cyrillic: "Н", latin: "N", keycode: 49 },
+	{ cyrillic: "О", latin: "O", keycode: 24 },
+	{ cyrillic: "П", latin: "P", keycode: 25 },
+	{ cyrillic: "Р", latin: "R", keycode: 19 },
+	{ cyrillic: "С", latin: "S", keycode: 20 },
+	{ cyrillic: "Т", latin: "T", keycode: 21 },
+	{ cyrillic: "У", latin: "U", keycode: 22 },
+	{ cyrillic: "Ф", latin: "F", keycode: 33 },
+	{ cyrillic: "Х", latin: "Kh", keycode: 23 },
+	{ cyrillic: "Ц", latin: "Ts", keycode: 16 },
+	{ cyrillic: "Ч", latin: "Ch", keycode: 36 },
+	{ cyrillic: "Ш", latin: "Sh", keycode: 37 },
+	{ cyrillic: "Щ", latin: "Shch", keycode: 38 },
+	{ cyrillic: "Ъ", latin: "", keycode: 39 },
+	{ cyrillic: "Ы", latin: "Y", keycode: 47 },
+	{ cyrillic: "Ь", latin: "", keycode: 51 },
+	{ cyrillic: "Э", latin: "E", keycode: 52 },
+	{ cyrillic: "Ю", latin: "Yu", keycode: 53 },
+	{ cyrillic: "Я", latin: "Ya", keycode: 26 },
+	{ cyrillic: "а", latin: "a", keycode: 30 },
+	{ cyrillic: "б", latin: "b", keycode: 48 },
+	{ cyrillic: "в", latin: "v", keycode: 32 },
+	{ cyrillic: "г", latin: "g", keycode: 34 },
+	{ cyrillic: "д", latin: "d", keycode: 35 },
+	{ cyrillic: "е", latin: "e", keycode: 18 },
+	{ cyrillic: "ё", latin: "yo", keycode: 41 },
+	{ cyrillic: "ж", latin: "zh", keycode: 42 },
+	{ cyrillic: "з", latin: "z", keycode: 43 },
+	{ cyrillic: "и", latin: "i", keycode: 31 },
+	{ cyrillic: "й", latin: "y", keycode: 44 },
+	{ cyrillic: "к", latin: "k", keycode: 45 },
+	{ cyrillic: "л", latin: "l", keycode: 46 },
+	{ cyrillic: "м", latin: "m", keycode: 50 },
+	{ cyrillic: "н", latin: "n", keycode: 49 },
+	{ cyrillic: "о", latin: "o", keycode: 24 },
+	{ cyrillic: "п", latin: "p", keycode: 25 },
+	{ cyrillic: "р", latin: "r", keycode: 19 },
+	{ cyrillic: "с", latin: "s", keycode: 20 },
+	{ cyrillic: "т", latin: "t", keycode: 21 },
+	{ cyrillic: "у", latin: "u", keycode: 22 },
+	{ cyrillic: "ф", latin: "f", keycode: 33 },
+	{ cyrillic: "х", latin: "kh", keycode: 23 },
+	{ cyrillic: "ц", latin: "ts", keycode: 16 },
+	{ cyrillic: "ч", latin: "ch", keycode: 36 },
+	{ cyrillic: "ш", latin: "sh", keycode: 37 },
+	{ cyrillic: "щ", latin: "shch", keycode: 38 },
+	{ cyrillic: "ъ", latin: "", keycode: 39 },
+	{ cyrillic: "ы", latin: "y", keycode: 47 },
+	{ cyrillic: "ь", latin: "", keycode: 51 },
+	{ cyrillic: "э", latin: "e", keycode: 52 },
+	{ cyrillic: "ю", latin: "yu", keycode: 53 },
+	{ cyrillic: "я", latin: "ya", keycode: 26 },
+];
+
+let text = "";
+
+function findLetter(letter) {
+	for (const pair of mapping) {
+		if (pair.latin === letter) return pair.cyrillic;
+
+		if (pair.cyrillic === letter) return pair.latin;
+	}
+
+	return letter;
+}
+
+for (let i = 0; i < selected.length; i++) {
+	text += findLetter(selected[i]);
+}
+
+cmd.notify(`Translating "${selected}" to "${text}"`);
+copy(text);
+paste();

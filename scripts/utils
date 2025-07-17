@@ -56,12 +56,23 @@ function addScript() {
   `);
 }
 
+function createNixShell() {
+	cmd.writeTo(
+		path.resolve(cmd.currentDir, "shell.nix"),
+		`{ pkgs ? import <nixpkgs> { } }:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs.buildPackages; [ ${cmd.params.slice(1) ?? ""} ];
+}`
+	);
+}
+
 const choices = {
 	"clone-repo": cloneRepo,
 	"switch-ui": swtitchUI,
 	"update-timezone": updateTimezone,
 	"add-script": addScript,
 	"path-copy": pathCopy,
+	"new-nix-shell": createNixShell,
 };
 
 const arg = cmd.parameter || cmd.fzf(Object.keys(choices));

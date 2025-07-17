@@ -4,9 +4,10 @@ import cmd from "./cmd.js";
 
 const launcher = `${cmd.dotfilesDir}/config/rofi/${cmd.parameter}/launch`;
 
-cmd.register(
-	`Usage: open-rofi <type>\nIf the rofi process is already running, it will be killed.\nIf the same type of rofi is already running, it will only be closed, otherwise it will open the new one.\n\nIt works by running ${cmd.dotfilesDir}/config/rofi/<type>/launch or the following command:\nrofi -show <type> -theme ${cmd.dotfilesDir}/config/rofi/<type>/conf.rasi`
-);
+const usage = `Usage: open-rofi <type>\nIf the rofi process is already running, it will be killed.\nIf the same type of rofi is already running, it will only be closed, otherwise it will open the new one.\n\nIt works by running ${cmd.dotfilesDir}/config/rofi/<type>/launch or the following command:\nrofi -show <type> -theme ${cmd.dotfilesDir}/config/rofi/<type>/conf.rasi`;
+cmd.register(usage);
+
+if (!cmd.parameter) cmd.print(usage).exit(1);
 
 const pid = cmd.str("pgrep -f bin/rofi");
 if (pid) {
@@ -22,6 +23,6 @@ if (pid) {
 
 cmd.run(
 	fs.existsSync(launcher)
-		? launcher
+		? `${launcher} ${cmd.params.slice(1).join(" ")}`
 		: `rofi -show ${cmd.parameter} -theme ${cmd.dotfilesDir}/config/rofi/${cmd.parameter}/conf.rasi`
 );

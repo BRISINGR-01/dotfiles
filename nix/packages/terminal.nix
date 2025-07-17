@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  trash-cli
   nushell
   yazi
   eza

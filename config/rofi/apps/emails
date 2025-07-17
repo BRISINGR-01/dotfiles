@@ -8,8 +8,8 @@ const openText = "󰇯 Open";
 const entries = [
 	["Fontys", "https://outlook.office.com/mail/", "Outlook", "aleksandar.popov@student.fontys.nl"],
 	["alexphone33@gmail.com", "https://mail.google.com/mail/u/0", "Gmail"],
-	["alexander.popov233@gmail.com", "https://mail.google.com/mail/u/1", "Gmail"],
-	["alp7569@gmail.com", "https://mail.google.com/mail/u/2", "Gmail"],
+	["alp7569@gmail.com", "https://mail.google.com/mail/u/1", "Gmail"],
+	["alexander.popov233@gmail.com", "https://mail.google.com/mail/u/2", "Gmail"],
 ];
 
 const entry = entries.find((entry) => entry[0] === cmd.parameter);

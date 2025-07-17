@@ -1,4 +1,4 @@
 #!/bin/node
 import cmd from "../../../scripts/cmd.js";
 
-cmd.run(`rofi -show drun -theme ${cmd.dotfilesDir}/config/rofi/apps/conf.rasi`);
+cmd.run(`rofi -i -show drun -theme ${cmd.dotfilesDir}/config/rofi/apps/conf.rasi`);

@@ -1,7 +1,7 @@
 #!/bin/node
 import cmd, { copy, paste } from "./cmd.js";
 
-const val = cmd.str("cliphist list | rofi -dmenu -theme ~/dotfiles/config/rofi/clipboard.rasi | cliphist decode");
+const val = cmd.str("cliphist list | rofi -i -dmenu -theme ~/dotfiles/config/rofi/clipboard.rasi | cliphist decode");
 
 if (val) {
 	copy(val);

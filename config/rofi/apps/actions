@@ -1,0 +1,19 @@
+#!/bin/node
+
+import cmd from "../../../scripts/cmd.js";
+
+const bluetoothIsOn = cmd.str("bluetoothctl show | grep Powered").includes("yes");
+
+const entries = [
+	[
+		bluetoothIsOn ? "󰂲" : "󰂯",
+		bluetoothIsOn ? "Turn bluetooth off" : "Turn bluetooth on",
+		`bluetoothctl power ${bluetoothIsOn ? "off" : "on"}`,
+	],
+];
+
+const entry = entries.find((entry) => entry[1] === cmd.params[1]);
+
+if (entry) cmd.run(entry[2]).exit();
+
+entries.forEach((entry) => console.log(`${entry[1]}\x00icon\x1f${entry[0]}`));

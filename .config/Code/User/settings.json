@@ -213,5 +213,15 @@
   "window.menuBarVisibility": "hidden",
   "workbench.startupEditor": "none",
   "window.customTitleBarVisibility": "never",
-  "window.titleBarStyle": "native"
+  "window.titleBarStyle": "native",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "rust-analyzer.inlayHints.chainingHints.enable": false,
+  "rust-analyzer.inlayHints.closingBraceHints.enable": false,
+  "rust-analyzer.inlayHints.genericParameterHints.const.enable": false,
+  "docker.extension.enableComposeLanguageServer": false,
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  }
 }

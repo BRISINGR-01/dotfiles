@@ -31,7 +31,7 @@ in {
 
   yt = "yt-dlp -x --audio-format mp3 -P ~/Desktop/Alex/Music/";
   f = "fuck";
-  r = "rm -i";
+  r = "trash-put";
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
 

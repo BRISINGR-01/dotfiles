@@ -1,9 +1,8 @@
 #!/bin/node
 
-import cmd, { KEYS } from "./cmd.js";
-
 import net from "net";
 import { env } from "process";
+import cmd, { KEYS } from "./cmd.js";
 
 const clients = {
 	editor: "code",
@@ -34,7 +33,7 @@ if (!cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `
 	socketClient.on("data", (data) => {
 		if (data.toString().includes(`special:${workspace}`)) {
 			socketClient.end();
-			const pid = cmd.spawn(clients[workspace]);
+			const pid = cmd.spawn(...clients[workspace].split(" "));
 			cmd.run(`hyprctl dispatch movetoworkspace ${workspace},pid:${pid}`).exit();
 		}
 	});

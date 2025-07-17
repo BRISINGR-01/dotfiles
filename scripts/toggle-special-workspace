@@ -13,5 +13,5 @@ const workspace = cmd
 if (workspace) {
 	cmd.set(KEYS.lastWorkspace, workspace).run(`hyprctl dispatch togglespecialworkspace "${workspace}"`);
 } else if (cmd.parameter !== "close") {
-	cmd.run(`open-special "${cmd.get(KEYS.lastWorkspace)}" g`);
+	cmd.run(`~/scripts/open-special "${cmd.get(KEYS.lastWorkspace)}" g`);
 }

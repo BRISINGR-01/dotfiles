@@ -47,7 +47,7 @@ if (cmd.parameter === "Remind") {
 	cmd.run("ffplay ~/dotfiles/assets/alarm.wav -nodisp");
 } else if (cmd.parameter) {
 	const time = parseTime(cmd.parameter);
-	cmd.notify(`Timer set for ${time}`);
+	cmd.notify(`Timer set for ${time}`).pkill("/rofi");
 
 	setTimeout(() => {
 		cmd.notify(`Timer is done`).run("ffplay ~/dotfiles/assets/alarm.wav -nodisp").run("pkill /rofi").exit();

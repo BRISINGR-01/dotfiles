@@ -1,5 +1,10 @@
 { pkgs }:
 with pkgs; [
+  asciinema
+  moreutils
+  tealdeer
+  navi
+  bluetui
   tokei
   exiftool
   nix-search-tv

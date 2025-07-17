@@ -9,6 +9,7 @@ const emojis = [
 	"😢 crying_face",
 	"🥲 smiling_face_with_tear",
 	"😮 face_with_open_mouth",
+	"😉 wink",
 	"😝 squinting_face_with_tongue",
 	"🎉 party_popper",
 	"💫 dizzy",

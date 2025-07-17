@@ -7,7 +7,6 @@ stdenv.mkDerivation {
   dontUnpack = true;
 
   installPhase = ''
-    mkdir -p /bin/s
-    ln -s ~/dotfiles/scripts /bin/s
+    ln -s /home/alex/files/hyprland-crashes /home/alex/.cache/hyprland
   '';
 }

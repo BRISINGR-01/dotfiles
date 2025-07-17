@@ -1,7 +1,7 @@
 { pkgs }:
 
 with pkgs; [
-  clippy
+  postman
   python312Packages.invoke
   poedit
   gnumake

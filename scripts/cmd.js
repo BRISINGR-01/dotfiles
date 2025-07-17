@@ -7,7 +7,7 @@ import readline from "readline-sync";
 const DATA_FILE = path.resolve("/home", process.env.USER, "user-data.json");
 
 function checkDataFile() {
-	if (!fs.existsSync(DATA_FILE)) {
+	if (!fs.existsSync(DATA_FILE) || !fs.statSync(DATA_FILE).size) {
 		fs.writeFileSync(DATA_FILE, "{}");
 	}
 }
@@ -44,11 +44,10 @@ const cmd = {
 				detached: true, // Runs independently
 				stdio: "ignore", // Prevents Node from waiting for output
 			});
-
 			process.unref();
 			return process.pid;
 		} catch (e) {
-			console.log(e);
+			spawn("notify-send", "-e", e.message);
 		}
 	},
 	spawnSync(command) {
@@ -188,9 +187,16 @@ const cmd = {
 
 		return this;
 	},
-	get(key) {
+	get(key, defaultVal) {
 		checkDataFile();
-		return JSON.parse(this.read(DATA_FILE))[key];
+		const result = JSON.parse(this.read(DATA_FILE))[key];
+
+		if (result === undefined) {
+			this.set(key, defaultVal);
+			return defaultVal;
+		}
+
+		return result;
 	},
 };
 

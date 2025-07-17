@@ -2,47 +2,67 @@
 
 import fs from "fs";
 import cmd from "../../../scripts/cmd.js";
+const HISTORY_KEY = "rofi:history:websites";
 
+const history = cmd.get(HISTORY_KEY, {});
 const entries = [
-	["NixOS", "https://search.nixos.org/packages", "https://search.nixos.org/favicon.png"],
-	["My Course", "https://fhict.instructure.com/courses/13860/modules"],
-	["Stat + DETH", "https://fhict.instructure.com/courses/14422/modules"],
-	["FP + Sync + ALG", "https://fhict.instructure.com/courses/14424/modules"],
-	["Canvas", "https://fhict.instructure.com/courses"],
-	["Nerdfont", "https://www.nerdfonts.com/cheat-sheet", "https://www.nerdfonts.com/cheat-sheet/assets/img/favicon.ico"],
-	["Teams", "https://teams.microsoft.com/v2/"],
-	["ChatGPT", "https://chatgpt.com", "https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"],
-	["GitHub", "https://github.com/BRISINGR-01"],
-	["Netflix", "https://www.netflix.com/browse"],
-	["Discord", "https://discord.com/channels/@me", "https://discord.com/assets/favicon.ico"],
-	["Messenger", "https://www.messenger.com/", "https://static.xx.fbcdn.net/rsrc.php/yO/r/qa11ER6rke_.ico"],
-	["Instagram", "https://www.instagram.com/"],
-	["Youtube", "https://www.youtube.com/"],
-	["Whatsapp", "https://web.whatsapp.com/"],
-	["Translate", "https://translate.google.com/"],
-	["Maps", "https://www.google.com/maps", "https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico"],
-	[
-		"Home manager",
-		"https://home-manager-options.extranix.com/",
-		"https://home-manager-options.extranix.com/images/favicon.png",
-	],
-	// ["", ""],
+	{ display: "NixOS", url: "https://search.nixos.org/packages", icon: "https://search.nixos.org/favicon.png" },
+	{ display: "My Course", url: "https://fhict.instructure.com/courses/13860/modules" },
+	{ display: "Stat + DETH", url: "https://fhict.instructure.com/courses/14422/modules" },
+	{ display: "FP + Sync + ALG", url: "https://fhict.instructure.com/courses/14424/modules" },
+	{ display: "Canvas", url: "https://fhict.instructure.com/courses" },
+	{ display: "Fontys Calendar", url: "https://www.fontys.nl/en/Download-4/Holiday-calendar-24-25.htm" },
+	{
+		display: "Nerdfont",
+		url: "https://www.nerdfonts.com/cheat-sheet",
+		icon: "https://www.nerdfonts.com/cheat-sheet/assets/img/favicon.ico",
+	},
+	{ display: "Teams", url: "https://teams.microsoft.com/v2/" },
+	{ display: "ChatGPT", url: "https://chatgpt.com", icon: "https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico" },
+	{ display: "GitHub", url: "https://github.com/BRISINGR-01" },
+	{ display: "Netflix", url: "https://www.netflix.com/browse" },
+	{ display: "Discord", url: "https://discord.com/channels/@me", icon: "https://discord.com/assets/favicon.ico" },
+	{
+		display: "Messenger",
+		url: "https://www.messenger.com/",
+		icon: "https://static.xx.fbcdn.net/rsrc.php/yO/r/qa11ER6rke_.ico",
+	},
+	{ display: "Instagram", url: "https://www.instagram.com/" },
+	{ display: "Youtube", url: "https://www.youtube.com/" },
+	{ display: "Whatsapp", url: "https://web.whatsapp.com/" },
+	{ display: "Translate", url: "https://translate.google.com/" },
+	{
+		display: "Maps",
+		url: "https://www.google.com/maps",
+		icon: "https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico",
+	},
+	{
+		display: "Home manager",
+		url: "https://home-manager-options.extranix.com/",
+		icon: "https://home-manager-options.extranix.com/images/favicon.png",
+	},
 ];
-
-const entry = entries.find((entry) => entry[0] === cmd.params[0]);
+entries.sort((a, b) => (history[b.display] ?? 0) - (history[a.display] ?? 0));
+const entry = entries.find((entry) => entry.display === cmd.parameter);
 
 if (entry) {
-	cmd.run(`brave ${entry[1]}`);
-	cmd.exit();
+	cmd.run(`brave ${entry.url}`);
+	if (entry.display in history) {
+		history[entry.display] += 1;
+	} else {
+		history[entry.display] = 1;
+	}
+	cmd.set(HISTORY_KEY, history).exit();
 }
 
+/** @param app {{ display: string, url: string, icon?: string }} */
 function getDesktopIcon(app) {
-	const desktopFile = `${cmd.dotfilesDir}/config/rofi/icons/${app[0]}.ico`;
+	const desktopFile = `${cmd.dotfilesDir}/config/rofi/icons/${app.display}.ico`;
 	if (!fs.existsSync(desktopFile)) {
-		cmd.run(`curl -sL "${app[2] ?? `${app[1].split(/(?<=\w)\/\w/)[0]}/favicon.ico`}" --output "${desktopFile}"`);
+		cmd.run(`curl -sL "${app.icon ?? `${app.url.split(/(?<=\w)\/\w/)[0]}/favicon.ico`}" --output "${desktopFile}"`);
 	}
 
 	return desktopFile;
 }
 
-entries.forEach((entry) => console.log(`${entry[0]}\x00icon\x1f${getDesktopIcon(entry)}`));
+entries.forEach((entry) => console.log(`${entry.display}\x00icon\x1f${getDesktopIcon(entry)}`));

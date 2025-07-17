@@ -1,0 +1,63 @@
+#!/bin/node
+import cmd, { copy, paste } from "../../../scripts/cmd.js";
+
+const characters = [
+	"ä",
+	"ö",
+	"ü",
+	"ő",
+	"ű",
+	"ß",
+	"é",
+	"è",
+	"ê",
+	"ë",
+	"à",
+	"á",
+	"â",
+	"ã",
+	"ç",
+	"î",
+	"ï",
+	"ô",
+	"ù",
+	"ú",
+	"û",
+].join("\n");
+
+const capitalCharacters = [
+	"Ä",
+	"Ö",
+	"Ü",
+	"Ő",
+	"Ű",
+	"É",
+	"È",
+	"Ê",
+	"Ë",
+	"À",
+	"Á",
+	"Â",
+	"Ã",
+	"Ç",
+	"Î",
+	"Ï",
+	"Ô",
+	"Ù",
+	"Ú",
+	"Û",
+].join("\n");
+
+if (cmd.parameter == "upper" || cmd.parameter == "lower") {
+	const ch = cmd.str(
+		`echo "${
+			cmd.parameter == "upper" ? capitalCharacters : characters
+		}" | rofi -dmenu -p "Select character" -theme ~/dotfiles/config/rofi/characters/conf.rasi`
+	);
+
+	if (!ch) cmd.exit();
+
+	copy(ch);
+	paste();
+	cmd.exit();
+}
