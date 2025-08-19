@@ -13,7 +13,6 @@ with pkgs; [
   stow
   tree
   moc
-  thefuck
   links2
   cava
   yt-dlp

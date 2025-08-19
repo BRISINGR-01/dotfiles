@@ -46,7 +46,6 @@ in {
       shellAliases = aliases;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
-        thefuck --alias | source
         tv init fish | source
         zoxide init fish | source
         function y

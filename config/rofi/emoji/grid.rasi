@@ -1,5 +1,12 @@
 @import                          "~/dotfiles/config/rofi/shared/constants.rasi"
 
+// configuration {
+// 	modi:                       "emoji:~/dotfiles/config/rofi/emoji/script";
+//     show-icons:                 false;
+//     display-dirs:               "󰞅  Emojis";
+// 	drun-display-format:        "{name}";
+// 	window-format:              "{w} {c} | {t}";
+// }
 
 * {
     text-color:                  @white;
@@ -7,10 +14,9 @@
 
 window {
     transparency:                "real";
-    location:                    east;
+    location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       350px;
     x-offset:                    -6;
     y-offset:                    0px;
 
@@ -50,7 +56,6 @@ prompt {
     enabled:                     true;
     background-color:            inherit;
 }
-
 textbox-prompt-colon {
     enabled:                     true;
     padding:                     5px 0px;
@@ -58,7 +63,6 @@ textbox-prompt-colon {
     str:                         "󰞅 ";
     background-color:            inherit;
 }
-
 entry {
     enabled:                     true;
     padding:                     5px 0px;
@@ -91,7 +95,7 @@ case-indicator {
 
 listview {
     enabled:                     true;
-    columns:                     1;
+    columns:                     10;
     lines:                       10;
     cycle:                       true;
     dynamic:                     true;

@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  iwgtk
   xournalpp
   beeper
   brave
@@ -23,5 +24,4 @@ with pkgs; [
   blueman
   pavucontrol
   libreoffice
-  ferdium
 ]

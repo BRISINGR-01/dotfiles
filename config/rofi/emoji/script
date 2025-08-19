@@ -5,6 +5,7 @@ const emojis = [
 	"🤣 rolling_on_the_floor_laughing",
 	"😆 grinning_squinting_face",
 	"😂 face_with_tears_of_joy",
+	"🥺 face_with_pleading_eyes",
 	"👍️ thumbs_up",
 	"😢 crying_face",
 	"🥲 smiling_face_with_tear",
@@ -25,7 +26,8 @@ const emojis = [
 	"😴 sleeping_face",
 ];
 
-if (emojis.includes(cmd.parameter)) {
+console.log(cmd.params, "1");
+if (cmd.parameter) {
 	copy(cmd.parameter.split(" ")[0]); // no idea why, but this has to use `spawn` instead of `run`
 	paste();
 	cmd.exit();

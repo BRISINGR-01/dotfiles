@@ -34,6 +34,7 @@ in {
   r = "trash-put";
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
+  i = "~/dotfiles/scripts/install";
 
   snvim = "sudo -E -s nvim";
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
@@ -55,4 +56,6 @@ in {
   "+x" = "chmod +x";
   t =
     "tmux capture-pane -S -1000 && tmux show-buffer | sed -e '/❯ */d' -e '/^t$/d' -e '/^$/d' -e '/^ ~ 󰮺$/d'| nvim +";
+  trash-tui =
+    "/home/alex/Desktop/VSC/trash-tui/target/x86_64-unknown-linux-gnu/debug/trash-tui";
 }

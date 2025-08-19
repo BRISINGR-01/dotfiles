@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  rofimoji
   gimp
   swaybg
   ydotool
