@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  openvpn
   gobuster
   burpsuite
   wireshark

@@ -9,7 +9,6 @@ with pkgs; [
   zoxide
   babelfish
   fish
-  television
   fzf
   starship
   ghostty

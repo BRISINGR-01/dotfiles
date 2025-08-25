@@ -1,5 +1,7 @@
 { pkgs }:
 with pkgs; [
+  ripgrep
+  television
   asciinema
   moreutils
   tealdeer
@@ -12,7 +14,6 @@ with pkgs; [
   at
   stow
   tree
-  moc
   links2
   cava
   yt-dlp

@@ -182,10 +182,10 @@ textbox {
     blink:                       true;
     markup:                      true;
 }
-error-message {
-    padding:                     10px;
+
+message {
     border:                      2px solid;
-    border-radius:               @border-radius;
-    border-color:                @border-color;
+    border-radius:               0;
+    border-color:                @light-blue;
     background-color:            @dark;
 }

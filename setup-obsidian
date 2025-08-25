@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls ~/dotfiles/.obsidian/ | sed ' ' | xargs  -I {} ln -s ~/dotfiles/.obsidian/{}

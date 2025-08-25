@@ -224,5 +224,6 @@
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-containers"
   },
-  "vim.useCtrlKeys": false
+  "vim.useCtrlKeys": false,
+  "extensions.ignoreRecommendations": true
 }
