@@ -1,21 +1,35 @@
-#!/bin/bash
+#!/bin/node
 
-# Set the directory where wallpapers are stored
-WALLPAPER_DIR="$HOME/dotfiles/assets/hypr"
+import fs from "fs";
+import path from "path";
+import cmd from "./cmd.js";
 
-# Check if the directory exists
-if [ ! -d "$WALLPAPER_DIR" ]; then
-  echo "Error: Wallpaper directory does not exist: $WALLPAPER_DIR"
-  exit 1
-fi
+const WALLPAPER_DIR = path.join(cmd.dotfilesDir, "assets", "hypr");
 
-# Find all image files and choose one randomly
-RANDOM_WALLPAPER=$(find "$WALLPAPER_DIR" -type f \( -iname '*.jpg' -o -iname '*.png' -o -iname '*.jpeg' -o -iname '*.webp' \) | shuf -n 1)
+if (!fs.existsSync(WALLPAPER_DIR)) {
+	cmd.error(`Error: Wallpaper directory does not exist: ${WALLPAPER_DIR}`).exit(1);
+}
 
-# Check if a file was found
-if [ -z "$RANDOM_WALLPAPER" ]; then
-  echo "Error: No wallpapers found in $WALLPAPER_DIR"
-  exit 1
-fi
+const wallpapers = fs.readdirSync(WALLPAPER_DIR);
+const wallpaper = path.join(
+	cmd.dotfilesDir,
+	"assets",
+	"hypr",
+	wallpapers[Math.round(Math.random() * (wallpapers.length - 1))]
+);
 
-swaybg -i $RANDOM_WALLPAPER -m fill
+if (!fs.existsSync(wallpaper)) {
+	cmd.error(`Error: No wallpapers found in: ${WALLPAPER_DIR}`).exit(1);
+}
+
+const waybarCSSPath = path.join(cmd.dotfilesDir, ".config", "waybar", "style.css");
+const waybarCSS = cmd.read(waybarCSSPath).split("\n");
+const bgLineIndex = waybarCSS.findIndex((line) => line.includes("scripts/set-wallpaper"));
+if (wallpaper.endsWith("/view-rock-formations-with-nature-landscape.jpg")) {
+	waybarCSS[bgLineIndex] = waybarCSS[bgLineIndex].replace(/alpha\(.*\)/, "alpha(#000000, 0.2)");
+} else {
+	waybarCSS[bgLineIndex] = waybarCSS[bgLineIndex].replace(/alpha\(.*\)/, "alpha(#000000, 0)");
+}
+cmd.writeTo(waybarCSSPath, waybarCSS.join("\n"));
+
+cmd.run(`swaybg -i "${wallpaper}" -m fill`);

@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  hexedit
   trash-cli
   nushell
   yazi

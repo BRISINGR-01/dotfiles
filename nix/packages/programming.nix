@@ -1,6 +1,10 @@
 { pkgs }:
 
 with pkgs; [
+  ninja
+  pkg-config
+  cmake
+  flutter332
   postgresql
   sqlite
   vscode-extensions.rust-lang.rust-analyzer
@@ -10,13 +14,12 @@ with pkgs; [
   rustc
   android-tools
   android-studio
-  flutter
   code-cursor
   git
   nodejs_22
   yarn
   go
-  gcc
+  clang
   python3
   poetry
   bun

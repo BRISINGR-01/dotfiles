@@ -15,16 +15,8 @@ in {
     alex = {
       isNormalUser = true;
       description = "Alex";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "docker"
-        "ydotool"
-        "libvirtd"
-        "kvm"
-        "wireshark"
-        "atd"
-      ];
+      extraGroups =
+        [ "networkmanager" "wheel" "docker" "ydotool" "wireshark" "atd" ];
     };
   };
 

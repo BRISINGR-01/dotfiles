@@ -13,3 +13,4 @@ node_modules
 ags/types
 agsout
 config/rofi/icons
+.obsidian/plugins

@@ -5,8 +5,7 @@
 window#waybar {
 	all: unset;
 	margin: 10px;
-	border-radius: 10px;
-	background-color: alpha(#000000, 0);
+	background-color: alpha(#000000, 0.2); /* edited by scripts/set-wallpaper */
 	/* border-bottom: rgba(51, 204, 255, 0.657) 1px solid; */
 }
 

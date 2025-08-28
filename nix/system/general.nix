@@ -6,10 +6,7 @@
   nix.settings.download-buffer-size = 200;
 
   programs = {
-    yazi = {
-      enable = true;
-      # plugins = [ "full-border" ];
-    };
+    yazi = { enable = true; };
     # java = {
     #   enable = true;
     #   package = (pkgs.jdk21.override { enableJavaFX = true; });
@@ -68,26 +65,6 @@
   '';
 
   environment.pathsToLink = [ "/bin" ];
-
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [
-          (pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          }).fd
-        ];
-      };
-    };
-  };
-  users.groups.libvirtd.members = [ "alex" ];
-  virtualisation.spiceUSBRedirection.enable = true;
   nixpkgs.config.android_sdk.accept_license = true;
 }
 

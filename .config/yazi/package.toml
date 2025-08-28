@@ -3,5 +3,20 @@ use = "yazi-rs/plugins:git"
 rev = "d7588f6"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "d7588f6"
+hash = "47865a70cade14a0b9b6bc6a54f16bdb"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "d7588f6"
+hash = "e1de3054c0d1a2d8dc6f007eadc0fa31"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "c264639"
+hash = "e17c11b605d989568a1d1741ca17c584"
+
 [flavor]
 deps = []

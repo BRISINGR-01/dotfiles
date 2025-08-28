@@ -46,7 +46,8 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+        command =
+          "${pkgs.tuigreet}/bin/tuigreet -r --time --cmd Hyprland --asterisks-char ࿋";
       };
       GTK.application_prefer_dark_theme = true;
     };
