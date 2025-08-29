@@ -38,5 +38,12 @@ function fish_prompt
     end
 
     set -l cwd "$green$cwd"
-    echo -n -s ' ' $cwd ' ' $arrow $normal
+
+
+    if test -n "$IN_NIX_SHELL"
+      set nix "(nix) "
+      set nix "$blue$nix"
+    end
+
+    echo -ns $cwd ' ' $nix $arrow $normal
 end

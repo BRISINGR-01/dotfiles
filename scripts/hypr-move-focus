@@ -6,7 +6,7 @@ const dir = cmd.parameter;
 
 function move() {
 	if (dir === "r" || dir === "l") {
-		cmd.run(`~/dotfiles/scripts/change-workspace ${dir === "r" ? "next" : "prev"}`);
+		cmd.run(`${cmd.dotfilesDir}/scripts/change-workspace ${dir === "r" ? "next" : "prev"}`);
 	} else {
 		cmd.run(`hyprctl dispatch focusmonitor ${dir === "u" ? "+1" : "-1"}`);
 	}
@@ -25,7 +25,7 @@ if (!currWindow.pid) {
 if (prevWindow.pid !== currWindow.pid || prevWindow.title !== currWindow.title) cmd.exit();
 
 if (currWindow.workspace.name.startsWith("special")) {
-	cmd.run(`~/dotfiles/scripts/close-special-workspace.sh`);
+	cmd.run(`${cmd.dotfilesDir}/scripts/toggle-special-workspace`);
 	cmd.exit();
 }
 

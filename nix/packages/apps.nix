@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  gnome-disk-utility
   iwgtk
   xournalpp
   beeper

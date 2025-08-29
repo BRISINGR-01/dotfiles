@@ -8,6 +8,17 @@ in {
       enable = true;
       useBabelfish = true;
       shellAliases = aliases;
+      interactiveShellInit = ''
+        function y
+          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+          yazi $argv --cwd-file="$tmp"
+          if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            builtin cd -- "$cwd"
+          end
+          rm -f -- "$tmp"
+        end
+        set fish_cursor_insert block
+      '';
     };
     bash = {
       completion.enable = true;
@@ -17,7 +28,6 @@ in {
           shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
           exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
         fi
-        export GTK_THEME=Adwaita-dark
       '';
       shellAliases = aliases;
     };

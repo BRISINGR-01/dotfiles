@@ -40,9 +40,8 @@ in {
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
   nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
 
-  hist = "eval (tv fish-history)";
-  envf = "tv env | c";
-  envd = "env | grep (tv env) | cut -d '=' -f2-";
+  envn = "set a (env | grep (tv env) | cut -d '=' -f1);commandline $a";
+  envv = "set a (env | grep (tv env) | cut -d '=' -f2-);commandline $a";
   pathf = "echo $PATH | tr ' ' '\\n' | tv";
 
   rnix = "nixos-rebuild switch";

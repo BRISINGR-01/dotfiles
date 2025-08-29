@@ -1,5 +1,6 @@
 { pkgs }:
 with pkgs; [
+  parted
   ripgrep
   television
   asciinema
