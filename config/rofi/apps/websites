@@ -32,6 +32,10 @@ const entries = [
 	{ display: "Whatsapp", url: "https://web.whatsapp.com/" },
 	{ display: "Translate", url: "https://translate.google.com/" },
 	{
+		display: "Violin music",
+		url: "https://www.youtube.com/watch?v=iceS6BvhuQ8&list=RDiceS6BvhuQ8&start_radio=1&t=778s&ab_channel=EpicMusicWorld",
+	},
+	{
 		display: "Maps",
 		url: "https://www.google.com/maps",
 		icon: "https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico",
@@ -41,6 +45,13 @@ const entries = [
 		url: "https://home-manager-options.extranix.com/",
 		icon: "https://home-manager-options.extranix.com/images/favicon.png",
 	},
+	{ display: "Circuits", url: "file:///home/alex/Desktop/Tue/circuits/Basic-Engineering-Circuit-Analysis.pdf" },
+	{ display: "Calculus", url: "file:///home/alex/Desktop/Tue/calculus/Calculus - A Complete Course 10th edition.pdf" },
+	{
+		display: "Probability",
+		url: "file:///home/alex/Desktop/Tue/calculus/Douglas C. Montgomery, George C. Runger - Applied Statistics and Probability for Engineers-Wiley (2018).pdf",
+	},
+	{ display: "LST", url: "file:///home/alex/Desktop/Tue/LST/logical-reasoning-a-first-course_compress.pdf" },
 ];
 entries.sort((a, b) => (history[b.display] ?? 0) - (history[a.display] ?? 0));
 const entry = entries.find((entry) => entry.display === cmd.parameter);

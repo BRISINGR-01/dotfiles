@@ -1,4 +1,9 @@
 [[mgr.prepend_keymap]]
+on   = [ "g", "/" ]
+run  = "cd /"
+desc = "Go to \"/\""
+
+[[mgr.prepend_keymap]]
 on   = "<C-d>"
 run  = "plugin diff"
 desc = "Diff the selected with the hovered file"

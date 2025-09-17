@@ -2,5 +2,5 @@
 
 {
   # Managed by a script
-time.timeZone = "Europe/Sofia";
+time.timeZone = "Europe/Amsterdam";
 }

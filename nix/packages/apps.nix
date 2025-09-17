@@ -1,8 +1,9 @@
 { pkgs }:
 
 with pkgs; [
-  gnome-disk-utility
   iwgtk
+  localsend
+  gnome-disk-utility
   xournalpp
   beeper
   brave

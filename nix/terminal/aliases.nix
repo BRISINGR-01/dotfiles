@@ -40,8 +40,8 @@ in {
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
   nvlazy = "exec env NVIM_APPNAME=nvim.lazy nvim";
 
-  envn = "set a (env | grep (tv env) | cut -d '=' -f1);commandline $a";
-  envv = "set a (env | grep (tv env) | cut -d '=' -f2-);commandline $a";
+  envn = "set tmp (env | grep (tv env) | cut -d '=' -f1);commandline $tmp";
+  envv = "set tmp (env | grep (tv env) | cut -d '=' -f2-);commandline $tmp";
   pathf = "echo $PATH | tr ' ' '\\n' | tv";
 
   rnix = "nixos-rebuild switch";
@@ -54,7 +54,7 @@ in {
   deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
   "+x" = "chmod +x";
   t =
-    "tmux capture-pane -S -1000 && tmux show-buffer | sed -e '/❯ */d' -e '/^t$/d' -e '/^$/d' -e '/^ ~ 󰮺$/d'| nvim +";
+    "set tmp = (tmux capture-pane -S -1000 && tmux show-buffer | sed -e '/❯ */d' -e '/^t$/d' -e '/^$/d' -e '/^ ~ 󰮺$/d') | vipe; commandline $tmp";
   trash-tui =
-    "/home/alex/Desktop/VSC/trash-tui/target/x86_64-unknown-linux-gnu/debug/trash-tui";
+    "~/Desktop/VSC/trash-tui/target/x86_64-unknown-linux-gnu/debug/trash-tui";
 }
