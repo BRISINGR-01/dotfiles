@@ -19,7 +19,12 @@ in {
   ];
 
   home = {
-    sessionPath = [ "${home}/dotfiles/scripts" "${home}/flutter/bin" ];
+    sessionPath = [
+      "${home}/dotfiles/scripts"
+      "${home}/flutter/bin"
+      "${home}/bin"
+      "${home}/alex/.cargo/bin"
+    ];
     username = "alex";
     sessionVariables = {
       HYPRCURSOR_SIZE = "24";

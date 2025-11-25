@@ -1,5 +1,5 @@
 #!/bin/node
-import cmd, { copy, paste } from "../../../scripts/cmd.js";
+import cmd from "../../../scripts/cmd.js";
 
 const emojis = [
 	"🤣 rolling_on_the_floor_laughing",
@@ -28,8 +28,8 @@ const emojis = [
 
 console.log(cmd.params, "1");
 if (cmd.parameter) {
-	copy(cmd.parameter.split(" ")[0]); // no idea why, but this has to use `spawn` instead of `run`
-	paste();
+	cmd.copy(cmd.parameter.split(" ")[0]); // no idea why, but this has to use `spawn` instead of `run`
+	cmd.paste();
 	cmd.exit();
 }
 

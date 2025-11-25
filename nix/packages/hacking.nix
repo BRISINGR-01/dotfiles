@@ -1,10 +1,11 @@
 { pkgs }:
 
 with pkgs; [
+  net-tools
+  tcpdump
   openvpn
   gobuster
   burpsuite
-  wireshark
   arp-scan
   linuxHeaders
   nmap

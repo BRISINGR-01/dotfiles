@@ -1,0 +1,34 @@
+#!/bin/node
+import fs from "fs";
+import mode from "stat-mode";
+import cmd from "./cmd.js";
+
+if (process.getuid() !== 0) cmd.error("Not running with root").exit(1);
+
+const files = ["ttyUSB0", "ttyACM0"];
+
+const path = (f) => `/dev/${f}`;
+
+function unlock(f) {
+	fs.chmod(path(f), 0o777, (err) => {
+		if (err) {
+			cmd.error(err);
+		} else {
+			cmd.print("unlocked");
+		}
+	});
+}
+
+function shouldUnlock(f) {
+	return fs.existsSync(path(f)) && !new mode.Mode(fs.statSync(path(f)).mode).others.write;
+}
+
+fs.watch("/dev").on("change", (e, f) => {
+	if (e === "change" && files.includes(f) && shouldUnlock(f)) {
+		unlock(f);
+	}
+});
+
+for (const f of files) {
+	if (shouldUnlock(f)) unlock(f);
+}

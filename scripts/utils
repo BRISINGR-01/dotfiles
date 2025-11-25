@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import cmd, { copy } from "./cmd.js";
+import cmd from "./cmd.js";
 
 function cloneRepo() {
 	const repo = cmd.str("gh repo list --json name | jq .[].name | fzf").replace(/\"/g, "");
@@ -43,7 +43,7 @@ function pathCopy() {
 
 	if (!fs.existsSync(p)) cmd.error(`"${p}" does not exist`).exit(1);
 
-	copy(cmd.str(`realpath "${p}"`));
+	cmd.copy(cmd.str(`realpath "${p}"`));
 }
 
 function addScript() {

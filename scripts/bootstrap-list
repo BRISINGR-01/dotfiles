@@ -1,0 +1,23 @@
+#!/bin/node
+
+import path from "path";
+import cmd from "./cmd.js";
+
+const data = cmd.read(path.resolve("node_modules", "bootstrap", "dist", "css", "bootstrap.css")).split("\n");
+
+for (let i = 0; i < data.length; i++) {
+	let row = data[i].trim();
+	if (row[0] === ".") {
+		data[i] = row.split(" ")[0].replace(/\./, "");
+	} else {
+		data.splice(i, 1);
+		i--;
+	}
+}
+
+const res = cmd.fzf(data);
+
+if (res) {
+	cmd.copy(res);
+	cmd.print(res);
+}

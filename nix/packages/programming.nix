@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  qalculate-gtk
   ninja
   pkg-config
   cmake

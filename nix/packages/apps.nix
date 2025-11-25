@@ -1,8 +1,10 @@
 { pkgs }:
 
 with pkgs; [
+  wl-color-picker
+  mpv
+  wireshark
   iwgtk
-  localsend
   gnome-disk-utility
   xournalpp
   beeper
@@ -15,7 +17,6 @@ with pkgs; [
   firefox
   docker
   vscode
-  minecraft
   prismlauncher
   authenticator
   wlogout

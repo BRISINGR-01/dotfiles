@@ -1,6 +1,8 @@
 { pkgs }:
 
 with pkgs; [
+  mediainfo
+  file
   hexedit
   trash-cli
   nushell
@@ -16,4 +18,6 @@ with pkgs; [
   tmux
   tmuxinator
   unzip
+  unp
+  rar
 ]

@@ -1,9 +1,9 @@
 #!/bin/node
-import cmd, { copy, paste } from "./cmd.js";
+import cmd from "./cmd.js";
 
 const val = cmd.str("cliphist list | rofi -i -dmenu -theme ~/dotfiles/config/rofi/clipboard.rasi | cliphist decode");
 
 if (val) {
-	copy(val);
-	paste();
+	cmd.copy(val);
+	cmd.paste();
 }

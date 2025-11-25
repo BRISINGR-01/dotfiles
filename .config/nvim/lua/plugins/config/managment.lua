@@ -1,31 +1,44 @@
 return {
-  {
-    'charludo/projectmgr.nvim',
-    lazy = false, -- important!
-  },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    lazy = false, -- specify lazy = false because some lazy.nvim distributions set lazy = true by default
-    -- tag = "*",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("neorg").setup {
-        load = {
-	  ["core.integrations.treesitter"] = {},
-	  ["core.export.markdown"] = {},
-	  ["core.export"] = {},
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = "~/notes",
-              },
-            },
-          },
-        },
-      }
-    end,
-  }
+
+	{
+		"coffebar/neovim-project",
+		lazy = false,
+		priority = 100,
+		init = function()
+			-- enable saving the state of plugins in the session
+			vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+		end,
+
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+			-- optional picker
+			{ "nvim-telescope/telescope.nvim", tag = "0.1.4" },
+			-- optional picker
+			{ "ibhagwan/fzf-lua" },
+			-- optional picker
+			{ "folke/snacks.nvim" },
+			{ "Shatur/neovim-session-manager" },
+		},
+		opts = {
+			projects = { -- define project roots
+				"~/dotfiles",
+				"~/dotfiles/.config/nvim",
+				"~/Desktop/VSC/*",
+				"~/Desktop/VSC/test/*",
+			},
+
+		},
+		keys = {
+			{
+				"<leader>p",
+				"<cmd>NeovimProjectHistory<cr>",
+				desc = "Open projects history",
+			},
+			{
+				"<leader>P",
+				"<cmd>NeovimProjectDiscover<cr>",
+				desc = "List all projects",
+			},
+		}
+	},
 }

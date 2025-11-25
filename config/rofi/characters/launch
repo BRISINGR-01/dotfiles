@@ -1,5 +1,5 @@
 #!/bin/node
-import cmd, { copy, paste } from "../../../scripts/cmd.js";
+import cmd from "../../../scripts/cmd.js";
 
 const characters = ["ó", "ö", "ő", "ü", "ű", "ú", "é", "ë", "í", "á", "ä", "ß", "ç", "ɶ"].join("\n");
 
@@ -18,7 +18,7 @@ if (cmd.parameter == "upper" || cmd.parameter == "lower") {
 
 	if (!ch) cmd.exit();
 
-	copy(ch);
-	paste();
+	cmd.copy(ch);
+	cmd.paste();
 	cmd.exit();
 }

@@ -45,19 +45,21 @@ const entries = [
 		url: "https://home-manager-options.extranix.com/",
 		icon: "https://home-manager-options.extranix.com/images/favicon.png",
 	},
-	{ display: "Circuits", url: "file:///home/alex/Desktop/Tue/circuits/Basic-Engineering-Circuit-Analysis.pdf" },
-	{ display: "Calculus", url: "file:///home/alex/Desktop/Tue/calculus/Calculus - A Complete Course 10th edition.pdf" },
 	{
-		display: "Probability",
-		url: "file:///home/alex/Desktop/Tue/calculus/Douglas C. Montgomery, George C. Runger - Applied Statistics and Probability for Engineers-Wiley (2018).pdf",
+		display: "Figma",
+		url: "https://www.figma.com/design/GOKfkipG4aUv2PRvTtjymE/Untitled?node-id=35-86&t=uKpLqUb6RlC5Fa1Q-0",
 	},
-	{ display: "LST", url: "file:///home/alex/Desktop/Tue/LST/logical-reasoning-a-first-course_compress.pdf" },
+	{
+		display: "Linear Algebra",
+		url: "https://studylib.net/viewer_next/web/study?file=%2F%2Fs2p.studylib.net%2Fstore%2Fdata%2F027601453.pdf%3Fk%3DAwAAAZpvzvvTAAACWB_JX4sdSNtxu2q2YWbmrvOPi-P-&img=%2F%2Fs2.studylib.net%2Fstore%2Fdata%2F027601453_1-3314fe7d79625e03e8e9f8a85b6d21bc.png&trustedSource=false&disableAutoFetch=true&disableStream=true",
+	},
+	{ display: "Calculus", url: "file:///home/alex/Desktop/Tue/calculus/Calculus - A Complete Course 10th edition.pdf" },
 ];
 entries.sort((a, b) => (history[b.display] ?? 0) - (history[a.display] ?? 0));
 const entry = entries.find((entry) => entry.display === cmd.parameter);
 
 if (entry) {
-	cmd.run(`brave ${entry.url}`);
+	cmd.run(`brave "${entry.url}"`);
 	if (entry.display in history) {
 		history[entry.display] += 1;
 	} else {

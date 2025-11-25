@@ -1,12 +1,13 @@
 { pkgs }:
 
 with pkgs; [
+  playerctl
+  cava
   rofimoji
   gimp
   swaybg
   ydotool
   cmatrix
-  rofi-wayland
   upower
   hyprcursor
   ags

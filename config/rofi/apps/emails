@@ -1,12 +1,13 @@
 #!/bin/node
 
-import cmd, { copy, KEYS, paste } from "../../../scripts/cmd.js";
+import cmd, { KEYS } from "../../../scripts/cmd.js";
 
 const copyText = " Copy";
 const openText = "󰇯 Open";
 
 const entries = [
 	["Fontys", "https://outlook.office.com/mail/", "Outlook", "aleksandar.popov@student.fontys.nl"],
+	["Tue", "https://outlook.office.com/mail/", "Outlook", "a.l.popov@student.tue.nl"],
 	["alexphone33@gmail.com", "https://mail.google.com/mail/u/0", "Gmail"],
 	["alp7569@gmail.com", "https://mail.google.com/mail/u/1", "Gmail"],
 	["alexander.popov233@gmail.com", "https://mail.google.com/mail/u/2", "Gmail"],
@@ -24,8 +25,8 @@ if (cmd.parameter) {
 		case copyText:
 			let email = entries.find((entry) => entry[1] === address)[0];
 			if (email === "Fontys") email = entries[0][3];
-			copy(email);
-			paste();
+			cmd.copy(email);
+			cmd.paste();
 			break;
 		case openText:
 			cmd.run(`xdg-open "${address}"`);

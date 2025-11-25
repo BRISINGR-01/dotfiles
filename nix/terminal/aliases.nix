@@ -35,6 +35,8 @@ in {
   rr = "rm -ir";
   mocp = "mocp -T nightly_theme";
   i = "~/dotfiles/scripts/install";
+  s = "sudo -Es";
+  p = "echo $PATH | tr ' ' '\\n' | tv";
 
   snvim = "sudo -E -s nvim";
   nvchad = "exec env NVIM_APPNAME=nvim.nvchad nvim";
@@ -54,7 +56,7 @@ in {
   deepseek = "ollama serve & ollama run deepseek-r1:1.5b";
   "+x" = "chmod +x";
   t =
-    "set tmp = (tmux capture-pane -S -1000 && tmux show-buffer | sed -e '/❯ */d' -e '/^t$/d' -e '/^$/d' -e '/^ ~ 󰮺$/d') | vipe; commandline $tmp";
+    "set tmp = (tmux capture-pane -S -1000 && tmux show-buffer | sed -e '/❯ */d' -e '/^t$/d' -e '/^$/d' -e '/^ ~ 󰮺$/d' | vipe); commandline $tmp";
   trash-tui =
     "~/Desktop/VSC/trash-tui/target/x86_64-unknown-linux-gnu/debug/trash-tui";
 }

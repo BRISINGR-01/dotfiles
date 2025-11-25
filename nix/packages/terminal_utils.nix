@@ -1,5 +1,8 @@
 { pkgs }:
 with pkgs; [
+  imagemagickBig
+  dutree
+  pstree
   parted
   ripgrep
   television

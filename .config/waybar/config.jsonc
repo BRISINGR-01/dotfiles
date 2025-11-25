@@ -5,10 +5,10 @@
   "modules-left": [
     "custom/notification",
     "clock",
-    "custom/pacman",
     "tray"
   ],
   "modules-center": [
+    "cava",
     "hyprland/workspaces"
   ],
   "modules-right": [
@@ -17,6 +17,8 @@
     "hyprland/submap",
     "hyprland/language",
     "bluetooth",
+    "cpu",
+    "memory",
     "network",
     "battery"
   ],
@@ -24,15 +26,18 @@
     "format": "{icon}",
     "show-special": true,
     "special-visible-only": true,
+    "active-only": false,
+    "all-outputs": true,
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
     "format-icons": {
-      "-97": "",
-      "-96": "󰨞",
-      "-95": "",
+      "editor": "󰨞",
+      "terminal": "",
+      "beeper": "󰵅",
+      "music": "󰽰"
+      // "-97": "",
       // "4": "",
       // "5": "",
-      "active": "󰕖",
-      "default": "",
-      "empty": "󰉗"
     }
   },
   "custom/notification": {
@@ -77,7 +82,7 @@
     "tooltip-format-wifi": "{essid} ({signalStrength}%) 󰤨",
     "tooltip-format-ethernet": "{ifname} 󰈁",
     "on-right-click": "nm-applet",
-    "on-click": "ghostty -e nmtui"
+    "on-click": "ghostty -e /home/alex/bin/wifitui"
   },
   "bluetooth": {
     "format-on": "󰂯",
@@ -94,7 +99,6 @@
   "hyprland/language": {
     "format-en": "",
     "format-bg": "🇧🇬",
-    "format-gr": "🇬🇷",
     "format-ru": "🇷🇺"
   },
   "pulseaudio": {
@@ -151,6 +155,8 @@
     "reverse": false,
     "bar_delimiter": 0,
     "noise_reduction": 0.77,
+    "hide_on_silence": true,
+    "sleep_timer": 3,
     "format-icons": [
       "▁",
       "▂",
@@ -190,15 +196,14 @@
     ]
   },
   "cpu": {
-    "format": "󰻠",
+    "format": " {usage}%",
+    "on-click": "ghostty -e btop",
     "tooltip": true
   },
   "memory": {
-    "format": ""
-  },
-  "temperature": {
-    "critical-threshold": 80,
-    "format": ""
+    "interval": 30,
+    "format": "  {percentage}%",
+    "max-length": 20
   },
   "tray": {
     "icon-size": 14,

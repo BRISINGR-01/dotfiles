@@ -40,6 +40,7 @@
 
   services = {
     blueman.enable = true;
+    playerctld.enable = true;
     openssh.enable = true;
     pulseaudio.enable = false;
     pipewire = {
@@ -59,6 +60,8 @@
     };
     gnome.gnome-keyring.enable = true;
   };
+
+  xdg.portal.enable = true;
 
   networking.extraHosts = ''
     127.0.0.1 cooleseite.at

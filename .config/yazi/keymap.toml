@@ -31,3 +31,8 @@ desc = "Archive (tar)"
 on   = [ "c", "a", "g" ]
 run  = "plugin compress tar.gz"
 desc = "Archive (tar + gzip)"
+
+[[mgr.prepend_keymap]]
+on   = [ "e" ]
+run  = "plugin easyjump"
+desc = "easyjump"

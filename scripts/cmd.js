@@ -198,23 +198,21 @@ const cmd = {
 
 		return result;
 	},
+	copy(text) {
+		this.spawn("wl-copy", text); // must be done with "spawn"
+	},
+	paste() {
+		if (this.json("hyprctl activewindow -j").class.endsWith("ghostty")) {
+			// ctrl + shift + v
+			this.spawn("ydotool", "key", "29:1", "42:1", "47:1", "47:0", "42:0", "29:0");
+		} else {
+			// ctrl + v
+			this.spawn("ydotool", "key", "29:1", "47:1", "47:0", "29:0");
+		}
+	},
 };
 
 export default cmd;
-
-export function copy(text) {
-	cmd.spawn("wl-copy", text); // must be done with "spawn"
-}
-
-export function paste() {
-	if (cmd.json("hyprctl activewindow -j").class.endsWith("ghostty")) {
-		// ctrl + shift + v
-		cmd.spawn("ydotool", "key", "29:1", "42:1", "47:1", "47:0", "42:0", "29:0");
-	} else {
-		// ctrl + v
-		cmd.spawn("ydotool", "key", "29:1", "47:1", "47:0", "29:0");
-	}
-}
 
 export const KEYS = {
 	lastWorkspace: "last-special-workspace",

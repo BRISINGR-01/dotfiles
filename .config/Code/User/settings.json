@@ -227,5 +227,14 @@
   "vim.useCtrlKeys": false,
   "extensions.ignoreRecommendations": true,
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "git.blame.editorDecoration.enabled": true
+  "git.blame.editorDecoration.enabled": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "editor.wordWrap": "on",
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  }
 }
