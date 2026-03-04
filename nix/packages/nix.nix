@@ -2,5 +2,5 @@
 
 with pkgs; [
   home-manager
-  nixfmt-classic
+  nixfmt
 ]

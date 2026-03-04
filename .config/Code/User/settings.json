@@ -210,9 +210,8 @@
   "[conf]": {
     "editor.defaultFormatter": null
   },
-  "window.menuBarVisibility": "hidden",
+  "window.menuBarVisibility": "compact",
   "workbench.startupEditor": "none",
-  "window.customTitleBarVisibility": "never",
   "window.titleBarStyle": "native",
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
@@ -233,8 +232,15 @@
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
-  "editor.wordWrap": "on",
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
-  }
+  },
+  "window.customTitleBarVisibility": "never",
+  "workbench.editorAssociations": {
+    "{hexdiff}:/**/*.*": "hexEditor.hexedit",
+    "*.svg": "default"
+  },
+  "editor.wrapOnEscapedLineFeeds": true,
+  "window.confirmSaveUntitledWorkspace": false,
+  "editor.wordWrap": "on"
 }

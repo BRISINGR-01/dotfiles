@@ -5,10 +5,15 @@
 
   hardware = {
     bluetooth.enable = true;
-    cpu.intel.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
-    #   graphics.enable = true;
-    #   nvidia.modesetting.enable = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    graphics.enable = true;
+		nvidia = {
+			modesetting.enable = true;
+			powerManagement.enable = false;
+			open = true; # <--- Add this
+			nvidiaSettings = true;
+			package = config.boot.kernelPackages.nvidiaPackages.stable;
+		};
   };
 
   boot = {

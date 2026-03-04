@@ -51,7 +51,7 @@ const entries = [
 	},
 	{
 		display: "Linear Algebra",
-		url: "https://studylib.net/viewer_next/web/study?file=%2F%2Fs2p.studylib.net%2Fstore%2Fdata%2F027601453.pdf%3Fk%3DAwAAAZpvzvvTAAACWB_JX4sdSNtxu2q2YWbmrvOPi-P-&img=%2F%2Fs2.studylib.net%2Fstore%2Fdata%2F027601453_1-3314fe7d79625e03e8e9f8a85b6d21bc.png&trustedSource=false&disableAutoFetch=true&disableStream=true",
+		url: "chrome-extension://ieepebpjnkhaiioojkepfniodjmjjihl/data/pdf.js/web/viewer.html?file=file:///home/alex/Desktop/Tue/math%20I/Linear%20Algebra%20and%20Its%20Applications_1.pdf#page=705&zoom=auto,-136,175",
 	},
 	{ display: "Calculus", url: "file:///home/alex/Desktop/Tue/calculus/Calculus - A Complete Course 10th edition.pdf" },
 ];

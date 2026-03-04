@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  rofi
   playerctl
   cava
   rofimoji
@@ -12,6 +13,5 @@ with pkgs; [
   hyprcursor
   ags
   hyprlandPlugins.hy3
-  hyprlandPlugins.hyprspace
   hyprlandPlugins.hypr-dynamic-cursors
 ]

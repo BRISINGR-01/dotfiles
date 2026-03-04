@@ -1,9 +1,13 @@
 { pkgs }:
 
 with pkgs; [
+  python313Packages.inotify-simple
+  platformio
+	arduino
+  simple-mtpfs
   postman
-  python312Packages.invoke
-  poedit
+  # python312Packages.invoke
+  # poedit
   gnumake
   neovim
   btop
@@ -11,5 +15,5 @@ with pkgs; [
   lazygit
   lazydocker
   cliphist
-  fuzzel
+  ffmpeg
 ]

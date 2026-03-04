@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import cmd from "./cmd.js";
+import cmd, { updateSystem } from "./cmd.js";
 
 export function removeTopic(topic) {
 	if (!topic) cmd.exit();
@@ -13,7 +13,7 @@ export function removeTopic(topic) {
 	const defaultNix = cmd.read(path.resolve(packagesDir, "default.nix"));
 	cmd.writeTo(
 		path.resolve(packagesDir, "default.nix"),
-		defaultNix.replace(`  ${topic} = import ./${topic}.nix;\n`, "").replace(` ++ ${topic} { pkgs = pkgs; }`, "")
+		defaultNix.replace(`  ${topic} = import ./${topic}.nix;\n`, "").replace(` ++ ${topic} { pkgs = pkgs; }`, ""),
 	);
 
 	if (cmd.run("home-manager switch")) cmd.print(`Uninstalled topic "${topic}"`, { color: "redBright", bold: true });
@@ -70,7 +70,7 @@ function uninstall() {
 
 	cmd.print(`Uninstalling package "${selectedPackage}" from "${topic}"`, { color: "redBright", bold: true });
 
-	if (cmd.run("home-manager switch")) cmd.print("Done", { color: "blueBright", bold: true });
+	if (updateSystem()) cmd.print("Done", { color: "blueBright", bold: true });
 }
 
 const packagesDir = path.resolve(cmd.dotfilesDir, "nix", "packages");

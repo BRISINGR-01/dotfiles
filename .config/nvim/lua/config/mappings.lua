@@ -1,11 +1,19 @@
 local utils = require('utils')
 local bind = vim.keymap.set
 
+---@param key string
+local function alt(key)
+	return "<Esc>" .. key
+end
+
 bind("n", "<leader>r", ":source $HOME/.config/nvim/init.lua <CR>")
 bind("n", "q", ":q! <CR>", { silent = true })
 bind("n", "Q", ":qa! <CR>", { silent = true })
 bind("n", "", ":w <CR>", { silent = true })
-bind("i", "", ":w <CR>", { silent = true })
+bind("i", "", "<Esc>:w<CR>", { silent = true })
+bind("n", "<C-d>", "<C-d>zz", { silent = true })
+bind("n", alt("j"), "\"ayy\"ap", { remap = true })
+bind("n", alt("k"), "\"ayy\"aP", { remap = true })
 
 bind("n", "<F4>", utils.suspend_suhutdown, { silent = true })
 bind("n", "<C-Right>", ":vertical resize -1 <CR>", { silent = true })

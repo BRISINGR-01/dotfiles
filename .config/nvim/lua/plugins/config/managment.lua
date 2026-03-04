@@ -1,5 +1,4 @@
 return {
-
 	{
 		"coffebar/neovim-project",
 		lazy = false,
@@ -41,4 +40,9 @@ return {
 			},
 		}
 	},
+	{
+		"chentoast/marks.nvim",
+		event = "VeryLazy",
+		opts = {},
+  }
 }

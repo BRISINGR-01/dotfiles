@@ -1,0 +1,22 @@
+'breakindent' 'bri'	boolean	(default off)
+			local to window
+	Every wrapped line will continue visually indented (same amount of
+	space as the beginning of that line), thus preserving horizontal
+	blocks of text.
+
+
+'linebreak' 'lbr'	boolean	(default off)
+			local to window
+	If on, Vim will wrap long lines at a character in 'breakat' rather
+	than at the last character that fits on the screen.  Unlike
+	'wrapmargin' and 'textwidth', this does not insert <EOL>s in the file,
+	it only affects the way the file is displayed, not its contents.
+	If 'breakindent' is set, line is visually indented.  Then, the value
+	of 'showbreak' is used to put in front of wrapped lines.  This option
+	is not used when the 'wrap' option is off.
+	Note that <Tab> characters after an <EOL> are mostly not displayed
+	with the right amount of white space.
+
+'shiftwidth' 'sw'	number	(default 8)
+			local to buffer
+	Number of columns that make up one level of (auto)indentation.  Used

@@ -1,0 +1,30 @@
+#!/bin/node
+
+import cmd from "./cmd.js";
+
+let vol = parseFloat(cmd.str("wpctl get-volume @DEFAULT_AUDIO_SINK@").replace("Volume: ", ""));
+
+if (isNaN(vol)) cmd.error("cannot get volume").exit(1);
+
+vol = Math.round(vol * 100)
+
+const isMinus = cmd.parameter === "-";
+const treshold = isMinus ? 6 : 5;
+const sign = isMinus ? -1 : 1;
+let difference = 1;
+let roundingFactor = 0;
+
+if (vol >= treshold) {
+	roundingFactor = vol % 5;
+	difference = 5;
+
+	if (roundingFactor !== 0 && isMinus) {
+		roundingFactor = 5 - roundingFactor;
+	}
+
+	difference -= roundingFactor;
+}
+
+difference *= sign;
+
+cmd.run(`wpctl set-volume @DEFAULT_AUDIO_SINK@ ${(vol + difference) / 100}`);

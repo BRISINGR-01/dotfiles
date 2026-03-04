@@ -2,11 +2,16 @@ local M = {}
 
 local is_transparent = 1;
 function M.toggle_transparent_background()
+
   if is_transparent == 0 then
-    vim.cmd [[hi Normal guibg=#111111 ctermbg=black]]
-    is_transparent = 1
+  
+		vim.cmd [[hi Normal guibg=#111111 ctermbg=black]]
+    
+		is_transparent = 1
   else
-    vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+    
+
+		vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
     is_transparent = 0
   end
 end

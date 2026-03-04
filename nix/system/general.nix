@@ -34,14 +34,15 @@
 
   networking = {
     hostName = "alex-nixos";
-    wireless.iwd.enable = true;
+    wireless.iwd.enable = false;
     networkmanager.enable = true;
   };
 
   services = {
     blueman.enable = true;
     playerctld.enable = true;
-    openssh.enable = true;
+    openssh.enable = false;
+    flatpak.enable = true;
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -49,7 +50,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       audio.enable = true;
-      jack.enable = true;
+      jack.enable = false;
     };
     upower = {
       enable = true;
@@ -59,9 +60,16 @@
       criticalPowerAction = "Hibernate";
     };
     gnome.gnome-keyring.enable = true;
+    udev.packages = [ pkgs.platformio-core pkgs.openocd ];
+		xserver.videoDrivers = [ "nvidia" ];
   };
+  security.rtkit.enable = true;
 
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
+  };
 
   networking.extraHosts = ''
     127.0.0.1 cooleseite.at

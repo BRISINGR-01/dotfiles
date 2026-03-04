@@ -18,5 +18,4 @@ apps { pkgs = pkgs; } ++ terminal { pkgs = pkgs; }
 ++ nix { pkgs = pkgs; } ++ dev { pkgs = pkgs; } ++ other { pkgs = pkgs; }
 ++ hyprland { pkgs = pkgs; } ++ ricing { pkgs = pkgs; }
 ++ programming { pkgs = pkgs; } ++ temp { pkgs = pkgs; } ++ [
-  # inputs.superfile.packages.${system}.default # spf
 ]

@@ -4,6 +4,10 @@ current_workspace=$(hyprctl monitors -j | jq '.[] | select(.focused).activeWorks
 last_workspace=$(hyprctl workspaces -j | jq '[.[] | select(.windows > 0)] | map(.id) | max')
 ws_count=$(($last_workspace + 1))
 
+echo $last_workspace
+echo $current_workspace
+echo $ws_count
+
 # Determine the action (next or prev workspace)
 if [[ $1 == "next" ]]; then
     if [[ $current_workspace -eq $ws_count ]]; then

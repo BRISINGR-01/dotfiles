@@ -1,34 +1,31 @@
 #!/bin/node
 import fs from "fs";
 import mode from "stat-mode";
-import cmd from "./cmd.js";
 
-if (process.getuid() !== 0) cmd.error("Not running with root").exit(1);
+if (process.getuid() !== 0) throw "Not running with root";
 
-const files = ["ttyUSB0", "ttyACM0"];
-
-const path = (f) => `/dev/${f}`;
+const rootPath = '/dev/'
 
 function unlock(f) {
-	fs.chmod(path(f), 0o777, (err) => {
+	fs.chmod(`${rootPath}${f}`, 0o777, (err) => {
 		if (err) {
-			cmd.error(err);
+			throw err;
 		} else {
-			cmd.print("unlocked");
+			console.log(`unlocked ${f}`);
 		}
 	});
 }
 
 function shouldUnlock(f) {
-	return fs.existsSync(path(f)) && !new mode.Mode(fs.statSync(path(f)).mode).others.write;
+	if (!/tty*/.test(f) || !fs.existsSync(`${rootPath}${f}`) ) return;
+
+	return !(new mode.Mode(fs.statSync(`${rootPath}${f}`).mode).others.write);
 }
 
-fs.watch("/dev").on("change", (e, f) => {
-	if (e === "change" && files.includes(f) && shouldUnlock(f)) {
-		unlock(f);
-	}
+fs.watch(rootPath).on("change", (e, f) => {
+	if (e === "change" &&  shouldUnlock(f))	unlock(f);
 });
 
-for (const f of files) {
+for (const f of fs.readdirSync(rootPath)) {
 	if (shouldUnlock(f)) unlock(f);
 }

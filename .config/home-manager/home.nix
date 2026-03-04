@@ -29,9 +29,13 @@ in {
     sessionVariables = {
       HYPRCURSOR_SIZE = "24";
       HYPRCURSOR_THEME = "-catppuccin-mocha-dark-cursors";
+      FZF_DEFAULT_OPTS =
+        "--color=fg:#d0d0d0,fg+:#d0d0d0,bg+:#2c323c --color=hl:#81A2BE,hl+:#5fd7ff,info:#81A2BE,marker:#81A2BE --color=prompt:#81A2BE,spinner:#81A2BE,pointer:#81A2BE,header:#72b8c7 --color=border:#81A2BE,label:#aeaeae,query:#d9d9d9 --border=\"rounded\" --preview-window=\"border-rounded\" --pointer=\"\" --layout reverse --info inline --tmux 60%,80% --preview 'cat {}'";
     };
     homeDirectory = home;
     stateVersion = "25.05";
+    enableNixpkgsReleaseCheck = false;
+
     packages = packages { pkgs = pkgs; };
     file = {
       ".config/hypr/hyprlock.conf".source =
@@ -46,6 +50,9 @@ in {
       userName = "Alexander Popov";
       userEmail = "alexander.popov233@gmail.com";
     };
+		atuin = {
+			enable = true;
+		};
     fish = {
       enable = true;
       shellAliases = aliases;
@@ -81,7 +88,6 @@ in {
 
       plugin=${pkgs.hyprlandPlugins.hypr-dynamic-cursors}/lib/libhypr-dynamic-cursors.so
       plugin=${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so
-      plugin=${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
     '';
   };
 
@@ -89,6 +95,8 @@ in {
     allowUnfree = true;
     allowBroken = true;
   };
+
+  # i18n.inputMethod.fcitx5.enable = false;
 
   xdg.mimeApps = {
     enable = true;

@@ -56,7 +56,7 @@ in {
       GTK_THEME = "Adwaita-dark";
       RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
       FZF_DEFAULT_OPTS =
-        "\n  --color=fg:#d0d0d0,fg+:#d0d0d0,bg+:#2c323c\n  --color=hl:#81A2BE,hl+:#5fd7ff,info:#81A2BE,marker:#81A2BE\n  --color=prompt:#81A2BE,spinner:#81A2BE,pointer:#81A2BE,header:#72b8c7\n  --color=border:#81A2BE,label:#aeaeae,query:#d9d9d9\n  --border=\"rounded\" --preview-window=\"border-rounded\" --pointer=\"\"\n  --layout reverse --info inline --tmux 60%,80% --preview 'cat {}'";
+        "--color=fg:#d0d0d0,fg+:#d0d0d0,bg+:#2c323c --color=hl:#81A2BE,hl+:#5fd7ff,info:#81A2BE,:#81A2BE color=prompt:#81A2BE,spinner:#81A2BE,pointer:#81A2BE,header:#72b8c7 --color=border:#81A2BE,label:#aeaeae,query:#d9d9d9 --border=\"rounded\" --preview-window=\"border-rounded\" --pointer=\"\" --layout reverse --info inline --tmux 60%,80% --preview 'cat {}'";
     };
   };
 }

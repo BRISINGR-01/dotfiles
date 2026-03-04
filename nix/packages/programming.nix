@@ -6,7 +6,6 @@ with pkgs; [
   pkg-config
   cmake
   flutter332
-  postgresql
   sqlite
   vscode-extensions.rust-lang.rust-analyzer
   rust-analyzer
@@ -15,9 +14,7 @@ with pkgs; [
   rustc
   android-tools
   android-studio
-  code-cursor
   git
-  nodejs_22
   yarn
   go
   clang

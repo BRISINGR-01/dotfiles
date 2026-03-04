@@ -1,6 +1,9 @@
 { pkgs }:
 
 with pkgs; [
+  code-cursor
+  onlyoffice-desktopeditors
+  cmus
   wl-color-picker
   mpv
   wireshark
@@ -9,9 +12,7 @@ with pkgs; [
   xournalpp
   beeper
   brave
-  freetube
   pinta
-  youtube-music
   obsidian
   google-chrome
   firefox
@@ -22,7 +23,6 @@ with pkgs; [
   wlogout
   blender
   nautilus
-  torrential
   vlc
   blueman
   pavucontrol

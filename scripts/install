@@ -100,16 +100,16 @@ process.on("SIGINT", function () {
 	cmd.exit(1);
 });
 
-try {
-	if (!cmd.bool("home-manager switch")) {
-		cmd.error("Failed to install package(s)");
-		gracefulExit(topic, pkg);
-		cmd.exit(1);
-	}
+// try {
+// 	if (!cmd.bool("sudo nixos-rebuild switch")) {
+// 		cmd.error("Failed to install package(s)");
+// 		gracefulExit(topic, pkg);
+// 		cmd.exit(1);
+// 	}
 
-	cmd.notify(`${pkg} downloaded`);
-	cmd.print("Done", { color: "blueBright", bold: true });
-} catch (error) {
-	console.log(error);
-	gracefulExit(topic, pkg);
-}
+// 	cmd.notify(`${pkg} downloaded`);
+// 	cmd.print("Done", { color: "blueBright", bold: true });
+// } catch (error) {
+// 	console.log(error);
+// 	gracefulExit(topic, pkg);
+// }

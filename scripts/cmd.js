@@ -84,7 +84,7 @@ const cmd = {
 				spawnSync("fzf", {
 					input: command.join("\n"),
 					encoding: "utf8",
-				}).stdout
+				}).stdout,
 			);
 		} catch (e) {
 			return "";
@@ -104,7 +104,7 @@ const cmd = {
 					input: `-e ${command.join("\n")} | tv`,
 					encoding: "utf8",
 					stdio: "inherit",
-				}).stdout
+				}).stdout,
 			);
 		} catch (e) {
 			console.log(e);
@@ -219,3 +219,8 @@ export const KEYS = {
 	rofiDir: "rofi-dir",
 	email: "rofi-email",
 };
+
+export function updateSystem() {
+	// return cmd.run("home-manager switch")
+	return cmd.run("sudo nixos-rebuild switch");
+}
