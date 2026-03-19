@@ -19,8 +19,10 @@ cmd.set(KEYS.lastWorkspace, workspace);
 
 if (!cmd.json("hyprctl clients -j").some((client) => client.workspace.name === `special:${workspace}`)) {
 	if (cmd.params[1] === "g") {
+		cmd.run(`ghostty -e ${process.argv[1]} ${cmd.parameter}`);
+
 		// For some reason, ghostty and other apps open in the old workspace unless this script is run like this:
-		cmd.spawn("ghostty", "-e", `${process.argv[1]} ${cmd.parameter}`);
+		//	 cmd.spawn("ghostty", "-e", `${process.argv[1]} ${cmd.parameter}`);
 		// it gives hyprland time to load the special workspace before ghostty and possibly other apps start
 
 		cmd.exit(0);

@@ -23,7 +23,6 @@ const cmd = {
 	currentDir: process.cwd(),
 	register(description) {
 		if (this.parameter == "--help" || this.parameter == "-h") {
-			console.log(description);
 			this.exit();
 		}
 	},
@@ -39,6 +38,7 @@ const cmd = {
 		return this;
 	},
 	spawn(command) {
+		
 		try {
 			const process = spawn(command, [...arguments].slice(1), {
 				detached: true, // Runs independently

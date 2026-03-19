@@ -1,0 +1,20 @@
+#!/bin/node
+
+import cmd from "../../../scripts/cmd.js";
+const isPLaying = cmd.str("playerctl status") === "Playing";
+
+const entries = [
+	{ display: isPLaying ? " Pause" : " Play", action: "play-pause" },
+	{ display: " Next", action: "next" },
+	{ display: " Previous", action: "previous" },
+];
+
+const entry = entries.find((e) => e.display === cmd.parameter);
+
+if (entry) {
+	cmd.spawn("playerctl", entry.action);
+	cmd.exit();
+}
+
+// show menu
+entries.forEach((e) => console.log(e.display));

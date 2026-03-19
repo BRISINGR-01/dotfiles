@@ -2,11 +2,21 @@
 
 import cmd from "./cmd.js";
 
-let vol = parseFloat(cmd.str("wpctl get-volume @DEFAULT_AUDIO_SINK@").replace("Volume: ", ""));
+const sink = cmd.str("pamixer --list-sinks | grep Running | awk '{print $1}'");
+const activeSink = cmd.str("pamixer --get-default-sink | grep Running | awk '{print $1}'")
+if (sink && sink !== activeSink) {
+  cmd.run(`pactl set-default-sink ${sink}`)
+}
+
+if (cmd.parameter === "m") {
+  cmd.run("pamixer -t").exit();
+}
+
+let vol = cmd.num("pamixer --get-volume");
 
 if (isNaN(vol)) cmd.error("cannot get volume").exit(1);
 
-vol = Math.round(vol * 100)
+vol = Math.round(vol * 100) / 100
 
 const isMinus = cmd.parameter === "-";
 const treshold = isMinus ? 6 : 5;
@@ -26,5 +36,5 @@ if (vol >= treshold) {
 }
 
 difference *= sign;
-
-cmd.run(`wpctl set-volume @DEFAULT_AUDIO_SINK@ ${(vol + difference) / 100}`);
+console.log(vol, difference, sign, roundingFactor)
+cmd.run(`pamixer --allow-boost --set-volume ${vol + difference}`);

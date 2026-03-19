@@ -1,6 +1,7 @@
 { pkgs }:
 
 with pkgs; [
+  gnome-multi-writer
   code-cursor
   onlyoffice-desktopeditors
   cmus

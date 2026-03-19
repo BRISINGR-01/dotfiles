@@ -18,11 +18,15 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
-      # grub.enable = true;
-      # grub.useOSProber = true;
-    };
+			grub =  {
+        enable = true;
+			  device = "nodev";
+			  useOSProber = true;
+			  efiSupport = true;
+      };
+   };
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
       kernelModules = [ ];

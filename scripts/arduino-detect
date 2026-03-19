@@ -5,6 +5,7 @@ import mode from "stat-mode";
 if (process.getuid() !== 0) throw "Not running with root";
 
 const rootPath = '/dev/'
+const filePattern = /(ttyS\d+)|(ACM\d+)/
 
 function unlock(f) {
 	fs.chmod(`${rootPath}${f}`, 0o777, (err) => {
@@ -17,7 +18,7 @@ function unlock(f) {
 }
 
 function shouldUnlock(f) {
-	if (!/tty*/.test(f) || !fs.existsSync(`${rootPath}${f}`) ) return;
+	if (!filePattern.test(f) || !fs.existsSync(`${rootPath}${f}`) ) return;
 
 	return !(new mode.Mode(fs.statSync(`${rootPath}${f}`).mode).others.write);
 }

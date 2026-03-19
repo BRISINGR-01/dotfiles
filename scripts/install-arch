@@ -1,0 +1,19 @@
+#!/bin/bash
+
+case "$1" in
+    pi)
+        pkg=$(pacman -Slq | fzf)
+        [[ -n "$pkg" ]] && sudo pacman -Sy "$pkg"
+        ;;
+    yi)
+        pkg=$(yay -Slaq | fzf)
+        [[ -n "$pkg" ]] && yay -Sy "$pkg"
+        ;;
+    rp)
+        pkg=$(pacman -Qq | fzf)
+        [[ -n "$pkg" ]] && sudo pacman -R "$pkg"
+        ;;
+    *)
+        echo "Usage: $0 {pi|yi|rp}"
+        ;;
+esac

@@ -1,9 +1,9 @@
 @import                          "~/dotfiles/config/rofi/shared/constants.rasi"
 
 configuration {
-	modi:                       "dirs:~/dotfiles/config/rofi/dirs/script";
+	modi:                       "player:~/dotfiles/config/rofi/player/script";
     show-icons:                 false;
-    display-dirs:               "  Dirs";
+    display-dirs:               "󱖏 Player";
 	drun-display-format:        "{name}";
 	window-format:              "{w} {c} | {t}";
 }
@@ -17,7 +17,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       400px;
+    width:                       200px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -39,7 +39,7 @@ mainbox {
     border:                      1px solid;
     border-color:                @light-gray;
     background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
+    children:                    [  "listview" ];
 }
 
 inputbar {
@@ -61,7 +61,7 @@ textbox-prompt-colon {
     enabled:                     true;
     padding:                     5px 0px;
     expand:                      false;
-    str:                         " ";
+    str:                         "󱖏";
     background-color:            inherit;
 }
 entry {
@@ -96,8 +96,8 @@ case-indicator {
 
 listview {
     enabled:                     true;
-    columns:                     2;
-    lines:                       5;
+    columns:                     1;
+    lines:                       3;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -109,8 +109,8 @@ listview {
     spacing:                     5px;
     margin:                      0px;
     padding:                     10px;
-    border:                      0px 2px 2px 2px ;
-    border-radius:               0px 0px 10px 10px;
+    border:                      2px 2px 2px 2px ;
+    border-radius:               10px;
     border-color:                @light-blue;
     background-color:            transparent;
     cursor:                      "default";
