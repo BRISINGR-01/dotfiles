@@ -5,7 +5,7 @@ import mode from "stat-mode";
 if (process.getuid() !== 0) throw "Not running with root";
 
 const rootPath = '/dev/'
-const filePattern = /(ttyS\d+)|(ACM\d+)/
+const filePattern = /(ttyUSB\d+)|(ACM\d+)/
 
 function unlock(f) {
 	fs.chmod(`${rootPath}${f}`, 0o777, (err) => {
